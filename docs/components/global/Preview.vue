@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="preview">
     <div class="preview__component">
       <slot name="component" />
     </div>
@@ -16,8 +16,11 @@ export default {
 </script>
 
 <style lang="postcss">
+.preview {
+  @apply border rounded;
+}
 .preview__component {
-  @apply border rounded p-4;
+  @apply bg-white border-b p-4;
   background-color: white;
   background-image: linear-gradient(45deg, rgb(249, 249, 250) 25%, transparent 25%), linear-gradient(135deg, rgb(249, 249, 250) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, rgb(249, 249, 250) 75%), linear-gradient(135deg, transparent 75%, rgb(249, 249, 250) 75%);
   background-size: 20px 20px;

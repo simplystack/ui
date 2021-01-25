@@ -23,20 +23,14 @@
     :class="[opened ? 'translate-x-0 shadow-lg' : '-translate-x-full']"
   >
     <ul class="space-y-1 mb-8">
-      <li class="text-gray-700">
+      <li v-for="sectionLink in sectionsLinks" :key="sectionLink.label" class="text-gray-700">
         <NuxtLink
-          to="/"
+          :to="sectionLink.to"
           active-class="font-semibold text-ui-primary"
           class="block text-gray-600 transition-transform ease-in-out duration-300 transform hover:translate-x-1"
         >
-          Guidelines
+          {{ sectionLink.label }}
         </NuxtLink>
-      </li>
-      <li class="text-gray-700">
-        Components
-      </li>
-      <li class="text-gray-700">
-        Resources
       </li>
     </ul>
     <div v-for="(sublinks, group) in sortedLinks" :key="`links-${group}`" class="mb-8">
@@ -70,6 +64,15 @@ export default {
       default () {
         return {}
       }
+    }
+  },
+  data () {
+    return {
+      sectionsLinks: [
+        { label: 'Foundations', to: '/foundations/' },
+        { label: 'Components', to: '/components/' },
+        { label: 'Resources', to: '/resources/' }
+      ]
     }
   },
   computed: {

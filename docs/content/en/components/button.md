@@ -8,14 +8,17 @@ category: get-started
 
 ## Component
 
-<button>Default</button>
-
 ```js
 import { VButton } from '@simplystack@/ui';
 ```
 
 <preview>
   <template #component>
-    <button>Primary</button>
+    <v-button type="primary">Primary</v-button>
+  </template>
+  <template #code>
+   ```
+    import { VButton } from '@simplystack@/ui';
+   ```
   </template>
 </preview>

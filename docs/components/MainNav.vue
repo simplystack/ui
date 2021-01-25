@@ -5,8 +5,7 @@
         <div class="inline-flex items-center lg:w-1/5">
           <NuxtLink to="/" class="inline-flex items-center">
             <Logo width="24" />
-            <span class="font-semibold ml-2">SimplyStack</span>
-            <span class="font-semibold text-gray-600 ml-2">Docs</span>
+            <span class="text-lg font-semibold ml-2">@simplystack/ui</span>
           </NuxtLink>
         </div>
       </div>
