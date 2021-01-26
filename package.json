@@ -1,8 +1,13 @@
 {
   "name": "@simplystack/ui",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "description": "",
   "module": "lib/index.js",
+  "files": [
+    "lib",
+    "nuxt.js",
+    "tailwind.config.js"
+  ],
   "scripts": {},
   "author": "",
   "license": "MIT",

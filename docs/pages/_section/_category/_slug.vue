@@ -36,7 +36,7 @@ export default {
       prev,
       next,
       section: params.section,
-      fodler: params.category,
+      folder: params.category,
       slug: params.slug
     }
   }

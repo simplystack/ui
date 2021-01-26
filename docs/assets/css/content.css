@@ -1,0 +1,115 @@
+.nuxt-content p {
+  line-height: 1.625;
+  padding-top: .25rem;
+  padding-bottom: .25rem;
+  margin-bottom: .5rem;
+}
+
+.nuxt-content h1, .nuxt-content h2, .nuxt-content h3, .nuxt-content h4, .nuxt-content h5, .nuxt-content h6 {
+  font-weight: 700;
+}
+
+.nuxt-content h2 > a::before, .nuxt-content h3 > a::before {
+  content: "#";
+  line-height: 3rem;
+  @apply font-bold text-primary text-2xl -ml-5 pr-2 absolute opacity-100;
+}
+
+.nuxt-content h2 > a, .nuxt-content h3 > a {
+  @apply ml-5;
+}
+
+.nuxt-content h2:hover> a::before, .nuxt-content h3:hover> a::before {
+  @apply opacity-100;
+}
+
+@screen lg {
+  .nuxt-content h2 > a::before, .nuxt-content h3 > a::before {
+    @apply opacity-0;
+  }
+}
+
+@screen lg {
+  .nuxt-content h2 > a, .nuxt-content h3 > a {
+    @apply ml-0;
+  }
+}
+
+.nuxt-content h1 {
+  position: relative;
+  font-size: 1.875rem;
+  display: table;
+  margin-bottom: 2rem;
+}
+
+.nuxt-content h2 {
+  @apply border-b;
+  font-size: 1.875rem;
+  margin-bottom: 1rem;
+  padding-bottom: .25rem;
+  border-bottom-width: 1px;
+  margin-top: -3rem;
+  padding-top: 4rem;
+}
+
+.nuxt-content h3 {
+  @apply border-b;
+  font-size: 1.5rem;
+  margin-bottom: .5rem;
+  padding-bottom: .25rem;
+  border-bottom-width: 1px;
+  margin-top: -3rem;
+  padding-top: 4rem;
+}
+
+.nuxt-content h4 {
+  @apply border-b;
+  font-size: 1.25rem;
+  margin-bottom: .5rem;
+  padding-bottom: .25rem;
+  border-bottom-width: 1px;
+  margin-top: -4rem;
+  padding-top: 5rem;
+}
+
+.nuxt-content pre {
+  @apply rounded;
+}
+
+.nuxt-content blockquote {
+  @apply pl-4;
+  border-left-width: .25rem;
+  margin-top: 1.6em;
+  margin-bottom: 1.6em;
+}
+
+.nuxt-content table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  display: block;
+  overflow-x: auto;
+}
+
+.nuxt-content tr {
+  border-top: 1px solid var(--color-ui-border);
+}
+
+.nuxt-content td, .nuxt-content th {
+  border: 1px solid var(--color-ui-border);
+  padding: .6em 1em;
+}
+
+.nuxt-content td, .nuxt-content th {
+  border: 1px solid var(--color-ui-border);
+  padding: .6em 1em;
+}
+
+.nuxt-content tr:nth-child(2n) {
+  background-color: theme('colors.gray.100');
+}
+
+.nuxt-content :not(pre) > code {
+  @apply bg-pink-100 text-pink-700;
+  padding: .2rem .33rem;
+  font-size: .78em;
+}

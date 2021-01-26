@@ -1,27 +1,44 @@
 export default {
   home: {
     meta: {},
-    title: 'Build powerful apps using our simple API',
-    description: 'This page provides all published technical documentation <br> for the SimplyStack platform.'
+    title: 'A Design System for the Web',
+    description: '@simplystack/ui is a simple, modular and accessible component library that gives you the building blocks you need to build your Vue applications.'
   },
   content: {
+    documentation: {
+      'get-started': 'Get started'
+    },
     components: {
-      'get-started': 'Get started',
-      button: 'Button'
+      forms: 'Forms',
+      typography: 'Typography'
     }
   },
   navigation: {
     links: [
       {
+        name: 'Documentations',
+        section: 'documentation',
+        category: 'get-started',
+        slug: 'installation',
+        routeName: 'section-category-slug'
+      },
+      {
+        name: 'Foundations',
+        section: 'foundations',
+        category: 'get-started',
+        slug: 'colors',
+        routeName: 'section-category-slug'
+      },
+      {
         name: 'Components',
         section: 'components',
-        category: 'get-started',
-        slug: 'introduction',
+        category: 'forms',
+        slug: 'button',
         routeName: 'section-category-slug'
       },
       {
         name: 'Resources',
-        section: 'metadata',
+        section: 'resources',
         category: 'get-started',
         slug: 'introduction',
         routeName: 'section-category-slug'

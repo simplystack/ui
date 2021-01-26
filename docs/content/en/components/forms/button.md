@@ -1,9 +1,9 @@
 ---
 title: Button
 description: You will learn how to send request by curl tool
-position: 5
+position: 1
 section: components
-category: get-started
+category: forms
 ---
 
 ## Component
@@ -15,10 +15,5 @@ import { VButton } from '@simplystack@/ui';
 <preview>
   <template #component>
     <v-button type="primary">Primary</v-button>
-  </template>
-  <template #code>
-   ```
-    import { VButton } from '@simplystack@/ui';
-   ```
   </template>
 </preview>

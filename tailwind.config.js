@@ -10,7 +10,18 @@ module.exports = {
           ...colors.blue,
           500: '#0044f0'
         }
-      }
+      },
+      borderColor: {
+        primary: colors.blue['500']
+      },
+      textColor: {
+        primary: colors.blue['500'],
+        secondary: colors.gray['700'],
+      },
+      backgroundColor: {
+        primary: colors.blue['500'],
+      },
+
     },
   },
   variants: {

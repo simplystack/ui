@@ -22,14 +22,27 @@
     "
     :class="[opened ? 'translate-x-0 shadow-lg' : '-translate-x-full']"
   >
-    <ul class="space-y-1 mb-8">
-      <li v-for="sectionLink in sectionsLinks" :key="sectionLink.label" class="text-gray-700">
+    <ul class="space-y-2 mb-8">
+      <li v-for="link in $t('navigation.links')" :key="`${link.section}-${link.slug}`" class="text-gray-700">
         <NuxtLink
-          :to="sectionLink.to"
-          active-class="font-semibold text-ui-primary"
+          :to="localePath({
+            name: link.routeName,
+            params: {
+              section: link.section,
+              category: link.category,
+              slug: link.slug
+            }
+          })"
+          active-class="font-semibold text-primary"
           class="block text-gray-600 transition-transform ease-in-out duration-300 transform hover:translate-x-1"
         >
-          {{ sectionLink.label }}
+          <span class="flex items-center">
+            <GridIcon v-if="link.section === 'components'" class="mr-2" />
+            <NewspaperIcon v-if="link.section === 'documentation'" class="mr-2" />
+            <BeakerIcon v-if="link.section === 'foundations'" class="mr-2" />
+            <FolderDownloadIcon v-if="link.section === 'resources'" class="mr-2" />
+            {{ link.name }}
+          </span>
         </NuxtLink>
       </li>
     </ul>
@@ -42,7 +55,7 @@
         <li v-for="(link, index) in sublinks" :key="index" class="pl-2">
           <NuxtLink
             :to="toLink(group, link)"
-            active-class="font-semibold text-ui-primary"
+            active-class="font-semibold text-primary"
             class="block text-gray-600 transition-transform ease-in-out duration-300 transform hover:translate-x-1"
           >
             {{ link.title }}
@@ -64,15 +77,6 @@ export default {
       default () {
         return {}
       }
-    }
-  },
-  data () {
-    return {
-      sectionsLinks: [
-        { label: 'Foundations', to: '/foundations/' },
-        { label: 'Components', to: '/components/' },
-        { label: 'Resources', to: '/resources/' }
-      ]
     }
   },
   computed: {
