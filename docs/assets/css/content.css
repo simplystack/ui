@@ -91,16 +91,16 @@
 }
 
 .nuxt-content tr {
-  border-top: 1px solid var(--color-ui-border);
+  @apply border-t;
 }
 
 .nuxt-content td, .nuxt-content th {
-  border: 1px solid var(--color-ui-border);
+  @apply border;
   padding: .6em 1em;
 }
 
 .nuxt-content td, .nuxt-content th {
-  border: 1px solid var(--color-ui-border);
+  @apply border;
   padding: .6em 1em;
 }
 

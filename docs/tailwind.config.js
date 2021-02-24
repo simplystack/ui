@@ -1,4 +1,4 @@
-const config = require('@simplystack/ui/tailwind.config')
+const config = require('../tailwind.config')
 
 module.exports = {
   theme: {

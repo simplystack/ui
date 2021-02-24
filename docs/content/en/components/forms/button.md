@@ -6,14 +6,26 @@ section: components
 category: forms
 ---
 
-## Component
-
-```js
-import { VButton } from '@simplystack@/ui';
-```
+# Button
+Buttons are used primarily for actions.
 
 <preview>
   <template #component>
-    <v-button type="primary">Primary</v-button>
+    <v-button>Default</v-button>
+    <v-button appearance="primary">Primary</v-button>
   </template>
 </preview>
+
+```html
+<template>
+  <v-button type="primary">Primary</v-button>
+</template>
+
+<script>
+import { VButton } from '@simplystack@/ui';
+
+export default {
+  components: { VButton }
+}
+</script>
+```

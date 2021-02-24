@@ -1,4 +1,4 @@
-const colors = require('tailwindcss/colors')
+const colors = require('./colors');
 
 module.exports = {
   purge: [],
@@ -6,22 +6,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        blue: {
-          ...colors.blue,
-          500: '#0044f0'
-        }
+        ...colors
       },
       borderColor: {
-        primary: colors.blue['500']
+        default: 'var(--border-01)',
+        primary: colors.blue['500'],
+        'border-01': 'var(--border-01)',
       },
       textColor: {
-        primary: colors.blue['500'],
-        secondary: colors.gray['700'],
+        'primary': colors.blue['500'],
+        'secondary':'var(--text-02)',
+        '01': 'var(--text-01)',
       },
       backgroundColor: {
-        primary: colors.blue['500'],
+        'ui-background': 'var(--ui-background)',
+        'ui-01': 'var(--ui-01)',
       },
-
     },
   },
   variants: {

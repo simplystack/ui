@@ -187,7 +187,7 @@ export default {
 
   .textbox__input, .textbox__textarea {
     @apply w-full border rounded outline-none px-3;
-    /* background-color: var(--color-background-input); */
+    background-color: var(--field-01);
   }
 
   .textbox__input:focus, .textbox__textarea:focus {

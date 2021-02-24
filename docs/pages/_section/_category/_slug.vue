@@ -1,18 +1,20 @@
 <template>
   <div class="flex flex-col lg:flex-row">
-    <div class="order-2 lg:order-none w-full lg:w-3/4 border-ui-border lg:border-r lg:border-l py-4 lg:py-8">
-      <article class="content lg:px-8">
-        <nuxt-content :document="page" />
-      </article>
-      <!-- <PageEdit :document="page" />
+    <div class="order-2 lg:order-none w-full lg:w-3/4 py-4">
+      <div class="bg-ui-01 border shadow rounded lg:py-8">
+        <article class="content lg:px-8">
+          <nuxt-content :document="page" />
+        </article>
+      </div>
+      <!-- <PageEdit :document="page" /> -->
       <LazyPagePrevNext
         :prev="prev"
         :next="next"
-        section="api"
-      /> -->
+        :section="section"
+      />
     </div>
     <div class="order-1 lg:order-none w-full lg:w-1/4 lg:pl-4 py-4 lg:py-8">
-      <!-- <PageToc v-if="page.toc && page.toc.length" :toc="page.toc" /> -->
+      <PageToc v-if="page.toc && page.toc.length" :toc="page.toc" />
     </div>
   </div>
 </template>
@@ -30,6 +32,16 @@ export default {
     } catch (e) {
       return error({ statusCode: 404, message: 'Page not found' })
     }
+
+    try {
+      [prev, next] = await $content(path)
+        .only(['title', 'slug', 'dir', 'menu'])
+        .sortBy('position')
+        .sortBy('title')
+        .sortBy('menu')
+        .surround(params.slug, { before: 1, after: 1 })
+        .fetch()
+    } catch (e) {}
 
     return {
       page,

@@ -4,13 +4,20 @@ export default {
     title: 'A Design System for the Web',
     description: '@simplystack/ui is a simple, modular and accessible component library that gives you the building blocks you need to build your Vue applications.'
   },
+  toc: {
+    title: 'On this page'
+  },
   content: {
     documentation: {
       'get-started': 'Get started'
     },
+    foundations: {
+      colors: 'Colors'
+    },
     components: {
       forms: 'Forms',
-      typography: 'Typography'
+      typography: 'Typography',
+      ui: 'UI'
     }
   },
   navigation: {
@@ -25,8 +32,8 @@ export default {
       {
         name: 'Foundations',
         section: 'foundations',
-        category: 'get-started',
-        slug: 'colors',
+        category: 'colors',
+        slug: 'palette',
         routeName: 'section-category-slug'
       },
       {
