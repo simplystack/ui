@@ -1,4 +1,4 @@
-import { join } from 'path'
+import { join } from 'path';
 
 export default function () {
   this.nuxt.hook('components:dirs', (dirs) => {
@@ -6,7 +6,7 @@ export default function () {
       path: join(__dirname, 'lib'),
       extensions: ['vue'],
       prefix: 'v',
-      global: true
-    })
-  })
+      global: true,
+    });
+  });
 }

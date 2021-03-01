@@ -23,34 +23,34 @@
 </template>
 
 <script>
+import VSpinner from '../Spinner';
+
 export default {
-  name: "VButton",
+  name: 'VButton',
   props: {
     type: {
       type: String,
-      default: "button",
+      default: 'button',
     },
     appearance: {
       type: String,
-      default: "default",
+      default: 'default',
       validator(appearance) {
         return (
           [
-            "default",
-            "primary",
-            "alternative",
-            "subtle",
-            "success",
-            "danger",
+            'default',
+            'primary',
+            'subtle',
+            'danger',
           ].indexOf(appearance) > -1
         );
       },
     },
     size: {
       type: String,
-      default: "4",
+      default: 'xl',
       validator(appearance) {
-        return ["0", "1", "2", "3", "4"].indexOf(appearance) > -1;
+        return ['xs', 'sm', 'md', 'lg', 'xl'].indexOf(appearance) > -1;
       },
     },
     loading: {
@@ -75,39 +75,37 @@ export default {
       return [
         `button--${this.appearance}`,
         `button--size-${this.size}`,
-        { "button--loading": this.loading },
-        { "button--icon-only": !this.$slots.default },
-        { "button--icon-first": this.iconFirst },
-        { "button--inverted": this.inverted },
+        { 'button--loading': this.loading },
+        { 'button--icon-only': !this.$slots.default },
+        { 'button--icon-first': this.iconFirst },
+        { 'button--inverted': this.inverted },
       ];
     },
     spinnerSize() {
       switch (this.size) {
-        case "1":
+        case 'sm':
           return { size: 16, stroke: 5 };
-        case "2":
+        case 'md':
           return { size: 18, stroke: 5 };
-        case "3":
+        case 'lg':
           return { size: 20, stroke: 5 };
         default:
           return { size: 24, stroke: 5 };
       }
     },
   },
+  components: { VSpinner },
 };
 </script>
 
 <style lang="postcss">
 .button {
-  align-items: center;
+  @apply inline-flex items-center text-base font-semibold;
   appearance: none;
   background-color: transparent;
   border: 0;
   border-radius: 4px;
   cursor: pointer;
-  display: inline-flex;
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
   height: 48px;
   justify-content: center;
   margin: 0;
@@ -129,34 +127,34 @@ export default {
   margin-left: 4px;
 }
 
-.button--size-0 {
+.button--size-xs {
   font-size: 14px;
   height: auto;
   padding: 0;
 }
-.button--size-1 {
+.button--size-sm {
   border-radius: 3px;
   font-size: 14px;
   height: 24px;
   padding: 0 4px;
 }
-.button--size-2 {
+.button--size-md {
   border-radius: 3px;
   height: 32px;
   padding: 0 8px;
 }
-.button--size-3 {
+.button--size-lg {
   height: 40px;
   padding: 0 16px;
 }
-.button--size-4 {
+.button--size-xl {
   height: 48px;
   padding: 0 24px;
 }
 
 .button--default {
-  background-color: var(--color-background-button-default);
-  color: var(--color-text-button-default);
+  background-color: var(--ui-02);
+  color: var(--text-01);
   &:focus {
     box-shadow: 0 0 0 2px var(--color-background-button-default-focus);
   }
@@ -218,8 +216,7 @@ export default {
 }
 
 .button--primary {
-  background-color: var(--color-background-button-primary);
-  color: white;
+  @apply bg-interactive-01 text-white;
   &:focus {
     box-shadow: 0 0 0 2px var(--color-background-button-primary-focus);
   }
@@ -232,26 +229,6 @@ export default {
   &.button--inverted {
     &[disabled] {
       background-color: var(--button-primary-bg-color-inverted-disabled);
-      color: var(--gray-300);
-    }
-  }
-}
-
-.button--success {
-  background-color: var(--color-background-button-success);
-  color: var(--text-color-button-success);
-  &:focus {
-    box-shadow: 0 0 0 2px var(--green-200);
-  }
-  &:hover:not([disabled]) {
-    background-color: var(--color-background-button-success-hover);
-  }
-  &:active:not([disabled]) {
-    background-color: var(--color-background-button-success-active);
-  }
-  &.button--inverted {
-    &[disabled] {
-      background-color: var(--button-success-bg-color-inverted-disabled);
       color: var(--gray-300);
     }
   }
@@ -303,23 +280,19 @@ export default {
     margin-right: 0;
   }
 
-  &.button--size-1 {
+  &.button--size-sm {
     border-radius: 3px;
     width: 24px;
   }
-  &.button--size-2 {
+  &.button--size-md {
     border-radius: 3px;
     width: 32px;
   }
-  &.button--size-3 {
+  &.button--size-lg {
     width: 40px;
   }
-  &.button--size-4 {
+  &.button--size-xl {
     width: 48px;
   }
-}
-
-.button--full {
-  width: 100%;
 }
 </style>

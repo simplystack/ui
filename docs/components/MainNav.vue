@@ -8,7 +8,7 @@
             <span class="text-lg font-semibold ml-2">@simplystack/ui</span>
           </NuxtLink>
         </div>
-        <ToggleTheme />
+        <ToggleMode />
       </div>
     </div>
   </header>

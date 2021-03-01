@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <v-cross
+      <v-cross-icon
         v-if="isSlotDisplayed && clearable && !disabled"
         @click.native.stop="clear"
         class="select__clear"
@@ -63,7 +63,7 @@
         width="16"
       />
 
-      <v-chevron v-else class="select__chevron" height="18" width="18" />
+      <v-chevron-down-icon v-else class="select__chevron" height="18" width="18" />
     </div>
 
     <div
@@ -107,16 +107,18 @@
 </template>
 
 <script>
-// import VChevron from "components/icons/Chevron.vue";
-// import VCross from "components/icons/Cross.vue";
-import fuzzysearch from "fuzzysearch";
-import VSelectOption from "../SelectOption";
-import VChip from "../Chip";
-import { isObjectEmpty } from "../../util";
-import { scrollIntoView, resetScroll } from "../../util/elementScroll";
+import fuzzysearch from 'fuzzysearch';
+import VChevronDownIcon from '../../icons/ChevronDownIcon.vue';
+import VCrossIcon from '../../icons/CrossIcon.vue';
+import VSelectOption from '../SelectOption';
+import VChip from '../Chip';
+import { isObjectEmpty } from '../../util';
+import { scrollIntoView, resetScroll } from '../../util/elementScroll';
+import clickoutside from '../../directives/clickoutside';
 
 export default {
-  name: "VSelect",
+  name: 'VSelect',
+  directives: { clickoutside },
   props: {
     id: {
       type: [Number, String],
@@ -130,7 +132,7 @@ export default {
     },
     label: {
       type: String,
-      default: "Label",
+      default: 'Label',
     },
     value: {
       type: [Array, Object],
@@ -161,7 +163,7 @@ export default {
     },
     placeholder: {
       type: String,
-      default: "Placeholder",
+      default: 'Placeholder',
     },
     options: {
       type: Array,
@@ -173,10 +175,10 @@ export default {
       type: Object,
       default() {
         return {
-          label: "label",
-          value: "value",
-          image: "image",
-          disabled: "disabled",
+          label: 'label',
+          value: 'value',
+          image: 'image',
+          disabled: 'disabled',
         };
       },
     },
@@ -187,7 +189,7 @@ export default {
   },
   data() {
     return {
-      query: "",
+      query: '',
       isOpen: false,
       isActive: false,
       mutableValue: null,
@@ -198,32 +200,30 @@ export default {
   computed: {
     classes() {
       return [
-        { "select--open": this.isOpen },
-        { "select--error": this.error },
-        { "select--disabled": this.disabled },
+        { 'select--open': this.isOpen },
+        { 'select--error': this.error },
+        { 'select--disabled': this.disabled },
       ];
     },
     isSlotDisplayed() {
       if (this.multiple) {
         return this.mutableValue.length > 0 && this.mutableValue.length <= 1;
       }
-      return this.mutableValue !== "" && !isObjectEmpty(this.mutableValue);
+      return this.mutableValue !== '' && !isObjectEmpty(this.mutableValue);
     },
     isPlaceholderVisible() {
       return (
-        this.mutableValue === "" ||
-        this.mutableValue === null ||
-        this.mutableValue.length === 0 ||
-        Object.keys(this.mutableValue).length === 0
+        this.mutableValue === ''
+        || this.mutableValue === null
+        || this.mutableValue.length === 0
+        || Object.keys(this.mutableValue).length === 0
       );
     },
     filteredOptions() {
       if (!this.filterable) {
         return this.mutableOptions;
       }
-      return this.mutableOptions.filter((option, index) =>
-        this.defaultFilter(option, index)
-      );
+      return this.mutableOptions.filter((option, index) => this.defaultFilter(option, index));
     },
   },
   methods: {
@@ -253,7 +253,7 @@ export default {
         this.setValue(option);
         this.closeDropdown();
       }
-      this.$emit("select", option);
+      this.$emit('select', option);
     },
     deselect(option) {
       const indexOfOption = this.mutableValue.indexOf(option);
@@ -261,30 +261,30 @@ export default {
     },
     setValue(value) {
       this.mutableValue = value;
-      this.$emit("input", value);
-      this.$emit("change", value);
+      this.$emit('input', value);
+      this.$emit('change', value);
     },
     toggleDropdown() {
-      this[this.isOpen ? "closeDropdown" : "openDropdown"]();
+      this[this.isOpen ? 'closeDropdown' : 'openDropdown']();
     },
     onOpen() {
       this.$nextTick(() => {
         this.$refs.dropdown.focus();
         this.scrollOptionIntoView(
-          this.$refs.dropdown.querySelector(".select-option--selected")
+          this.$refs.dropdown.querySelector('.select-option--selected'),
         );
       });
     },
     onBlur() {
       this.isActive = false;
-      this.$emit("blur");
+      this.$emit('blur');
       if (this.isOpen) {
         this.closeDropdown();
       }
     },
     onFocus() {
       this.isActive = true;
-      this.$emit("focus");
+      this.$emit('focus');
     },
     openDropdown() {
       if (!this.disabled) {
@@ -296,13 +296,13 @@ export default {
       this.isOpen = false;
       this.$refs.container.focus();
       this.$nextTick(() => {
-        this.query = "";
+        this.query = '';
       });
     },
     isOptionSelected(option) {
       if (this.multiple) {
         return this.mutableValue.some(
-          (value) => value[this.keys.label] === option[this.keys.label]
+          (value) => value[this.keys.label] === option[this.keys.label],
         );
       }
       return this.mutableValue[this.keys.label] === option[this.keys.label];
@@ -316,7 +316,7 @@ export default {
 
       this.highlightedIndex = -1;
 
-      this.$emit("clear");
+      this.$emit('clear');
 
       this.$nextTick(() => {
         resetScroll(this.$refs.dropdown);
@@ -335,7 +335,7 @@ export default {
     defaultFilter(option) {
       const query = this.query.toLowerCase();
       let text = option[this.keys.label];
-      if (typeof text === "string") {
+      if (typeof text === 'string') {
         text = text.toLowerCase();
       }
       return fuzzysearch(query, text);
@@ -343,14 +343,14 @@ export default {
     highlightOption(direction) {
       if (this.$refs.options.length === this.highlightedIndex) return;
 
-      if (direction === "next") {
-        this.highlightedIndex = this.highlightedIndex + 1;
+      if (direction === 'next') {
+        this.highlightedIndex += 1;
         if (this.highlightedIndex === this.$refs.options.length) {
           this.highlightedIndex = 0;
         }
       }
-      if (direction === "prev") {
-        this.highlightedIndex = this.highlightedIndex - 1;
+      if (direction === 'prev') {
+        this.highlightedIndex -= 1;
         if (this.highlightedIndex < 0) {
           this.highlightedIndex = this.$refs.options.length - 1;
         }
@@ -364,7 +364,7 @@ export default {
 
       this.$nextTick(() => {
         this.scrollOptionIntoView(
-          this.$refs.options[this.highlightedIndex].$el
+          this.$refs.options[this.highlightedIndex].$el,
         );
       });
     },
@@ -385,9 +385,9 @@ export default {
     isOpen() {
       if (this.isOpen) {
         this.onOpen();
-        this.$emit("open");
+        this.$emit('open');
       } else {
-        this.$emit("close");
+        this.$emit('close');
       }
     },
     query() {
@@ -397,8 +397,8 @@ export default {
   components: {
     VSelectOption,
     VChip,
-    // VChevron,
-    // VCross,
+    VChevronDownIcon,
+    VCrossIcon,
   },
 };
 </script>
@@ -406,6 +406,7 @@ export default {
 <style lang="postcss">
 .select {
   display: inline-block;
+  color: var(--text-01);
   font-family: var(--body-font);
   font-size: var(--body-font-size);
   position: relative;
@@ -419,7 +420,7 @@ export default {
 .select__container {
   @apply border;
   align-items: center;
-  background-color: var(--color-background-select);
+  background-color: var(--field-01);
   border-radius: 4px;
   display: flex;
   height: 48px;
@@ -460,7 +461,8 @@ export default {
 }
 
 .select__placeholder {
-  @apply text-secondary truncate;
+  @apply truncate;
+  color: var(--text-03);
 }
 
 .select__chevron,
@@ -485,6 +487,7 @@ export default {
 
 .select__dropdown {
   @apply border z-10 shadow;
+  background-color: var(--field-01);
   border-radius: 0 0 4px 4px;
   left: 0;
   margin-top: -1px;

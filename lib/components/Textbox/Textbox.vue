@@ -12,7 +12,7 @@
       @input="handleInput"
       @keydown="handleKeyDown"
 
-      class="textbox__input placeholder-gray-600"
+      class="textbox__input"
       :value="value"
       :placeholder="placeholder"
       :type="type"
@@ -31,7 +31,7 @@
       @input="handleInput"
       @keydown="handleKeyDown"
 
-      class="textbox__textarea placeholder-gray-600"
+      class="textbox__textarea"
       :readonly="readonly"
       :disabled="disabled"
       :required="required"

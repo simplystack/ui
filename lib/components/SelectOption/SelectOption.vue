@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: "VSelectOption",
+  name: 'VSelectOption',
   props: {
     option: {
       type: [String, Object],
@@ -26,10 +26,10 @@ export default {
       type: Object,
       default() {
         return {
-          label: "label",
-          value: "value",
-          image: "image",
-          disabled: "disabled",
+          label: 'label',
+          value: 'value',
+          image: 'image',
+          disabled: 'disabled',
         };
       },
     },
@@ -37,9 +37,9 @@ export default {
   computed: {
     classes() {
       return [
-        { "select-option--selected": this.selected },
-        { "select-option--highlighted": this.highlighted },
-        { "select-option--disabled": this.disabled },
+        { 'select-option--selected': this.selected },
+        { 'select-option--highlighted': this.highlighted },
+        { 'select-option--disabled': this.disabled },
       ];
     },
   },

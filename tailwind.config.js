@@ -6,21 +6,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ...colors
+        ...colors,
       },
       borderColor: {
         default: 'var(--border-01)',
-        primary: colors.blue['500'],
+        primary: 'var(--color-brand)',
         'border-01': 'var(--border-01)',
       },
       textColor: {
-        'primary': colors.blue['500'],
-        'secondary':'var(--text-02)',
+        primary: 'var(--color-brand)',
+        secondary: 'var(--text-02)',
         '01': 'var(--text-01)',
       },
       backgroundColor: {
         'ui-background': 'var(--ui-background)',
         'ui-01': 'var(--ui-01)',
+
+        'interactive-01': 'var(--interactive-01)',
       },
     },
   },
@@ -28,4 +30,4 @@ module.exports = {
     extend: {},
   },
   plugins: [],
-}
+};

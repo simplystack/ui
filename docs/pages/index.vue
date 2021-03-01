@@ -23,7 +23,7 @@
                 }
               })"
             >
-              <v-button type="primary">
+              <v-button appearance="primary">
                 <span class="flex items-center space-x-2">
                   <span>Get started</span>
                   <ArrowNarrowRightIcon size="20" />

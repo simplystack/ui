@@ -6,6 +6,9 @@
 }
 
 :root {
+    /* BASE */
+    --color-brand: theme('colors.blue.500');
+
     --ui-background: #F7F7F8;
     --ui-01: #FFFFFF;
     --ui-02: #F4F4F4;
@@ -17,6 +20,10 @@
     --text-03: #909DB0;
 
     --field-01: #FFFFFF;
+
+    /* INTERACTIVE */
+    --interactive-01: var(--color-brand);
+    --interactive-02: theme('colors.gray.200');
 }
 
 [data-mode="dark"] {
