@@ -405,43 +405,28 @@ export default {
 
 <style lang="postcss">
 .select {
-  display: inline-block;
-  color: var(--text-01);
-  font-family: var(--body-font);
-  font-size: var(--body-font-size);
-  position: relative;
-  width: 100%;
+  @apply inline-block relative text-primary w-full;
 }
 .select__label {
-  display: block;
-  margin-bottom: 4px;
+  @apply block mb-2;
 }
 
 .select__container {
-  @apply border;
-  align-items: center;
-  background-color: var(--field-01);
-  border-radius: 4px;
-  display: flex;
+  @apply bg-control-default flex items-center justify-between border rounded cursor-pointer px-4;
   height: 48px;
-  justify-content: space-between;
-  padding: 0 16px;
   user-select: none;
 }
 
 .select__container:focus {
-  @apply border-primary shadow;
-  outline: none;
+  @apply outline-none border-brand shadow;
 }
 
 .select:hover {
-  border-color: var(--form-item-border-color-hover);
-  cursor: pointer;
+  @apply border-control-default;
 }
 
 .select__input {
-  border: none;
-  padding: 0;
+  @apply border-none p-0;
 }
 
 .select__filter-wrapper {
@@ -456,18 +441,17 @@ export default {
   width: 100%;
 }
 .select__filter:focus {
-  @apply border-primary;
+  @apply border-brand;
   outline: none;
 }
 
 .select__placeholder {
-  @apply truncate;
-  color: var(--text-03);
+  @apply truncate text-placeholder;
 }
 
 .select__chevron,
 .select__clear {
-  color: var(--color-text-secondary);
+  @apply text-secondary;
   flex-shrink: 0;
   margin-left: 4px;
 }
@@ -486,8 +470,7 @@ export default {
 }
 
 .select__dropdown {
-  @apply border z-10 shadow;
-  background-color: var(--field-01);
+  @apply absolute bg-base border z-10 shadow-lg;
   border-radius: 0 0 4px 4px;
   left: 0;
   margin-top: -1px;
@@ -496,7 +479,6 @@ export default {
   outline: none;
   overflow-y: auto;
   padding: 8px 0;
-  position: absolute;
   right: 0;
   top: 100%;
   visibility: hidden;
@@ -504,27 +486,30 @@ export default {
 
 /* Disabled */
 .select--disabled .select__display {
-  @apply text-secondary;
+  @apply text-control-disabled;
 }
 .select--disabled .select__container {
-  background-color: var(--color-background-select-disabled);
+  @apply bg-control-disabled;
   cursor: not-allowed;
 }
 
-.select--disabled .select__placeholder,
 .select--disabled .select__chevron {
   @apply text-secondary;
 }
 
+.select--disabled .select__placeholder {
+  @apply text-control-disabled;
+}
+
 /* Open */
 .select--open .select__dropdown {
-  @apply border-primary;
+  @apply border-brand;
   opacity: 1;
   visibility: visible;
 }
 
 .select--open .select__container {
-  @apply border-primary shadow;
+  @apply border-brand shadow;
   border-radius: 4px 4px 0 0;
 }
 
@@ -535,6 +520,6 @@ export default {
 /* Error */
 .select--error .select__container,
 .select--error .select__dropdown {
-  @apply border-red-500;
+  @apply border-control-danger;
 }
 </style>

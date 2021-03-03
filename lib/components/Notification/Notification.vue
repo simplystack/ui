@@ -23,9 +23,9 @@
       </div>
     </div>
     <div class="notification__close" v-if="dismissible">
-      <v-button appearance="subtle" size="1" @click.stop="onClose($event)">
+      <v-button appearance="subtle" size="sm" @click.stop="onClose($event)">
         <template v-slot:icon>
-          <!-- <v-icon name="cross-icon" width="14" height="14" /> -->
+          <v-cross-icon height="16" width="16" />
         </template>
       </v-button>
     </div>
@@ -33,11 +33,12 @@
 </template>
 
 <script>
-import VButton from "../Button";
-import { capitalize } from "../../util";
+import VCrossIcon from '../../icons/CrossIcon.vue';
+import VButton from '../Button';
+import { capitalize } from '../../util';
 
 export default {
-  name: "VNotification",
+  name: 'VNotification',
   props: {
     id: {
       type: [Number, String],
@@ -45,9 +46,9 @@ export default {
     },
     type: {
       type: String,
-      default: "info",
+      default: 'info',
       validator(type) {
-        return ["info", "success", "warning", "error"].indexOf(type) > -1;
+        return ['info', 'success', 'warning', 'error'].indexOf(type) > -1;
       },
     },
     title: {
@@ -83,7 +84,7 @@ export default {
   },
   methods: {
     onClose(e) {
-      this.$emit("close", e);
+      this.$emit('close', e);
     },
     actionClickHandler(action) {
       if (action) {
@@ -96,13 +97,14 @@ export default {
   },
   components: {
     VButton,
+    VCrossIcon,
   },
 };
 </script>
 
 <style lang="postcss">
 .notification {
-  background-color: var(--ui-01);
+  @apply bg-base;
   border-radius: 4px;
   box-shadow: 0 0 1px rgba(76, 76, 76, 0.32),
     0 12px 10px -8px rgba(76, 76, 76, 0.12);
@@ -134,7 +136,7 @@ export default {
 
 .notification__title {
   font-weight: 700;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -156,18 +158,18 @@ export default {
 }
 
 .notification--info::after {
-  @apply bg-blue-500;
+  @apply bg-brand;
 }
 
 .notification--success::after {
-  @apply bg-green-500;
+  @apply bg-success;
 }
 
 .notification--warning::after {
-  @apply bg-yellow-500;
+  @apply bg-warning;
 }
 
 .notification--error::after {
-  @apply bg-red-500;
+  @apply bg-danger;
 }
 </style>

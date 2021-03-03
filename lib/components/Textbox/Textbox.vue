@@ -186,12 +186,11 @@ export default {
   }
 
   .textbox__input, .textbox__textarea {
-    @apply w-full border rounded outline-none px-3;
-    background-color: var(--field-01);
+    @apply bg-control-default w-full border rounded outline-none px-3;
   }
 
   .textbox__input:focus, .textbox__textarea:focus {
-    @apply shadow border-primary;
+    @apply shadow border-brand;
   }
 
   .textbox__label {
@@ -199,8 +198,7 @@ export default {
   }
 
   .textbox--floated .textbox__label {
-    /* @apply absolute uppercase text-secondary; */
-    font-weight: 800;
+    @apply absolute font-bold uppercase text-secondary;
     font-size: 10px;
     padding: 7px 0 0 12px;
     opacity: 0;
@@ -217,20 +215,19 @@ export default {
   }
 
   .textbox--disabled .textbox__input, .textbox--disabled .textbox__textarea {
-    /* @apply text-secondary; */
-    /* background-color: var(--color-background-input-disabled); */
+    @apply bg-control-disabled text-control-disabled border-control-disabled;
   }
 
   .textbox--readonly .textbox__input, .textbox--readonly .textbox__textarea {
-    /* background-color: var(--color-background-input-disabled); */
+    @apply bg-control-disabled;
   }
 
   .textbox--error .textbox__input, .textbox--error .textbox__textarea {
-    border-color: theme('colors.red.500');
+    @apply border-control-danger;
   }
 
   .textbox--error .textbox__label, .textbox--error .textbox__label {
-    color: theme('colors.red.500');
+    @apply text-danger;
   }
 
   .textbox--size-xs .textbox__input {

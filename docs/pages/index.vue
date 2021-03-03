@@ -40,7 +40,7 @@
         </div>
 
         <div class="grid grid-cols-3 shadow-lg">
-          <div class="bg-ui-01 rounded-l-lg p-8">
+          <div class="bg-base rounded-l-lg p-8">
             <figure class="mb-8">
               <Logo width="50" height="50" />
             </figure>

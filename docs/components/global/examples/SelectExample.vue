@@ -1,6 +1,7 @@
 <template>
-  <div>
+  <div class="space-y-2">
     <v-select v-model="value" :options="options" />
+    <v-select v-model="value" disabled :options="options" />
   </div>
 </template>
 

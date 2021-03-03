@@ -1,5 +1,5 @@
 <template>
-  <div class="text-01 bg-ui-background min-h-screen flex flex-col antialiased">
+  <div class="min-h-screen flex flex-col text-primary bg-body antialiased">
     <MainNav />
     <Nuxt />
   </div>

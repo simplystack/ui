@@ -12,7 +12,7 @@
     </a>
     <div
       v-if="active"
-      class="absolute left-0 border-b-2 border-primary w-full"
+      class="absolute left-0 border-b-2 border-brand w-full"
       style="bottom: -2px;"
     ></div>
   </li>

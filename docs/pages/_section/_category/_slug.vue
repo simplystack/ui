@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col lg:flex-row">
     <div class="order-2 lg:order-none w-full lg:w-3/4 py-4">
-      <div class="bg-ui-01 border shadow rounded lg:py-8">
+      <div class="bg-base shadow rounded lg:py-8">
         <article class="content lg:px-8">
           <nuxt-content :document="page" />
         </article>

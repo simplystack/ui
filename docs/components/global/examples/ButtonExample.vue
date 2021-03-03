@@ -7,6 +7,9 @@
       <v-button size="xs" appearance="primary">
         Primary
       </v-button>
+      <v-button size="xs" appearance="secondary">
+        Secondary
+      </v-button>
       <v-button size="xs" appearance="subtle">
         Subtle
       </v-button>
@@ -20,6 +23,9 @@
       </v-button>
       <v-button size="sm" appearance="primary">
         Primary
+      </v-button>
+      <v-button size="sm" appearance="secondary">
+        Secondary
       </v-button>
       <v-button size="sm" appearance="subtle">
         Subtle
@@ -35,6 +41,9 @@
       <v-button size="md" appearance="primary">
         Primary
       </v-button>
+      <v-button size="md" appearance="secondary">
+        Secondary
+      </v-button>
       <v-button size="md" appearance="subtle">
         Subtle
       </v-button>
@@ -48,6 +57,9 @@
       </v-button>
       <v-button size="lg" appearance="primary">
         Primary
+      </v-button>
+      <v-button size="lg" appearance="secondary">
+        Secondary
       </v-button>
       <v-button size="lg" appearance="subtle">
         Subtle
@@ -63,6 +75,9 @@
       <v-button size="xl" appearance="primary">
         Primary
       </v-button>
+      <v-button size="xl" appearance="secondary">
+        Secondary
+      </v-button>
       <v-button size="xl" appearance="subtle">
         Subtle
       </v-button>
@@ -77,6 +92,9 @@
       <v-button loading size="xl" appearance="primary">
         Primary
       </v-button>
+      <v-button loading size="xl" appearance="secondary">
+        Secondary
+      </v-button>
       <v-button loading size="xl" appearance="subtle">
         Subtle
       </v-button>
@@ -90,6 +108,9 @@
       </v-button>
       <v-button disabled size="xl" appearance="primary">
         Primary
+      </v-button>
+      <v-button disabled size="xl" appearance="secondary">
+        Secondary
       </v-button>
       <v-button disabled size="xl" appearance="subtle">
         Subtle

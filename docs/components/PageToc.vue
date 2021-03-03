@@ -7,7 +7,7 @@
         {{ $t('toc.title') }}
       </h3>
       <nav>
-        <scrollactive highlight-first-item active-class="text-primary" :offset="0" tag="ul">
+        <scrollactive highlight-first-item active-class="text-brand" :offset="0" tag="ul">
           <li
             v-for="link of toc"
             :key="link.id"

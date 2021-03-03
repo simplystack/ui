@@ -1,8 +1,5 @@
 <template>
-  <label
-    :for="id"
-    class="relative cursor-pointer"
-  >
+  <label :for="id" class="flex items-center" :class="{ 'checkbox--indeterminate' : indeterminate }">
     <input
       :id="id"
       :name="name"
@@ -13,33 +10,14 @@
 
       ref="input"
       type="checkbox"
-      class="sr-only"
+      class="checkbox__input"
 
       @blur="onBlur"
       @focus="onFocus"
       @change="onChange"
-    >
-    <span v-if="label" class="font-bold">{{ label }}</span>
-    <span class="relative block h-6 w-12 rounded-full" :class="containerClasses">
-      <span
-        class="
-        scale-75
-        block
-        absolute
-        z-10
-        transform
-        h-6
-        w-6
-        bg-control-default
-        shadow
-        rounded-full
-        transition
-        ease-in-out
-        duration-200
-      "
-        :class="circleClasses"
-      ></span>
-    </span>
+    />
+    <div class="checkbox__squad"></div>
+    <span class="checkbox__text">{{ label }}</span>
   </label>
 </template>
 
@@ -47,7 +25,7 @@
 import { looseEqual } from '../../util';
 
 export default {
-  name: 'VToggle',
+  name: 'VCheckbox',
   props: {
     id: {
       type: [String, Number],
@@ -57,6 +35,7 @@ export default {
     },
     label: {
       type: [String, Number],
+      required: false,
     },
     value: {
       required: true,
@@ -80,10 +59,6 @@ export default {
       default: false,
     },
     tabindex: [String, Number],
-    vertical: {
-      type: Boolean,
-      default: false,
-    },
     disabled: {
       type: Boolean,
       default: false,
@@ -97,31 +72,25 @@ export default {
   created() {
     this.$emit('input', this.isChecked ? this.trueValue : this.falseValue);
   },
-  computed: {
-    circleClasses() {
-      return [{ 'translate-x-6': this.isChecked }];
-    },
-    containerClasses() {
-      return [this.isChecked ? 'bg-control-primary' : 'bg-tertiary'];
-    },
-  },
   methods: {
-    focus() {
-      this.$refs.input.focus();
-    },
-    onChange(e) {
-      const isCheckedPrevious = this.isChecked;
-      const isChecked = e.target.checked;
-      this.$emit('input', isChecked ? this.trueValue : this.falseValue, e);
-      if (isCheckedPrevious !== isChecked) {
-        this.$emit('change', isChecked ? this.trueValue : this.falseValue, e);
-      }
-    },
     onFocus(e) {
       this.$emit('focus', e);
     },
     onBlur(e) {
       this.$emit('blur', e);
+    },
+    onChange(e) {
+      const isCheckedPrevious = this.isChecked;
+      const isChecked = e.target.checked;
+
+      this.$emit('input', isChecked ? this.trueValue : this.falseValue, e);
+
+      if (isCheckedPrevious !== isChecked) {
+        this.$emit('change', isChecked ? this.trueValue : this.falseValue, e);
+      }
+    },
+    focus() {
+      this.$refs.input.focus();
     },
   },
   watch: {
@@ -131,3 +100,46 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.checkbox__squad {
+  @apply relative h-5 w-5 border rounded mr-2 bg-base;
+}
+
+.checkbox__input {
+  @apply absolute appearance-none;
+}
+.checkbox__input:checked + .checkbox__squad {
+  @apply border-brand bg-brand;
+}
+.checkbox__input:checked + .checkbox__squad:after {
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  bottom: 5px;
+  content: "";
+  display: block;
+  height: 10px;
+  left: 7px;
+  opacity: 0;
+  position: absolute;
+  transform: rotate(45deg);
+  transition: all 200ms ease;
+  width: 5px;
+}
+.checkbox__input:checked + .checkbox__squad:after {
+  opacity: 1;
+}
+.checkbox__input:focus + .checkbox__squad {
+ @apply shadow;
+}
+.checkbox__input:disabled + .checkbox__squad {
+  @apply bg-control-disabled;
+}
+.checkbox__input[disabled]:checked + .checkbox__squad {
+  @apply bg-gray-500 border-gray-500;
+}
+
+.checkbox__text {
+  @apply font-semibold;
+}
+</style>
