@@ -417,12 +417,12 @@ export default {
   user-select: none;
 }
 
-.select__container:focus {
-  @apply outline-none border-brand shadow;
+.select__container:hover {
+  @apply border-control-hover;
 }
 
-.select:hover {
-  @apply border-control-default;
+.select__container:focus {
+  @apply outline-none border-brand shadow;
 }
 
 .select__input {
@@ -489,7 +489,7 @@ export default {
   @apply text-control-disabled;
 }
 .select--disabled .select__container {
-  @apply bg-control-disabled;
+  @apply bg-control-disabled border-control-disabled;
   cursor: not-allowed;
 }
 

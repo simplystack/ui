@@ -72,7 +72,9 @@ export default {
 }
 
 .select-option--selected {
-  @apply bg-control-primary text-control-primary;
+  background-color: hsla(var(--color-brand-h), var(--color-brand-s), var(--color-brand-l), 0.08);
+  @apply text-brand;
+  /* @apply bg-control-primary text-control-primary; */
 }
 
 /* .select-option:focus:not(.select-option--disabled) {
