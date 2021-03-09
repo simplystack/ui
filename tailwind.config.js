@@ -13,6 +13,7 @@ module.exports = {
         brand: 'var(--color-border-brand)',
 
         'control-default': 'var(--color-control-border-default)',
+        'control-primary': 'var(--color-control-bg-primary)',
         'control-active': 'var(--color-control-border-active)',
         'control-focus': 'var(--color-control-border-focus)',
         'control-hover': 'var(--color-control-border-hover)',
@@ -20,11 +21,12 @@ module.exports = {
         'control-danger': 'var(--color-control-border-danger)',
       },
       textColor: {
-        brand: 'var(--color-typo-primary)',
+        brand: 'var(--color-typo-brand)',
         danger: 'var(--color-typo-danger)',
         primary: 'var(--color-typo-primary)',
         secondary: 'var(--color-typo-secondary)',
         placeholder: 'var(--color-typo-placeholder)',
+        'control-primary': 'var(--color-control-typo-primary)',
         'control-disabled': 'var(--color-control-typo-disabled)',
       },
       backgroundColor: {
@@ -42,7 +44,7 @@ module.exports = {
         'control-primary-hover': 'var(--color-control-bg-primary-hover)',
         'control-secondary': 'var(--color-control-bg-secondary)',
         'control-secondary-hover': 'var(--color-control-bg-secondary-hover)',
-        'control-subtle': 'var(--color-control-bg-subtle)',
+        'control-subtle-hover': 'var(--color-control-bg-subtle-hover)',
         'control-danger': 'var(--color-control-bg-danger)',
         'control-danger-hover': 'var(--color-control-bg-danger-hover)',
       },

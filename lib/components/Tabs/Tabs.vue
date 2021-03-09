@@ -1,6 +1,6 @@
 <template>
   <div class="tabs" :class="classes">
-    <ul class="flex flex-wrap items-center border-b-2" role="tablist">
+    <ul class="tabs__list" role="tablist">
       <v-tab-header
         ref="tabHeaders"
 
@@ -159,7 +159,7 @@ export default {
         if (this.activeTabId === tab.id) {
           tab.activate();
           this.activeTabIndex = index;
-        } else if (tab.isActive) {
+        } else if (tab.active) {
           tab.deactivate();
         }
       });
@@ -167,3 +167,9 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.tabs__list {
+  @apply flex flex-wrap items-center border-b-2;
+}
+</style>

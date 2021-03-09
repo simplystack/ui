@@ -1,7 +1,7 @@
 ---
 title: Notification
 description: You will learn how to send request by curl tool
-position: 2
+position: 3
 section: components
 category: ui
 ---

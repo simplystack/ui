@@ -1,5 +1,12 @@
 <template>
-  <label :for="id" class="flex items-center" :class="{ 'checkbox--indeterminate' : indeterminate }">
+  <label
+    :for="id"
+    class="checkbox"
+    :class="{
+      'checkbox--indeterminate': indeterminate,
+      'checkbox--disabled': disabled,
+    }"
+  >
     <input
       :id="id"
       :name="name"
@@ -7,11 +14,9 @@
       :checked.prop="isChecked"
       :value="submittedValue"
       :tabindex="tabindex"
-
       ref="input"
       type="checkbox"
       class="checkbox__input"
-
       @blur="onBlur"
       @focus="onFocus"
       @change="onChange"
@@ -102,19 +107,28 @@ export default {
 </script>
 
 <style lang="postcss">
+.checkbox {
+  @apply flex items-center cursor-pointer;
+}
+.checkbox:hover .checkbox__squad {
+  @apply border-control-hover;
+}
+.checkbox--disabled {
+  @apply cursor-not-allowed;
+}
 .checkbox__squad {
-  @apply relative h-5 w-5 border rounded mr-2 bg-base;
+  @apply relative h-5 w-5 border rounded mr-2 bg-control-default;
 }
 
 .checkbox__input {
   @apply absolute appearance-none;
 }
 .checkbox__input:checked + .checkbox__squad {
-  @apply border-brand bg-brand;
+  @apply bg-control-primary border-control-primary text-control-primary;
 }
 .checkbox__input:checked + .checkbox__squad:after {
-  border-bottom: 2px solid #fff;
-  border-right: 2px solid #fff;
+  border-bottom: 2px solid currentColor;
+  border-right: 2px solid currentColor;
   bottom: 5px;
   content: "";
   display: block;
@@ -130,13 +144,13 @@ export default {
   opacity: 1;
 }
 .checkbox__input:focus + .checkbox__squad {
- @apply shadow;
+  @apply shadow;
 }
 .checkbox__input:disabled + .checkbox__squad {
-  @apply bg-control-disabled;
+  @apply bg-control-disabled border-control-disabled;
 }
 .checkbox__input[disabled]:checked + .checkbox__squad {
-  @apply bg-gray-500 border-gray-500;
+  @apply bg-control-disabled border-control-disabled text-control-disabled;
 }
 
 .checkbox__text {

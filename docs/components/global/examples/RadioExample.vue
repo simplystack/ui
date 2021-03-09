@@ -1,8 +1,8 @@
 <template>
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center space-x-4">
     <v-radio v-model="value" name="option" true-value="Option 1" label="Option 1" />
     <v-radio v-model="value" name="option" true-value="Option 2" label="Option 2" />
-    <v-radio v-model="value" name="disabled" true-value="disabled" disabled label="Disabled" />
+    <v-radio v-model="value" name="option" true-value="Option 2" disabled label="Disabled" />
   </div>
 </template>
 

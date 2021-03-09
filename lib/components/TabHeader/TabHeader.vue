@@ -1,18 +1,18 @@
 <template>
   <li
-    class="relative py-2 mr-6"
+    class="tab-header"
     role="tab"
     :aria-controls="id"
     :aria-selected="active ? 'true' : null"
     :tabindex="active ? 0 : -1"
     :class="[active ? '' : '']"
   >
-    <a @click="onClick" href="#" class="tabs__link" :class="classes">
-      <div class="font-semibold">{{ title }}</div>
+    <a @click="onClick" href="#" class="tab-header__link" :class="classes">
+      {{ title }}
     </a>
     <div
       v-if="active"
-      class="absolute left-0 border-b-2 border-brand w-full"
+      class="tab-header__indicator"
       style="bottom: -2px;"
     ></div>
   </li>
@@ -42,9 +42,8 @@ export default {
   computed: {
     classes() {
       return [
-        this.active ? '' : 'text-secondary',
-        { 'tabs__link--active': this.active },
-        { 'tabs__link--disabled': this.disabled },
+        { 'tab-header__link--active': this.active },
+        { 'tab-header__link--disabled': this.disabled },
       ];
     },
   },
@@ -56,3 +55,21 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.tab-header {
+  @apply relative py-2 mr-6;
+}
+.tab-header__indicator {
+  @apply absolute left-0 border-b-2 border-brand w-full;
+}
+.tab-header__link {
+  @apply font-semibold text-secondary;
+}
+.tab-header__link--active {
+  @apply text-primary;
+}
+.tab-header__link--disabled {
+  @apply opacity-50;
+}
+</style>

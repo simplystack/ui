@@ -39,7 +39,7 @@
       :rows="rows"
       :placeholder="placeholder"
     />
-    <span v-if="error" class="text-red-500 text-sm">{{ errorText }}</span>
+    <span v-if="error" class="textbox__message">{{ errorText }}</span>
   </label>
 </template>
 
@@ -181,87 +181,95 @@ export default {
 </script>
 
 <style lang="postcss">
-  .textbox {
-    @apply flex flex-col relative;
-  }
+.textbox {
+  @apply flex flex-col relative;
+}
 
-  .textbox__input, .textbox__textarea {
-    @apply bg-control-default w-full border rounded outline-none px-3;
-  }
+.textbox__input, .textbox__textarea {
+  @apply bg-control-default w-full border rounded outline-none px-3;
+}
 
-  .textbox__input:focus, .textbox__textarea:focus {
-    @apply shadow border-brand;
-  }
+.textbox__input:hover {
+  @apply border-control-hover;
+}
 
-  .textbox__label {
-    @apply font-semibold mb-1;
-  }
+.textbox__input:focus, .textbox__textarea:focus {
+  @apply shadow border-control-primary;
+}
 
-  .textbox--floated .textbox__label {
-    @apply absolute font-bold uppercase text-secondary;
-    font-size: 10px;
-    padding: 7px 0 0 12px;
-    opacity: 0;
-    visibility: hidden;
-  }
+.textbox__label {
+  @apply font-semibold mb-1;
+}
 
-  .textbox--floated-active .textbox__label {
-    opacity: 1;
-    visibility: visible;
-  }
+.textbox__message {
+  @apply text-danger text-sm;
+}
 
-  .textbox--floated-active .textbox__input {
-    padding-top: 16px;
-  }
+.textbox--floated .textbox__label {
+  @apply absolute font-bold uppercase text-secondary;
+  font-size: 10px;
+  padding: 7px 0 0 12px;
+  opacity: 0;
+  visibility: hidden;
+}
 
-  .textbox--disabled .textbox__input, .textbox--disabled .textbox__textarea {
-    @apply bg-control-disabled text-control-disabled border-control-disabled;
-  }
+.textbox--floated-active .textbox__label {
+  opacity: 1;
+  visibility: visible;
+}
 
-  .textbox--readonly .textbox__input, .textbox--readonly .textbox__textarea {
-    @apply bg-control-disabled;
-  }
+.textbox--floated-active .textbox__input {
+  padding-top: 16px;
+}
 
-  .textbox--error .textbox__input, .textbox--error .textbox__textarea {
-    @apply border-control-danger;
-  }
+.textbox--disabled .textbox__input, .textbox--disabled .textbox__textarea {
+  @apply bg-control-disabled text-control-disabled border-control-disabled cursor-not-allowed;
+}
 
-  .textbox--error .textbox__label, .textbox--error .textbox__label {
-    @apply text-danger;
-  }
+.textbox--readonly .textbox__input, .textbox--readonly .textbox__textarea {
+  @apply bg-control-disabled;
+}
 
-  .textbox--size-xs .textbox__input {
-    @apply h-6;
-  }
-  .textbox--size-sm .textbox__input {
-    @apply h-8;
-  }
-  .textbox--size-md .textbox__input {
-    @apply h-10;
-  }
-  .textbox--size-lg .textbox__input {
-    @apply h-12;
-  }
-  .textbox--size-xl .textbox__input {
-    @apply h-16 text-xl font-semibold;
-  }
+.textbox--error .textbox__input, .textbox--error .textbox__textarea {
+  @apply border-control-danger;
+}
 
-  .textbox--size-xs .textbox__textarea {
-    @apply py-3;
-  }
-  .textbox--size-sm .textbox__textarea {
-    @apply py-3;
-  }
-  .textbox--size-md .textbox__textarea {
-    @apply py-3;
-  }
-  .textbox--size-lg .textbox__textarea {
-    @apply py-3;
-  }
-  .textbox--size-lg.textbox--floated-active .textbox__textarea {
-    padding-top: theme('height.5');
-  }
-  .textbox--size-xl .textbox__textarea {
-    @apply py-3 text-xl font-semibold;
-  }
+.textbox--error .textbox__label, .textbox--error .textbox__label {
+  @apply text-danger;
+}
+
+.textbox--size-xs .textbox__input {
+  @apply h-6;
+}
+.textbox--size-sm .textbox__input {
+  @apply h-8;
+}
+.textbox--size-md .textbox__input {
+  @apply h-10;
+}
+.textbox--size-lg .textbox__input {
+  @apply h-12;
+}
+.textbox--size-xl .textbox__input {
+  @apply h-16 text-xl font-semibold;
+}
+
+.textbox--size-xs .textbox__textarea {
+  @apply py-3;
+}
+.textbox--size-sm .textbox__textarea {
+  @apply py-3;
+}
+.textbox--size-md .textbox__textarea {
+  @apply py-3;
+}
+.textbox--size-lg .textbox__textarea {
+  @apply py-3;
+}
+.textbox--size-lg.textbox--floated-active .textbox__textarea {
+  padding-top: theme('height.5');
+}
+.textbox--size-xl .textbox__textarea {
+  @apply py-3 text-xl font-semibold;
+}
 </style>

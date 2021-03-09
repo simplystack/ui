@@ -1,7 +1,7 @@
 <template>
-  <component 
+  <component
     class="font-bold"
-    :is="tag" 
+    :is="tag"
     :class="[
       {'text-6xl': this.level === 1},
       {'text-4xl': this.level === 2},
@@ -19,22 +19,22 @@ export default {
   props: {
     level: {
       type: [String, Number],
-      default: 1
-    }
+      default: 1,
+    },
   },
   computed: {
-    tag () {
+    tag() {
       if (this.level === 2) {
-        return 'h2'
+        return 'h2';
       }
       if (this.level === 3) {
-        return 'h3'
+        return 'h3';
       }
       if (this.level === 4) {
-        return 'h4'
+        return 'h4';
       }
-      return 'h1'
-    }
-  }
-}
+      return 'h1';
+    },
+  },
+};
 </script>

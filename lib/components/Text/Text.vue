@@ -10,12 +10,12 @@ export default {
   props: {
     tag: {
       type: String,
-      default: 'p'
+      default: 'p',
     },
     secondary: {
       type: Boolean,
       default: false,
-    }
-  }
-}
+    },
+  },
+};
 </script>

@@ -58,26 +58,26 @@ export default {
 }
 
 .select-option--highlighted {
-  background-color: var(--color-background-select-option-highlighted);
+  /* background-color: var(--color-background-select-option-highlighted); */
+  @apply bg-control-subtle-hover;
 }
 
-.select-option--selected {
-  background-color: var(--color-background-select-option-selected);
-  color: var(--color-primary);
-}
-
-.select-option:hover:not(.select-option--disabled) {
-  background-color: var(--color-background-select-option-hover);
+.select-option:hover:not(.select-option--disabled):not(.select-option--selected) {
+  @apply bg-control-subtle-hover;
   cursor: pointer;
 }
 
-.select-option:active:not(.select-option--disabled) {
-  background-color: var(--color-background-select-option-active);
+.select-option:active:not(.select-option--disabled):not(.select-option--selected) {
+  @apply bg-control-subtle-hover;
 }
 
-.select-option:focus:not(.select-option--disabled) {
-  box-shadow: inset 0 0 0 2px var(--blue-300);
+.select-option--selected {
+  @apply bg-control-primary text-control-primary;
 }
+
+/* .select-option:focus:not(.select-option--disabled) {
+  box-shadow: inset 0 0 0 2px var(--blue-300);
+} */
 
 .select-option--disabled {
   opacity: 0.5;

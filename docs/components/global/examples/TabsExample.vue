@@ -16,6 +16,11 @@
           Tab #3
         </div>
       </v-tab>
+      <v-tab title="Tab 3" disabled>
+        <div class="pt-4">
+          Tab #3
+        </div>
+      </v-tab>
     </v-tabs>
   </div>
 </template>

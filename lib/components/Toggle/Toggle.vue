@@ -1,7 +1,8 @@
 <template>
   <label
     :for="id"
-    class="relative cursor-pointer"
+    class="toggle"
+    :class="[{'toggle--disabled': disabled}]"
   >
     <input
       :id="id"
@@ -13,33 +14,13 @@
 
       ref="input"
       type="checkbox"
-      class="sr-only"
+      class="toggle__input"
 
       @blur="onBlur"
       @focus="onFocus"
       @change="onChange"
     >
-    <span v-if="label" class="font-bold">{{ label }}</span>
-    <span class="relative block h-6 w-12 rounded-full" :class="containerClasses">
-      <span
-        class="
-        scale-75
-        block
-        absolute
-        z-10
-        transform
-        h-6
-        w-6
-        bg-control-default
-        shadow
-        rounded-full
-        transition
-        ease-in-out
-        duration-200
-      "
-        :class="circleClasses"
-      ></span>
-    </span>
+    <span v-if="label" class="toggle__label">{{ label }}</span>
   </label>
 </template>
 
@@ -97,14 +78,7 @@ export default {
   created() {
     this.$emit('input', this.isChecked ? this.trueValue : this.falseValue);
   },
-  computed: {
-    circleClasses() {
-      return [{ 'translate-x-6': this.isChecked }];
-    },
-    containerClasses() {
-      return [this.isChecked ? 'bg-control-primary' : 'bg-tertiary'];
-    },
-  },
+  computed: {},
   methods: {
     focus() {
       this.$refs.input.focus();
@@ -131,3 +105,68 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.toggle {
+  @apply inline-flex items-center relative cursor-pointer;
+}
+.toggle--disabled {
+  @apply cursor-not-allowed;
+}
+.toggle--disabled .toggle__label {
+  @apply text-control-disabled;
+}
+
+.toggle:not(.toggle--disabled):hover .toggle__input:not(:checked) {
+  --border-color: var(--color-control-border-hover);
+  --background-color: var(--color-control-bg-default);
+  --content-color: var(--color-control-border-hover);
+}
+.toggle:not(.toggle--disabled):hover .toggle__input:checked {
+  --border-color: var(--color-control-bg-primary-hover);
+  --background-color: var(--color-control-bg-primary-hover);
+  --content-color: var(--color-control-typo-primary);
+}
+
+.toggle__input:not(:checked) {
+  --border-color: var(--color-control-border-default);
+  --background-color: var(--color-control-bg-default);
+  --content-color: var(--color-control-border-default);
+}
+.toggle__input:checked {
+  --border-color: var(--color-control-bg-primary);
+  --background-color: var(--color-control-bg-primary);
+  --content-color: var(--color-control-typo-primary);
+}
+
+.toggle__input:not(:checked):disabled {
+  --border-color: var(--color-control-border-disabled);
+  --background-color: var(--color-control-bg-disabled);
+  --content-color: var(--color-control-typo-disabled);
+}
+.toggle__input:checked:disabled {
+  --border-color: var(--color-control-border-disabled);
+  --background-color: var(--color-control-bg-disabled);
+  --content-color: var(--color-control-typo-disabled);
+}
+
+.toggle__input:checked::before {
+  @apply translate-x-6;
+}
+.toggle__input {
+  border: var(--control-border-width) solid var(--border-color);
+  background-color: var(--background-color);
+  @apply appearance-none relative inline-block flex-shrink-0 h-6 w-12 rounded-full;
+}
+.toggle__input::before {
+  content: '';
+  background-color: var(--content-color);
+  @apply block h-6 w-6 absolute z-10 transform scale-75 rounded-full;
+  @apply transition-transform ease-in-out duration-200;
+  top: -1px;
+}
+
+.toggle__label {
+  @apply font-semibold ml-2;
+}
+</style>

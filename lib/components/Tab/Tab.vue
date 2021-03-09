@@ -1,12 +1,12 @@
 <template>
   <div
-    class="outline-none"
+    class="tab"
     role="tabpanel"
 
     :id="id"
-    :aria-hidden="isActive? null: 'true'"
-    :tabindex="isActive ? '0' : null"
-    :class="[isActive ? 'block' : 'hidden', { 'tab--disabled': disabled }]"
+    :aria-hidden="active? null: 'true'"
+    :tabindex="active ? '0' : null"
+    :class="[{'tab--visible': active}]"
   >
     <slot></slot>
   </div>
@@ -37,7 +37,7 @@ export default {
   },
   data() {
     return {
-      isActive: false,
+      active: false,
     };
   },
   created() {
@@ -48,11 +48,11 @@ export default {
   },
   methods: {
     activate() {
-      this.isActive = true;
+      this.active = true;
       this.$emit('select', this.id);
     },
     deactivate() {
-      this.isActive = false;
+      this.active = false;
       this.$emit('deselect', this.id);
     },
   },
@@ -63,3 +63,13 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.tab {
+  @apply outline-none hidden;
+}
+
+.tab--visible {
+  @apply block;
+}
+</style>

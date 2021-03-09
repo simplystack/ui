@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center space-x-2">
+  <div class="flex items-center space-x-4">
     <v-checkbox v-model="value" label="Default" />
     <v-checkbox v-model="value" disabled label="Disabled" />
   </div>

@@ -160,12 +160,12 @@ export default {
   /*Colors*/
   .progress-circular--color-primary .progress-circular__determinate-path,
   .progress-circular--color-primary .progress-circular__indeterminate-path {
-    stroke: var(--color-control-bg-primary);
+    stroke: var(--color-typo-brand);
   }
 
   .progress-circular--color-secondary .progress-circular__determinate-path,
   .progress-circular--color-secondary  .progress-circular__indeterminate-path {
-    stroke: var(--color-control-bg-secondary);
+    stroke: var(--color-typo-secondary);
   }
 
   .progress-circular--color-white .progress-circular__determinate-path,

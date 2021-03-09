@@ -1,5 +1,5 @@
 <template>
-  <label class="radio" :for="id">
+  <label class="radio" :for="id" :class="[{'radio--disabled': disabled}]">
     <input
       class="radio__input"
       type="radio"
@@ -92,13 +92,20 @@ export default {
 
 <style lang="postcss">
 .radio {
-  @apply inline-flex items-center;
+  @apply inline-flex items-center cursor-pointer;
 }
+.radio:hover .radio__circle {
+  @apply border-control-hover;
+}
+.radio--disabled {
+  @apply cursor-not-allowed;
+}
+
 .radio__circle {
-  @apply block relative h-5 w-5 border rounded-full mr-2 bg-base;
+  @apply block flex-shrink-0 relative h-5 w-5 border rounded-full mr-2 bg-base;
 }
 .radio__input:checked + .radio__circle {
-  @apply border-brand bg-control-primary;
+  @apply border-control-primary bg-control-primary;
 }
 .radio__circle:after {
   background: #fff;
@@ -125,7 +132,7 @@ export default {
   @apply shadow;
 }
 .radio__input:disabled + .radio__circle {
-  @apply bg-control-disabled;
+  @apply bg-control-disabled border-control-disabled;
 }
 .radio__input[disabled]:checked + .radio__circle {
   @apply bg-control-disabled border-control-disabled;

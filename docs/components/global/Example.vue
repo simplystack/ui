@@ -11,6 +11,7 @@
     <lazy-radio-example v-if="name === 'radio'" />
     <lazy-dropdown-example v-if="name === 'dropdown'" />
     <lazy-progress-example v-if="name === 'progress'" />
+    <lazy-modal-example v-if="name === 'modal'" />
   </div>
 </template>
 
