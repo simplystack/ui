@@ -14,7 +14,8 @@ export default ({ store }) => {
     state: () => ({
       opened: false,
       options: defaults,
-      payload: null
+      payload: null,
+      dismissed: false
     }),
     getters: {
       opened (state) {
@@ -25,6 +26,9 @@ export default ({ store }) => {
       },
       payload (state) {
         return state.payload
+      },
+      dismissed (state) {
+        return state.dismissed
       }
     },
     mutations: {
@@ -32,9 +36,10 @@ export default ({ store }) => {
         state.opened = true
         state.options = { ...defaults, ...options }
       },
-      CLOSE (state, payload = null) {
+      CLOSE (state, { payload = null, dismissed = false }) {
         state.opened = false
         state.payload = payload
+        state.dismissed = dismissed
       },
       CLEAR (state) {
         state.payload = null
@@ -45,8 +50,8 @@ export default ({ store }) => {
       open ({ commit }, options) {
         commit('OPEN', options)
       },
-      close ({ commit }, payload) {
-        commit('CLOSE', payload)
+      close ({ commit }, data) {
+        commit('CLOSE', data)
       },
       clear ({ commit }, payload) {
         commit('CLEAR', payload)

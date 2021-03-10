@@ -44,34 +44,8 @@ import VButton from '../Button';
 
 const modalOpenClass = 'overflow-hidden';
 
-// const defaults = {
-//   role: 'dialog',
-//   size: '2',
-//   dismissible: true,
-//   dismissOn: 'backdrop esc close-button',
-//   onClose() {},
-//   onDismiss() {},
-// };
-
 export default {
   name: 'VModal',
-  created() {
-    // Bus.$on('modal.new', (options) => {
-    //   this.open(options);
-    // });
-
-    // Bus.$on('modal.close', (data) => {
-    //   this.close(data);
-    // });
-
-    // Bus.$on('modal.dismiss', () => {
-    //   this.dismiss();
-    // });
-  },
-  data: () => ({
-    // opened: false,
-    // options: null,
-  }),
   computed: {
     opened() {
       return this.$store.getters['modal/opened'];
@@ -96,10 +70,6 @@ export default {
   },
   methods: {
     open() {
-      // this.options = { ...defaults, ...options };
-
-      // this.opened = true;
-
       this.$nextTick(() => {
         this.lastfocusedElement = document.activeElement;
         this.$refs.container.focus();
@@ -107,51 +77,42 @@ export default {
         document.addEventListener('focus', this.restrictFocus, true);
       });
     },
-    close(data = null) {
+    close() {
       if (!this.options.dismissible) {
         return;
       }
 
-      // this.opened = false;
-
-      // Bus.$emit('modal.closed', data);
+      if (this.$store.getters['modal/dismissed']) {
+        return;
+      }
 
       if (this.options.onClose && typeof this.options.onClose === 'function') {
         this.options.onClose(this.$store.getters['modal/payload']);
       }
-
-      this.$nextTick(() => {
-        this.teardownModal();
-      });
     },
     dismiss() {
       if (!this.options.dismissible) {
         return;
       }
 
-      this.$store.dispatch('modal/close');
+      window.console.log('dismiss');
 
-      // Bus.$emit('modal.dismissed');
+      this.$store.dispatch('modal/close', { dismissed: true });
 
       if (this.options.onDismiss && typeof this.options.onDismiss === 'function') {
         this.options.onDismiss();
       }
-
+    },
+    clear() {
       this.$nextTick(() => {
         this.teardownModal();
       });
     },
-    onEnter() {
-      // Bus.$emit('modal.opened', {
-      //   options: this.options,
-      // });
-    },
+    onEnter() {},
     onLeave() {
-      // Bus.$emit('modal.destroyed');
       document.body.classList.remove(modalOpenClass);
     },
     teardownModal() {
-      // this.options = null;
       document.body.classList.remove(modalOpenClass);
       document.removeEventListener('focus', this.restrictFocus, true);
       if (this.lastfocusedElement) {
@@ -181,9 +142,7 @@ export default {
       if (opened) {
         this.open();
       } else {
-        this.$nextTick(() => {
-          this.close();
-        });
+        this.clear();
       }
     },
   },

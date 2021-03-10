@@ -23,7 +23,7 @@ export default {
     submit () {
       this.submitting = true
       setTimeout(() => {
-        this.$store.dispatch('modal/close', this.form)
+        this.$store.dispatch('modal/close', { payload: this.form })
       }, 2500)
     }
   }
