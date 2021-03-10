@@ -44,6 +44,7 @@ export default ({ store }) => {
       CLEAR (state) {
         state.payload = null
         state.options = defaults
+        state.dismissed = false
       }
     },
     actions: {
