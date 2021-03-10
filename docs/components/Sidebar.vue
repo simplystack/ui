@@ -34,6 +34,7 @@
             }
           })"
           class="block transition-transform ease-in-out duration-300 transform hover:translate-x-1"
+          custom
         >
           <a :href="href" class="flex items-center" :class="[isActive ? 'font-semibold text-primary' : 'text-secondary']" @click="navigate">
             <GridIcon v-if="link.section === 'components'" class="mr-2" />
@@ -56,6 +57,7 @@
             v-slot="{ isActive, href, navigate }"
             :to="toLink(group, link)"
             class="block transition-transform ease-in-out duration-300 transform hover:translate-x-1"
+            custom
           >
             <a :href="href" :class="[isActive ? 'font-semibold text-primary' : 'text-secondary']" @click="navigate">
               {{ link.title }}

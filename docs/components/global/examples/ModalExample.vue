@@ -1,6 +1,8 @@
 <template>
   <div>
-    <v-modal />
+    <v-button appearance="primary" @click="openModal">
+      Open Modal
+    </v-button>
   </div>
 </template>
 
@@ -8,6 +10,15 @@
 export default {
   data () {
     return {}
+  },
+  methods: {
+    openModal () {
+      this.$store.dispatch('modal/open', {
+        title: 'Nuxt modal',
+        component: () => import('@/components/global/examples/ModalLoginExample.vue'),
+        onClose: data => console.log(data)
+      })
+    }
   }
 }
 </script>

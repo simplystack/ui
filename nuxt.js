@@ -6,7 +6,7 @@ export default function () {
       path: join(__dirname, 'lib'),
       extensions: ['vue'],
       prefix: 'v',
-      global: true,
+      pathPrefix: false,
     });
   });
 }

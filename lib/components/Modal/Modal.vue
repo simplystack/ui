@@ -117,7 +117,7 @@ export default {
       // Bus.$emit('modal.closed', data);
 
       if (this.options.onClose && typeof this.options.onClose === 'function') {
-        this.options.onClose(data);
+        this.options.onClose(this.$store.getters['modal/payload']);
       }
 
       this.$nextTick(() => {
@@ -157,6 +157,8 @@ export default {
       if (this.lastfocusedElement) {
         this.lastfocusedElement.focus();
       }
+
+      this.$store.dispatch('modal/clear');
     },
     redirectFocus() {
       this.$refs.container.focus();
@@ -176,7 +178,13 @@ export default {
   },
   watch: {
     opened(opened) {
-      return opened ? this.open() : this.close();
+      if (opened) {
+        this.open();
+      } else {
+        this.$nextTick(() => {
+          this.close();
+        });
+      }
     },
   },
 };
