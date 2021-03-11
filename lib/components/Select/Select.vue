@@ -446,7 +446,7 @@ export default {
 }
 
 .select__placeholder {
-  @apply truncate text-placeholder;
+  @apply truncate text-control-placeholder;
 }
 
 .select__chevron,
