@@ -4,5 +4,6 @@
     <Nuxt />
     <v-modal />
     <v-toasts />
+    <v-pane />
   </div>
 </template>

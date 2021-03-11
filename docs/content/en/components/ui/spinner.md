@@ -1,6 +1,6 @@
 ---
 title: Spinner
-position: 4
+position: 5
 section: components
 category: ui
 ---

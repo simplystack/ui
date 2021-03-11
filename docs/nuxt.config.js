@@ -28,7 +28,8 @@ export default {
   plugins: [
     '@/plugins/vue-scrollactive',
     '@/plugins/modal-store.js',
-    '@/plugins/toasts-store.js'
+    '@/plugins/toasts-store.js',
+    '@/plugins/pane-store.js'
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

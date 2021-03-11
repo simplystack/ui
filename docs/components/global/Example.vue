@@ -13,6 +13,7 @@
     <lazy-dropdown-example v-if="name === 'dropdown'" />
     <lazy-progress-example v-if="name === 'progress'" />
     <lazy-modal-example v-if="name === 'modal'" />
+    <lazy-pane-example v-if="name === 'pane'" />
   </div>
 </template>
 
