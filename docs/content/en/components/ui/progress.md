@@ -1,6 +1,6 @@
 ---
 title: Progress
-position: 4
+position: 3
 section: components
 category: ui
 ---

@@ -1,11 +1,11 @@
 ---
-title: Notification
+title: Toasts
 description: You will learn how to send request by curl tool
-position: 3
+position: 7
 section: components
 category: ui
 ---
 
-# Notification
+# Toasts
 
-<preview name="notification"></preview>
+<preview name="toasts"></preview>

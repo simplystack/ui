@@ -3,5 +3,6 @@
     <MainNav />
     <Nuxt />
     <v-modal />
+    <v-toasts />
   </div>
 </template>

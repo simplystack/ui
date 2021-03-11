@@ -6,7 +6,8 @@
     <lazy-toggle-example v-if="name === 'toggle'" />
     <lazy-spinner-example v-if="name === 'spinner'" />
     <lazy-tabs-example v-if="name === 'tabs'" />
-    <lazy-notification-example v-if="name === 'notification'" />
+    <lazy-toast-example v-if="name === 'toast'" />
+    <lazy-toasts-example v-if="name === 'toasts'" />
     <lazy-checkbox-example v-if="name === 'checkbox'" />
     <lazy-radio-example v-if="name === 'radio'" />
     <lazy-dropdown-example v-if="name === 'dropdown'" />

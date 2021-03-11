@@ -1,6 +1,6 @@
 ---
 title: Tabs
-position: 6
+position: 5
 section: components
 category: ui
 ---
