@@ -3,13 +3,13 @@
     <aside
       v-if="opened"
       ref="container"
-      class="pane fixed z-20 bg-base top-0 bottom-0 shadow-lg overflow-y-auto"
+      class="pane"
       :class="classes"
       :style="{ width: `${options.width}px`}"
     >
-      <header class="sticky top-0 flex items-center border-b p-4">
-        <h3 class="truncate flex-grow text-xl font-bold">{{ options.title }}</h3>
-        <v-button class="ml-2" appearance="subtle" size="sm" @click="close">
+      <header class="pane__header">
+        <h3 class="pane__title">{{ options.title }}</h3>
+        <v-button class="pane__close" appearance="subtle" size="sm" @click="close">
           <template v-slot:icon>
             <v-cross-icon :height="16" :width="16" />
           </template>
@@ -38,8 +38,6 @@ export default {
     classes() {
       return [
         `pane--${this.options.side}`,
-        { 'border-l right-0': this.options.side === 'right' },
-        { 'border-r left-0': this.options.side === 'left' },
       ];
     },
   },
@@ -65,11 +63,28 @@ export default {
 };
 </script>
 
-<style>
+<style lang="postcss">
 .pane {
+  @apply fixed z-20 bg-base top-0 bottom-0 shadow-lg overflow-y-auto;
   transition: all 0.3s ease;
   transform: translateX(0);
   opacity: 1;
+}
+.pane__header {
+  @apply sticky top-0 flex items-center border-b p-4;
+}
+.pane__title {
+  @apply truncate flex-grow text-xl font-bold;
+}
+.pane__close {
+  @apply ml-2;
+}
+
+.pane--right {
+  @apply border-l right-0;
+}
+.pane--left {
+  @apply border-r left-0;
 }
 
 .pane-enter, .pane-leave-active {
