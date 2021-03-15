@@ -16,7 +16,11 @@ export default {
       this.$store.dispatch('modal/open', {
         title: 'Nuxt modal',
         component: () => import('@/components/global/examples/ModalLoginExample.vue'),
-        onClose: data => console.log(data)
+        onClose: (data) => {
+          console.log(data)
+          console.log('closed')
+        },
+        onDismiss: () => console.log('dismissed')
       })
     }
   }

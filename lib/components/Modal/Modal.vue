@@ -95,8 +95,6 @@ export default {
         return;
       }
 
-      window.console.log('dismiss');
-
       this.$store.dispatch('modal/close', { dismissed: true });
 
       if (this.options.onDismiss && typeof this.options.onDismiss === 'function') {
@@ -142,6 +140,7 @@ export default {
       if (opened) {
         this.open();
       } else {
+        this.close();
         this.clear();
       }
     },
