@@ -470,7 +470,7 @@ export default {
 }
 
 .select__dropdown {
-  @apply absolute bg-base border z-10 shadow-lg;
+  @apply absolute bg-primary border z-10 shadow-lg;
   border-radius: 0 0 4px 4px;
   left: 0;
   margin-top: -1px;

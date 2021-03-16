@@ -16,7 +16,6 @@ export default {
     },
     components: {
       forms: 'Forms',
-      typography: 'Typography',
       ui: 'UI'
     }
   },

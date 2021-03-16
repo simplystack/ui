@@ -73,7 +73,7 @@ export default {
 
 <style lang="postcss">
 .toast {
-  @apply bg-base shadow-lg rounded;
+  @apply bg-primary shadow-lg rounded;
   border-radius: 4px;
   display: flex;
   margin-bottom: 10px;

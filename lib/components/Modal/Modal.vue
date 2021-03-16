@@ -171,7 +171,7 @@ export default {
 }
 
 .modal-body {
-  @apply bg-base rounded shadow-lg mx-auto w-full p-4;
+  @apply bg-primary rounded shadow-lg mx-auto w-full p-4;
   max-width: 544px;
   transition: transform 0.3s ease;
 }

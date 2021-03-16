@@ -7,3 +7,18 @@
     <v-pane />
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    mode () {
+      return this.$store.getters['mode/mode']
+    }
+  },
+  mounted () {
+    const document = window.document.documentElement
+
+    document.setAttribute('data-mode', this.mode)
+  }
+}
+</script>

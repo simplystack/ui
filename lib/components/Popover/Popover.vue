@@ -183,7 +183,7 @@ export default {
 
 <style lang="postcss">
   .popover__content {
-    @apply bg-base border rounded shadow-lg z-20;
+    @apply bg-primary border rounded shadow-lg z-20;
     outline: none;
     overflow: auto;
     position: absolute;

@@ -36,7 +36,7 @@ module.exports = {
         success: 'var(--color-bg-success)',
         warning: 'var(--color-bg-warning)',
         danger: 'var(--color-bg-danger)',
-        base: 'var(--color-bg-base)',
+        primary: 'var(--color-bg-primary)',
         secondary: 'var(--color-bg-secondary)',
         tertiary: 'var(--color-bg-tertiary)',
         'control-default': 'var(--color-control-bg-default)',

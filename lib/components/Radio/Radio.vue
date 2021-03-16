@@ -102,7 +102,7 @@ export default {
 }
 
 .radio__circle {
-  @apply block flex-shrink-0 relative h-5 w-5 border rounded-full mr-2 bg-base;
+  @apply block flex-shrink-0 relative h-5 w-5 border rounded-full mr-2 bg-primary;
 }
 .radio__input:checked + .radio__circle {
   @apply border-control-primary bg-control-primary;

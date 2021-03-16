@@ -38,7 +38,7 @@
   --color-bg-success: var(--color-success);
   --color-bg-warning: var(--color-warning);
   --color-bg-danger: var(--color-danger);
-  --color-bg-base: white;
+  --color-bg-primary: white;
   --color-bg-secondary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 90%);
   --color-bg-tertiary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 80%);
 
@@ -82,5 +82,33 @@
 }
 
 [data-mode="dark"] {
-  
+  /* colors */
+  --color-brand-l: 60%;
+
+  /* backgrounds */
+  --color-bg-body: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 10%);
+  --color-bg-primary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 15%);
+  --color-bg-secondary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 20%);
+  --color-bg-tertiary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 24%);
+
+
+  /* typo */
+  --color-typo-primary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 85%);
+  --color-typo-secondary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 56%);
+
+  /* borders */
+  --color-border-default: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 40%);
+
+  /* controls */
+  --color-control-bg-default: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 22%);
+
+  --color-control-bg-secondary: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 42%, 25%);
+  --color-control-bg-secondary-hover: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 42%, 50%);
+
+  --color-control-bg-subtle-hover: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 42%, 25%);
+
+  --color-control-border-hover: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 48%);
+  --color-control-border-disabled: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 25%);
+
+  --color-control-bg-disabled: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 18%);
 }

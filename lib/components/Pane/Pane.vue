@@ -65,7 +65,7 @@ export default {
 
 <style lang="postcss">
 .pane {
-  @apply fixed z-20 bg-base top-0 bottom-0 shadow-lg overflow-y-auto;
+  @apply fixed z-20 bg-primary top-0 bottom-0 shadow-lg overflow-y-auto;
   transition: all 0.3s ease;
   transform: translateX(0);
   opacity: 1;
