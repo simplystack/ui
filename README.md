@@ -1,29 +1,20 @@
 # @simplystack/ui
 
-## Project setup
+## Documentation
+Our documentation site lives at http://ui.hubgridcloud.com. You'll be able to find detailed documentation on getting started, all of the components, our theme, our principles, and more.
+
 ```
-npm install
+npm install --save @simplystack/ui
 ```
 
-### Compiles and hot-reloads for development
+## Usage
 ```
-npm run serve
+<script>
+import { VButton } from '@simplystack@/ui';
+
+export default {
+  components: { VButton }
+}
+</script>
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your unit tests
-```
-npm run test:unit
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
