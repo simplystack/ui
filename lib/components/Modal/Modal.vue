@@ -181,19 +181,19 @@ export default {
   outline-offset: 2px;
 }
 
-.modal--size-1 .modal-body {
+.modal--size-xs .modal-body {
   max-width: 320px;
 }
 
-.modal--size-2 .modal-body {
+.modal--size-sm .modal-body {
   max-width: 544px;
 }
 
-.modal--size-3 .modal-body {
+.modal--size-md .modal-body {
   max-width: 720px;
 }
 
-.modal--size-4 .modal-body {
+.modal--size-lg .modal-body {
   max-width: 1024px;
 }
 
