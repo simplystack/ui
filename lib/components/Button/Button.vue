@@ -243,12 +243,14 @@ export default {
 .button--secondary:active:not([disabled]) {
   @apply bg-control-secondary;
 }
-/* &.button--inverted {
+.button--secondary.button--inverted {
+  color: white;
+  background-color: hsl(0deg 0% 100% / 10%);
   &[disabled] {
     background-color: var(--button-primary-bg-color-inverted-disabled);
     color: var(--gray-300);
   }
-} */
+}
 
 .button--danger {
   @apply bg-control-danger text-white;
