@@ -1,9 +1,9 @@
-const config = require('../tailwind.config')
+const theme = require('../tailwind.config')
 
 module.exports = {
   theme: {
     extend: {
-      ...config.theme.extend,
+      ...theme,
       container: {
         center: true,
         padding: '1rem'
