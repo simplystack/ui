@@ -60,9 +60,9 @@
   --color-control-bg-default: white;
   --color-control-bg-primary: var(--color-brand);
   --color-control-bg-primary-hover: hsl(var(--color-brand-h), var(--color-brand-s), calc(var(--color-brand-l) - 10%));
-  --color-control-bg-secondary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 95%);
-  --color-control-bg-secondary-hover: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 90%);
-  --color-control-bg-subtle-hover: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 95%);
+  --color-control-bg-secondary: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 1%, 8%);
+  --color-control-bg-secondary-hover: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 1%, 12%);
+  --color-control-bg-subtle-hover: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 1%, 8%);
   --color-control-bg-danger: var(--color-danger);
   --color-control-bg-danger-hover: hsl(var(--color-danger-h), var(--color-danger-s), calc(var(--color-danger-l) - 10%));
   --color-control-bg-disabled: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 98%);
