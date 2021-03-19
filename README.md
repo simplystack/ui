@@ -8,13 +8,25 @@ npm install --save @simplystack/ui
 ```
 
 ## Usage
-```html
-<script>
-import { VButton } from '@simplystack@/ui';
 
-export default {
-  components: { VButton }
-}
-</script>
+### main.js
+```js
+import Vue from 'vue';
+import ui from '@simplystackl/ui';
+import '@simplystackl/ui/main.css';
+
+Vue.use(ui);
 ```
 
+### tailwind.config.js
+```js
+const theme = require('@simplystack/ui/tailwind.config');
+
+module.exports = {
+  theme: {
+    extend: {
+      ...theme,
+    },
+  },
+};
+```
