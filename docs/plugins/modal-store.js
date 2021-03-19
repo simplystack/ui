@@ -54,6 +54,9 @@ export default ({ store }) => {
       close ({ commit }, data) {
         commit('CLOSE', data)
       },
+      dismiss ({ commit }) {
+        commit('CLOSE', { dismissed: true })
+      },
       clear ({ commit }, payload) {
         commit('CLEAR', payload)
       }

@@ -50,6 +50,9 @@ export default {
     opened() {
       return this.$store.getters['modal/opened'];
     },
+    dismissed() {
+      return this.$store.getters['modal/dismissed'];
+    },
     options() {
       return this.$store.getters['modal/options'];
     },
@@ -77,12 +80,8 @@ export default {
         document.addEventListener('focus', this.restrictFocus, true);
       });
     },
-    close() {
+    handleClose() {
       if (!this.options.dismissible) {
-        return;
-      }
-
-      if (this.$store.getters['modal/dismissed']) {
         return;
       }
 
@@ -90,16 +89,17 @@ export default {
         this.options.onClose(this.$store.getters['modal/payload']);
       }
     },
-    dismiss() {
+    handleDismiss() {
       if (!this.options.dismissible) {
         return;
       }
 
-      this.$store.dispatch('modal/close', { dismissed: true });
-
       if (this.options.onDismiss && typeof this.options.onDismiss === 'function') {
         this.options.onDismiss();
       }
+    },
+    dismiss() {
+      this.$store.dispatch('modal/dismiss');
     },
     clear() {
       this.$nextTick(() => {
@@ -140,7 +140,11 @@ export default {
       if (opened) {
         this.open();
       } else {
-        this.close();
+        if (this.dismissed) {
+          this.handleDismiss();
+        } else {
+          this.handleClose();
+        }
         this.clear();
       }
     },
