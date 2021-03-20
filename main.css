@@ -42,8 +42,8 @@
   --color-bg-secondary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 90%);
   --color-bg-tertiary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 80%);
   --color-bg-stripe: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 50%, 10%);
-  --color-bg-tone: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 30%, 85%);
-  --color-bg-soft: hsla(0, 0, 100%, 85%);
+  --color-bg-tone: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 1%, 80%);
+  --color-bg-soft: hsla(0, 0%, 100%, 85%);
 
   /* typo */
   --color-typo-brand: var(--color-brand);
