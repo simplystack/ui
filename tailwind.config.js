@@ -7,7 +7,7 @@ module.exports = {
   borderColor: {
     default: 'var(--color-border-default)',
     brand: 'var(--color-border-brand)',
-
+    stripe: 'var(--color-bg-stripe)',
     'control-default': 'var(--color-control-border-default)',
     'control-primary': 'var(--color-control-bg-primary)',
     'control-active': 'var(--color-control-border-active)',
@@ -35,6 +35,9 @@ module.exports = {
     primary: 'var(--color-bg-primary)',
     secondary: 'var(--color-bg-secondary)',
     tertiary: 'var(--color-bg-tertiary)',
+    stripe: 'var(--color-bg-stripe)',
+    tone: 'var(--color-bg-tone)',
+    soft: 'var(--color-bg-soft)',
     'control-default': 'var(--color-control-bg-default)',
     'control-disabled': 'var(--color-control-bg-disabled)',
     'control-primary': 'var(--color-control-bg-primary)',
