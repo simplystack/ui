@@ -14,6 +14,7 @@
     <lazy-progress-example v-if="name === 'progress'" />
     <lazy-modal-example v-if="name === 'modal'" />
     <lazy-pane-example v-if="name === 'pane'" />
+    <lazy-pagination-example v-if="name === 'pagination'" />
   </div>
 </template>
 

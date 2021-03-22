@@ -1,6 +1,6 @@
 ---
 title: Pane
-position: 3
+position: 4
 section: components
 category: ui
 ---
