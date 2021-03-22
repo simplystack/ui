@@ -123,31 +123,6 @@ export default {
   margin-left: 4px;
 }
 
-.button--size-xs {
-  font-size: 14px;
-  height: auto;
-  padding: 0;
-}
-.button--size-sm {
-  border-radius: 3px;
-  font-size: 14px;
-  height: 24px;
-  padding: 0 4px;
-}
-.button--size-md {
-  border-radius: 3px;
-  height: 32px;
-  padding: 0 8px;
-}
-.button--size-lg {
-  height: 40px;
-  padding: 0 16px;
-}
-.button--size-xl {
-  height: 48px;
-  padding: 0 24px;
-}
-
 .button--default {
   @apply bg-control-default border border-control-default text-primary;
 }
@@ -277,5 +252,30 @@ export default {
 }
 .button--icon-only.button--size-xl {
   width: 48px;
+}
+
+.button--size-xs {
+  font-size: 14px;
+  height: auto;
+  padding: 0;
+}
+.button--size-sm {
+  border-radius: 3px;
+  font-size: 14px;
+  height: 24px;
+  padding: 0 4px;
+}
+.button--size-md {
+  border-radius: 3px;
+  height: 32px;
+  padding: 0 8px;
+}
+.button--size-lg {
+  height: 40px;
+  padding: 0 16px;
+}
+.button--size-xl {
+  height: 48px;
+  padding: 0 24px;
 }
 </style>
