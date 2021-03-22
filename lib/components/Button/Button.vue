@@ -264,18 +264,18 @@ export default {
   margin-right: 0;
 }
 
-.button--icon-only.button--size-xs {
+.button--icon-only.button--size-sm {
   border-radius: 3px;
   width: 24px;
 }
-.button--icon-only.button--size-sm {
+.button--icon-only.button--size-md {
   border-radius: 3px;
   width: 32px;
 }
-.button--icon-only.button--size-md {
+.button--icon-only.button--size-lg {
   width: 40px;
 }
-.button--icon-only.button--size-lg {
+.button--icon-only.button--size-xl {
   width: 48px;
 }
 </style>
