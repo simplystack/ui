@@ -7,7 +7,7 @@ module.exports = {
   borderColor: {
     default: 'var(--color-border-default)',
     brand: 'var(--color-border-brand)',
-
+    inverted: 'var(--color-control-bg-inverted)',
     'control-default': 'var(--color-control-border-default)',
     'control-primary': 'var(--color-control-bg-primary)',
     'control-active': 'var(--color-control-border-active)',

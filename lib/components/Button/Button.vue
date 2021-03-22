@@ -151,9 +151,9 @@ export default {
 .button--default {
   @apply bg-control-default border border-control-default text-primary;
 }
-.button--default:focus {
+/* .button--default:focus {
   box-shadow: 0 0 0 2px var(--color-background-button-default-focus);
-}
+} */
 .button--default:hover:not([disabled]) {
   @apply border-control-hover;
 }
@@ -163,25 +163,6 @@ export default {
 .button--default[disabled] {
   @apply border-none;
 }
-/* &.button--inverted {
-  background-color: var(--color-background-button-default-inverted);
-  color: white;
-  &:focus {
-    box-shadow: 0 0 0 3px hsla(0, 0%, 100%, 0.4);
-  }
-  &[disabled] {
-    background-color: var(
-      --color-background-button-default-inverted-disabled
-    );
-    color: var(--color-button-default-inverted-disabled);
-  }
-  &:hover:not([disabled]) {
-    background-color: var(--color-background-button-default-inverted-hover);
-  }
-  &:active:not([disabled]) {
-    background-color: var(--color-background-button-default-inverted-active);
-  }
-} */
 
 .button--subtle {
   @apply text-primary;
@@ -195,22 +176,16 @@ export default {
 .button--subtle:active:not([disabled]) {
   @apply bg-control-subtle-hover;
 }
-/* &.button--inverted {
+.button--subtle.button--inverted {
   color: white;
-  &:focus {
-    box-shadow: 0 0 0 2px hsla(0, 0%, 100%, 0.4);
-  }
-  &[disabled] {
-    background-color: var(--button-subtle-bg-color-inverted-disabled);
-    color: var(--button-subtle-color-inverted-disabled);
-  }
-  &:hover:not([disabled]) {
-    background-color: var(--button-subtle-bg-color-inverted-hover);
-  }
-  &:active:not([disabled]) {
-    background-color: var(--button-subtle-bg-color-inverted-active);
-  }
-} */
+}
+.button--subtle.button--inverted[disabled] {
+  color: var(--color-control-typo-disabled);
+  background-color: var(--color-control-bg-inverted);
+}
+.button--subtle.button--inverted:hover:not([disabled]) {
+  background-color: var(--color-control-bg-inverted-hover);
+}
 
 .button--primary {
   @apply bg-control-primary text-white;
@@ -224,12 +199,6 @@ export default {
 .button--primary:active:not([disabled]) {
   @apply bg-control-primary;
 }
-/* &.button--inverted {
-  &[disabled] {
-    background-color: var(--button-primary-bg-color-inverted-disabled);
-    color: var(--gray-300);
-  }
-} */
 
 .button--secondary {
   @apply bg-control-secondary text-primary;
@@ -244,12 +213,15 @@ export default {
   @apply bg-control-secondary;
 }
 .button--secondary.button--inverted {
-  color: white;
-  background-color: hsl(0deg 0% 100% / 10%);
-  &[disabled] {
-    background-color: var(--button-primary-bg-color-inverted-disabled);
-    color: var(--gray-300);
-  }
+  color: var(--color-typo-inverted);
+  background-color: var(--color-control-bg-inverted);
+}
+.button--secondary.button--inverted:hover:not([disabled]) {
+  background-color: var(--color-control-bg-inverted-hover);
+}
+.button--secondary.button--inverted[disabled] {
+  color: var(--color-control-typo-disabled);
+  background-color: var(--color-control-bg-inverted);
 }
 
 .button--danger {
@@ -264,12 +236,6 @@ export default {
 .button--danger:active:not([disabled]) {
   @apply bg-control-danger;
 }
-/* &.button--inverted {
-  &[disabled] {
-    background-color: var(--button-danger-bg-color-inverted-disabed);
-    color: var(--gray-400);
-  }
-} */
 
 .button[disabled].button--loading .button__content {
   visibility: hidden;
@@ -298,18 +264,18 @@ export default {
   margin-right: 0;
 }
 
-.button--icon-only.button--size-sm {
+.button--icon-only.button--size-xs {
   border-radius: 3px;
   width: 24px;
 }
-.button--icon-only.button--size-md {
+.button--icon-only.button--size-sm {
   border-radius: 3px;
   width: 32px;
 }
-.button--icon-only.button--size-lg {
+.button--icon-only.button--size-md {
   width: 40px;
 }
-.button--icon-only.button--size-xl {
+.button--icon-only.button--size-lg {
   width: 48px;
 }
 </style>

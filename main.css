@@ -49,6 +49,7 @@
   --color-typo-primary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 11%);
   --color-typo-secondary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 46%);
   --color-typo-tertiary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 70%);
+  --color-typo-inverted: white;
 
   /* borders */
   --color-border-default: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 90%);
@@ -77,6 +78,9 @@
   --color-control-typo-placeholder: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 70%);
   --color-control-typo-primary: white;
   --color-control-typo-disabled: var(--color-typo-secondary);
+
+  --color-control-bg-inverted: hsla(0, 0%, 100%, 10%);
+  --color-control-bg-inverted-hover: hsla(0, 0%, 100%, 15%);
 
   --control-border-width: 1px;
 }
