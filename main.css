@@ -41,6 +41,9 @@
   --color-bg-primary: white;
   --color-bg-secondary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 90%);
   --color-bg-tertiary: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 80%);
+  --color-bg-stripe: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 50%, 10%);
+  --color-bg-tone: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 1%, 80%);
+  --color-bg-soft: hsla(0, 0%, 100%, 85%);
 
   /* typo */
   --color-typo-brand: var(--color-brand);
@@ -52,7 +55,7 @@
   --color-typo-inverted: white;
 
   /* borders */
-  --color-border-default: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 90%);
+  --color-border-default: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 50%, 20%);
   --color-border-brand: var(--color-brand);
   --color-border-success: var(--color-success);
   --color-border-danger: var(--color-danger);
@@ -66,7 +69,7 @@
   --color-control-bg-subtle-hover: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 1%, 8%);
   --color-control-bg-danger: var(--color-danger);
   --color-control-bg-danger-hover: hsl(var(--color-danger-h), var(--color-danger-s), calc(var(--color-danger-l) - 10%));
-  --color-control-bg-disabled: hsl(var(--color-aluminium-h), var(--color-aluminium-s), 98%);
+  --color-control-bg-disabled: hsla(var(--color-aluminium-h), var(--color-aluminium-s), 1%, 5%);
 
   --color-control-border-default: var(--color-border-default);
   --color-control-border-active: var(--color-brand);

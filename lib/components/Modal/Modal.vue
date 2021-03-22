@@ -154,8 +154,7 @@ export default {
 
 <style lang="postcss">
 .modal-mask {
-  @apply fixed inset-0 z-20 overflow-auto;
-  background-color: rgba(0, 0, 0, .80);
+  @apply fixed inset-0 z-20 bg-tone overflow-auto;
   transition: opacity 0.3s ease;
 }
 
