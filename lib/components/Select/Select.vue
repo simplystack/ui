@@ -412,7 +412,8 @@ export default {
 }
 
 .select__container {
-  @apply bg-control-default flex items-center justify-between border rounded cursor-pointer px-4;
+  @apply flex items-center;
+  @apply bg-control-default justify-between border-control rounded cursor-pointer px-4;
   height: 48px;
   user-select: none;
 }
@@ -470,10 +471,10 @@ export default {
 }
 
 .select__dropdown {
-  @apply absolute bg-primary border z-10 shadow-lg;
+  @apply absolute bg-primary border-control z-10 shadow-lg;
   border-radius: 0 0 4px 4px;
   left: 0;
-  margin-top: -1px;
+  margin-top: calc(var(--control-border-width) * -1);
   max-height: 180px;
   opacity: 0;
   outline: none;

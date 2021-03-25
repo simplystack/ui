@@ -124,7 +124,7 @@ export default {
 }
 
 .button--default {
-  @apply bg-control-default border border-control-default text-primary;
+  @apply bg-control-default border-control border-control-default text-primary;
 }
 /* .button--default:focus {
   box-shadow: 0 0 0 2px var(--color-background-button-default-focus);

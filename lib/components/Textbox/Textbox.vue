@@ -186,7 +186,7 @@ export default {
 }
 
 .textbox__input, .textbox__textarea {
-  @apply bg-control-default w-full border rounded outline-none px-3;
+  @apply bg-control-default w-full border-control rounded outline-none px-3;
 }
 
 .textbox__input:hover {

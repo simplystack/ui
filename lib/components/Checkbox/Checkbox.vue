@@ -117,7 +117,7 @@ export default {
   @apply cursor-not-allowed;
 }
 .checkbox__squad {
-  @apply relative h-5 w-5 border rounded mr-2 bg-control-default;
+  @apply relative h-5 w-5 border-control rounded mr-2 bg-control-default;
 }
 
 .checkbox__input {

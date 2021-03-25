@@ -4,6 +4,9 @@ module.exports = {
   colors: {
     ...colors,
   },
+  borderWidth: {
+    control: 'var(--control-border-width)',
+  },
   borderColor: {
     default: 'var(--color-border-default)',
     brand: 'var(--color-border-brand)',

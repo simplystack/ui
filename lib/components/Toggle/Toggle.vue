@@ -154,7 +154,8 @@ export default {
   @apply translate-x-6;
 }
 .toggle__input {
-  border: var(--control-border-width) solid var(--border-color);
+  @apply border-control;
+  border-color: var(--border-color);
   background-color: var(--background-color);
   @apply appearance-none relative inline-block flex-shrink-0 h-6 w-12 rounded-full;
 }
@@ -163,7 +164,7 @@ export default {
   background-color: var(--content-color);
   @apply block h-6 w-6 absolute z-10 transform scale-75 rounded-full;
   @apply transition-transform ease-in-out duration-200;
-  top: -1px;
+  top: calc(var(--control-border-width) * -1);
 }
 
 .toggle__label {
