@@ -83,7 +83,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'lg',
+      default: 'xl',
     },
     rows: {
       type: Number,
@@ -238,25 +238,22 @@ export default {
   @apply text-danger;
 }
 
-.textbox--size-xs .textbox__input {
+.textbox--size-sm .textbox__input {
   @apply h-6;
 }
-.textbox--size-sm .textbox__input {
+.textbox--size-md .textbox__input {
   @apply h-8;
 }
-.textbox--size-md .textbox__input {
+.textbox--size-lg .textbox__input {
   @apply h-10;
 }
-.textbox--size-lg .textbox__input {
+.textbox--size-xl .textbox__input {
   @apply h-12;
 }
-.textbox--size-xl .textbox__input {
+.textbox--size-2xl .textbox__input {
   @apply h-16 text-xl font-semibold;
 }
 
-.textbox--size-xs .textbox__textarea {
-  @apply py-3;
-}
 .textbox--size-sm .textbox__textarea {
   @apply py-3;
 }
@@ -266,10 +263,13 @@ export default {
 .textbox--size-lg .textbox__textarea {
   @apply py-3;
 }
-.textbox--size-lg.textbox--floated-active .textbox__textarea {
+.textbox--size-xl .textbox__textarea {
+  @apply py-3;
+}
+.textbox--size-xl.textbox--floated-active .textbox__textarea {
   padding-top: theme('height.5');
 }
-.textbox--size-xl .textbox__textarea {
+.textbox--size-2xl .textbox__textarea {
   @apply py-3 text-xl font-semibold;
 }
 </style>
