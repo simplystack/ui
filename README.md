@@ -12,8 +12,8 @@ npm install --save @simplystack/ui
 ### main.js
 ```js
 import Vue from 'vue';
-import ui from '@simplystackl/ui';
-import '@simplystackl/ui/main.css';
+import ui from '@simplystack/ui';
+import '@simplystack/ui/main.css';
 
 Vue.use(ui);
 ```
