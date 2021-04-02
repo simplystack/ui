@@ -1,6 +1,6 @@
 {
   "name": "@simplystack/ui",
-  "version": "2.9.10",
+  "version": "2.9.12",
   "author": "",
   "scripts": {
     "serve": "vue-cli-service serve",

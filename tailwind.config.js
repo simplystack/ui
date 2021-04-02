@@ -8,7 +8,7 @@ module.exports = {
     control: 'var(--control-border-width)',
   },
   borderColor: {
-    default: 'var(--color-border-default)',
+    DEFAULT: 'var(--color-border-default)',
     brand: 'var(--color-border-brand)',
     inverted: 'var(--color-control-bg-inverted)',
     stripe: 'var(--color-bg-stripe)',
