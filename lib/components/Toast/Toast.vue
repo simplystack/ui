@@ -55,7 +55,12 @@ export default {
       return this.title ? this.title : capitalize(this.type);
     },
     classes() {
-      return [`toast--${this.type}`];
+      return [
+        this.type === 'info' && 'toast--info',
+        this.type === 'success' && 'toast--success',
+        this.type === 'warning' && 'toast--warning',
+        this.type === 'error' && 'toast--error',
+      ];
     },
   },
   methods: {
