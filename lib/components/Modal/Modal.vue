@@ -130,7 +130,7 @@ export default {
     },
   },
   components: { VButton, VCrossIcon },
-  beforeDestroy() {
+  beforeUnmount() {
     if (this.opened) {
       this.teardownModal();
     }

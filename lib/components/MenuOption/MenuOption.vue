@@ -5,7 +5,7 @@
     role="menu-item"
     :class="classes"
     :tabindex="isDivider || disabled ? null : '0'"
-    v-on="$listeners"
+    v-bind="$attrs"
   >
     <slot v-if="!isDivider">
       <div class="menu-option__content">

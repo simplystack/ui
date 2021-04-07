@@ -174,7 +174,7 @@ export default {
       }
     },
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.removeEventsListeners();
     this.destroyPopper();
   },

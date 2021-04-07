@@ -43,7 +43,7 @@ export default {
   created() {
     this.$parent.addTab(this);
   },
-  beforeDestroy() {
+  beforeUnmount() {
     this.$parent.removeTab(this);
   },
   methods: {

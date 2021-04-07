@@ -4,7 +4,7 @@
     :class="classes"
     :disabled="disabled || loading"
     :type="type"
-    v-on="$listeners"
+    v-bind="$attrs"
   >
     <div class="button__content">
       <slot />
