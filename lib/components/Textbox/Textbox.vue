@@ -7,13 +7,12 @@
       v-autofocus="autofocus"
 
       @blur="handleBlur"
-      @change="handleChange"
       @focus="handleFocus"
       @input="handleInput"
       @keydown="handleKeyDown"
 
       class="textbox__input"
-      :value="value"
+      :value="modelValue"
       :placeholder="placeholder"
       :type="type"
       :required="required"
@@ -26,7 +25,6 @@
       v-autofocus="autofocus"
 
       @blur="handleBlur"
-      @change="handleChange"
       @focus="handleFocus"
       @input="handleInput"
       @keydown="handleKeyDown"
@@ -35,7 +33,7 @@
       :readonly="readonly"
       :disabled="disabled"
       :required="required"
-      :value="value"
+      :value="modelValue"
       :rows="rows"
       :placeholder="placeholder"
     />
@@ -48,6 +46,7 @@ import autofocus from '../../directives/autofocus';
 
 export default {
   directives: { autofocus },
+  emits: ['update:modelValue', 'focus', 'blur', 'reset', 'keydown'],
   props: {
     type: {
       type: String,
@@ -61,7 +60,7 @@ export default {
       type: String,
       default: '',
     },
-    value: {
+    modelValue: {
       type: [String, Number],
       default: '',
     },
@@ -107,7 +106,7 @@ export default {
   },
   computed: {
     floatedActive() {
-      return this.floated && this.value !== '' && this.value !== undefined && this.value !== null;
+      return this.floated && this.modelValue !== '' && this.modelValue !== undefined && this.modelValue !== null;
     },
     classes() {
       return [
@@ -124,11 +123,11 @@ export default {
     return {
       isTouched: false,
       isFocused: false,
-      initialValue: this.value,
+      initialValue: this.modelValue,
     };
   },
   created() {
-    if (this.value === null) {
+    if (this.modelValue === null) {
       this.initialValue = '';
       this.updateValue('');
     }
@@ -147,17 +146,15 @@ export default {
       this.getInput().select();
     },
     clear() {
-      this.$emit('input', '');
-      this.$emit('change', '');
+      this.$emit('update:modelValue', '');
       this.$emit('clear');
     },
     reset() {
-      this.$emit('input', this.initialValue);
-      this.$emit('change', this.initialValue);
+      this.$emit('update:modelValue', this.initialValue);
       this.$emit('reset');
     },
     updateValue(value) {
-      this.$emit('input', value);
+      this.$emit('update:modelValue', value);
     },
     handleBlur(event) {
       this.isFocused = false;
@@ -168,10 +165,7 @@ export default {
       this.$emit('focus', event);
     },
     handleInput(event) {
-      this.$emit('input', event.target.value);
-    },
-    handleChange(event) {
-      this.$emit('change', event.target.value);
+      this.$emit('update:modelValue', event.target.value);
     },
     handleKeyDown(event) {
       this.$emit('keydown', event);
