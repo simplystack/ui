@@ -87,27 +87,27 @@ export default {
   @apply border-r left-0;
 }
 
-.pane-enter, .pane-leave-active {
+.pane-enter-from, .pane-leave-active {
   opacity: 1;
 }
 
-.pane-enter, .pane-leave-active {
+.pane-enter-from, .pane-leave-active {
   opacity: 0;
 }
 
-.pane--left.pane-enter, .pane--left.pane-leave-active {
+.pane--left.pane-enter-from, .pane--left.pane-leave-active {
   transform: translateX(80px);
 }
 
-.pane--left.pane-enter, .pane--left.pane-leave-active {
+.pane--left.pane-enter-from, .pane--left.pane-leave-active {
   transform: translateX(-80px);
 }
 
-.pane--right.pane-enter, .pane--right.pane-leave-active {
+.pane--right.pane-enter-from, .pane--right.pane-leave-active {
   transform: translateX(-80px);
 }
 
-.pane--right.pane-enter, .pane--right.pane-leave-active {
+.pane--right.pane-enter-from, .pane--right.pane-leave-active {
   transform: translateX(80px);
 }
 </style>

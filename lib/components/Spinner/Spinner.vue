@@ -179,7 +179,7 @@ export default {
     transition: opacity 0.3s ease, transform 0.3s ease;
   }
 
-  .progress-circular--transition-fade-enter,
+  .progress-circular--transition-fade-enter-from,
   .progress-circular--transition-fade-leave-active {
     opacity: 0;
     transform: scale(0);

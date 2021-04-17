@@ -200,11 +200,11 @@ export default {
   max-width: 1024px;
 }
 
-.modal-enter, .modal-leave-active {
+.modal-enter-from, .modal-leave-active {
   opacity: 0;
 }
 
-.modal-enter .modal-body,
+.modal-enter-from .modal-body,
 .modal-leave-active .modal-body {
   transform: scale(1.1);
 }

@@ -79,7 +79,7 @@ export default {
     return {
       ignoreChange: false,
       checkboxValues: [],
-      initialValue: JSON.parse(JSON.stringify(this.value)),
+      initialValue: JSON.parse(JSON.stringify(this.modelValue)),
     };
   },
   methods: {
@@ -89,7 +89,7 @@ export default {
         this.checkboxValues[index] = this.isOptionCheckedByDefault(option);
       });
       this.ignoreChange = false;
-      this.$emit('input', (this.initialValue.length > 0) ? [].concat(this.initialValue) : []);
+      this.$emit('update:modelValue', (this.initialValue.length > 0) ? [].concat(this.initialValue) : []);
     },
     isOptionCheckedByDefault(option) {
       return looseIndexOf(this.initialValue, option[this.keys.value] || option) > -1;
@@ -110,15 +110,15 @@ export default {
       const e = args[1];
       let value = [];
       const optionValue = option[this.keys.value] || option;
-      const i = looseIndexOf(this.value, optionValue);
+      const i = looseIndexOf(this.modelValue, optionValue);
       if (checked && i < 0) {
-        value = this.value.concat(optionValue);
+        value = this.modelValue.concat(optionValue);
       }
       if (!checked && i > -1) {
-        value = this.value.slice(0, i).concat(this.value.slice(i + 1));
+        value = this.modelValue.slice(0, i).concat(this.modelValue.slice(i + 1));
       }
-      this.$emit('input', value);
-      this.$emit('change', value, e);
+      this.$emit('update:modelValue', value);
+      // this.$emit('change', value, e);
     },
   },
   components: { VCheckbox },

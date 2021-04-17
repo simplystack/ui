@@ -1,6 +1,6 @@
 {
   "name": "@simplystack/ui",
-  "version": "3.0.4",
+  "version": "3.0.13",
   "author": "SimplyStack Dev Team",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -15,7 +15,7 @@
     "colors.js",
     "nuxt.js",
     "main.css",
-    "tailwind.config.js"
+    "theme.js"
   ],
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.3",
