@@ -20,7 +20,7 @@ Vue.use(ui);
 
 ### tailwind.config.js
 ```js
-const theme = require('@simplystack/ui/tailwind.config');
+const theme = require('@simplystack/ui/theme');
 
 module.exports = {
   theme: {
