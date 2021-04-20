@@ -33,6 +33,7 @@ import VRadio from '../Radio';
 
 export default {
   name: 'VRadioGroup',
+  emits: ['update:modelValue', 'focus', 'blur'],
   props: {
     name: {
       type: String,
@@ -48,7 +49,7 @@ export default {
       type: Array,
       required: true,
     },
-    value: {
+    modelValue: {
       type: [Number, String],
       required: true,
     },
@@ -82,13 +83,13 @@ export default {
   },
   data() {
     return {
-      initialValue: this.value,
-      selectedOptionValue: this.value,
+      initialValue: this.modelValue,
+      selectedOptionValue: this.modelValue,
     };
   },
   methods: {
     reset() {
-      this.$emit('input', this.initialValue);
+      this.$emit('update:modelValue', this.initialValue);
     },
     isOptionCheckedByDefault(option) {
       // eslint-disable-next-line eqeqeq
@@ -104,11 +105,11 @@ export default {
   },
   watch: {
     selectedOptionValue() {
-      this.$emit('input', this.selectedOptionValue);
-      this.$emit('change', this.selectedOptionValue);
+      this.$emit('update:modelValue', this.selectedOptionValue);
+      // this.$emit('change', this.selectedOptionValue);
     },
     value() {
-      this.selectedOptionValue = this.value;
+      this.selectedOptionValue = this.modelValue;
     },
   },
   components: { VRadio },

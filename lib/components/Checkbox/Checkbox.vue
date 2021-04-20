@@ -31,6 +31,7 @@ import { looseEqual } from '../../util';
 
 export default {
   name: 'VCheckbox',
+  emits: ['update:modelValue', 'focus', 'blur'],
   props: {
     id: {
       type: [String, Number],
@@ -42,7 +43,7 @@ export default {
       type: [String, Number],
       required: false,
     },
-    value: {
+    modelValue: {
       required: true,
     },
     submittedValue: {
@@ -71,11 +72,11 @@ export default {
   },
   data() {
     return {
-      isChecked: looseEqual(this.value, this.trueValue) || this.checked,
+      isChecked: looseEqual(this.modelValue, this.trueValue) || this.checked,
     };
   },
   created() {
-    this.$emit('input', this.isChecked ? this.trueValue : this.falseValue);
+    this.$emit('update:modelValue', this.isChecked ? this.trueValue : this.falseValue);
   },
   methods: {
     onFocus(e) {
@@ -88,10 +89,10 @@ export default {
       const isCheckedPrevious = this.isChecked;
       const isChecked = e.target.checked;
 
-      this.$emit('input', isChecked ? this.trueValue : this.falseValue, e);
+      this.$emit('update:modelValue', isChecked ? this.trueValue : this.falseValue, e);
 
       if (isCheckedPrevious !== isChecked) {
-        this.$emit('change', isChecked ? this.trueValue : this.falseValue, e);
+        // this.$emit('update:modelValue', isChecked ? this.trueValue : this.falseValue, e);
       }
     },
     focus() {
@@ -100,7 +101,7 @@ export default {
   },
   watch: {
     value() {
-      this.isChecked = looseEqual(this.value, this.trueValue);
+      this.isChecked = looseEqual(this.modelValue, this.trueValue);
     },
   },
 };

@@ -5,7 +5,7 @@
     <input
       type="hidden"
       :name="name"
-      :value="value.value"
+      :value="modelValue.value"
       :disabled="disabled"
     />
 
@@ -28,8 +28,8 @@
 
         <div
           v-if="
-            ($scopedSlots.option && mutableValue.length === 2) ||
-            (!$scopedSlots.option && mutableValue.length > 0 && multiple)
+            ($slots.option && mutableValue.length === 2) ||
+            (!$slots.option && mutableValue.length > 0 && multiple)
           "
         >
           <v-chip
@@ -46,7 +46,7 @@
           />
         </div>
 
-        <div v-if="mutableValue && !$scopedSlots.option">
+        <div v-if="mutableValue && !$slots.option">
           {{ mutableValue[keys.label] }}
         </div>
 
@@ -57,7 +57,7 @@
 
       <v-cross-icon
         v-if="isSlotDisplayed && clearable && !disabled"
-        @click.native.stop="clear"
+        @click.stop="clear"
         class="select__clear"
         height="16"
         width="16"
@@ -98,7 +98,7 @@
         :disabled="option[keys.disabled]"
         :selected="isOptionSelected(option)"
         :highlighted="highlightedIndex === index"
-        @click.native.stop="select(option, index)"
+        @click.stop="select(option, index)"
       >
         <slot name="option" :index="index" :option="option"></slot>
       </v-select-option>
@@ -118,6 +118,7 @@ import clickoutside from '../../directives/clickoutside';
 
 export default {
   name: 'VSelect',
+  emits: ['update:modelValue', 'open', 'close', 'clear', 'focus', 'blur', 'select'],
   directives: { clickoutside },
   props: {
     id: {
@@ -134,7 +135,7 @@ export default {
       type: String,
       default: 'Label',
     },
-    value: {
+    modelValue: {
       type: [Array, Object],
       required: true,
     },
@@ -184,7 +185,7 @@ export default {
     },
   },
   created() {
-    this.mutableValue = this.multiple ? [] : this.value;
+    this.mutableValue = this.multiple ? [] : this.modelValue;
     this.mutableOptions = this.options.slice(0);
   },
   data() {
@@ -261,8 +262,8 @@ export default {
     },
     setValue(value) {
       this.mutableValue = value;
-      this.$emit('input', value);
-      this.$emit('change', value);
+      this.$emit('update:modelValue', value);
+      // this.$emit('change', value);
     },
     toggleDropdown() {
       this[this.isOpen ? 'closeDropdown' : 'openDropdown']();

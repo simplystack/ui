@@ -51,7 +51,7 @@ export default {
   .list-enter-active, .list-leave-active {
     transition: all .3s;
   }
-  .list-enter, .list-leave-to {
+  .list-enter-from, .list-leave-to {
     opacity: 0;
     transform: translateX(30px);
   }

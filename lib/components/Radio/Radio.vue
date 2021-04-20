@@ -24,6 +24,7 @@
 <script>
 export default {
   name: 'VRadio',
+  emits: ['update:modelValue', 'focus', 'blur'],
   props: {
     id: {
       type: [String, Number],
@@ -39,7 +40,7 @@ export default {
     tabindex: {
       type: [String, Number],
     },
-    value: {
+    modelValue: {
       type: [Number, String],
       required: true,
     },
@@ -58,13 +59,13 @@ export default {
   },
   created() {
     if (this.checked) {
-      this.$emit('input', this.trueValue);
+      this.$emit('update:modelValue', this.trueValue);
     }
   },
   computed: {
     isChecked() {
       // eslint-disable-next-line eqeqeq
-      return (String(this.value).length > 0) && (this.value == this.trueValue);
+      return (String(this.modelValue).length > 0) && (this.modelValue == this.trueValue);
     },
   },
   methods: {
@@ -78,10 +79,10 @@ export default {
     },
     onChange(e) {
       if (!this.disabled) {
-        this.$emit('input', this.trueValue);
+        this.$emit('update:modelValue', this.trueValue);
       }
 
-      this.$emit('change', this.isChecked, e);
+      // this.$emit('update:modelValue', this.isChecked, e);
     },
     focus() {
       this.$refs.input.focus();

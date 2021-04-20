@@ -2,7 +2,7 @@
   <div class="tabs" :class="classes">
     <ul class="tabs__list" role="tablist">
       <v-tab-header
-        ref="tabHeaders"
+        :ref="setItemTabHeadersRef"
 
         :active="activeTabId === tab.id"
         :disabled="tab.disabled"
@@ -11,8 +11,8 @@
         :title="tab.title"
 
         @click="selectTab(tab)"
-        @keydown.left.native="selectPreviousTab"
-        @keydown.right.native="selectNextTab"
+        @keydown.left="selectPreviousTab"
+        @keydown.right="selectNextTab"
 
         v-for="tab in tabs"
       >
@@ -36,10 +36,10 @@ export default {
       default: false,
     },
   },
-
   data() {
     return {
       tabs: [],
+      tabHeadersRefs: [],
       activeTabId: null,
       activeTabIndex: -1,
     };
@@ -50,6 +50,9 @@ export default {
         { 'tabs--wide': this.wide },
       ];
     },
+  },
+  beforeUpdate() {
+    this.tabHeadersRefs = [];
   },
   methods: {
     addTab(tab) {
@@ -109,9 +112,9 @@ export default {
       let tab = null;
 
       // eslint-disable-next-line no-plusplus
-      for (let i = this.activeTabIndex + 1; i < this.$refs.tabHeaders.length; i++) {
-        if (this.$refs.tabHeaders[i] && !this.$refs.tabHeaders[i].disabled) {
-          tab = this.$refs.tabHeaders[i];
+      for (let i = this.activeTabIndex + 1; i < this.tabHeadersRefs.length; i++) {
+        if (this.tabHeadersRefs[i] && !this.tabHeadersRefs[i].disabled) {
+          tab = this.tabHeadersRefs[i];
           break;
         }
       }
@@ -123,8 +126,8 @@ export default {
 
       // eslint-disable-next-line no-plusplus
       for (let i = this.activeTabIndex - 1; i >= 0; i--) {
-        if (this.$refs.tabHeaders[i] && !this.$refs.tabHeaders[i].disabled) {
-          tab = this.$refs.tabHeaders[i];
+        if (this.tabHeadersRefs[i] && !this.tabHeadersRefs[i].disabled) {
+          tab = this.tabHeadersRefs[i];
           break;
         }
       }
@@ -136,9 +139,9 @@ export default {
     },
     findTabById(id) {
       // eslint-disable-next-line no-plusplus
-      for (let i = 0; i < this.$refs.tabHeaders.length; i++) {
-        if (id === this.$refs.tabHeaders[i].id) {
-          return this.$refs.tabHeaders[i];
+      for (let i = 0; i < this.tabHeadersRefs.length; i++) {
+        if (id === this.tabHeadersRefs[i].id) {
+          return this.tabHeadersRefs[i];
         }
       }
 
@@ -149,6 +152,11 @@ export default {
 
       if (tab && !tab.disabled) {
         this.selectTab(tab);
+      }
+    },
+    setItemTabHeadersRef(el) {
+      if (el) {
+        this.tabHeadersRefs.push(el);
       }
     },
   },

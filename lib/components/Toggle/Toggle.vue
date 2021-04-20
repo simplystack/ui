@@ -39,7 +39,7 @@ export default {
     label: {
       type: [String, Number],
     },
-    value: {
+    modelValue: {
       required: true,
     },
     submittedValue: {
@@ -72,11 +72,11 @@ export default {
   },
   data() {
     return {
-      isChecked: looseEqual(this.value, this.trueValue) || this.checked,
+      isChecked: looseEqual(this.modelValue, this.trueValue) || this.checked,
     };
   },
   created() {
-    this.$emit('input', this.isChecked ? this.trueValue : this.falseValue);
+    this.$emit('update:modelValue', this.isChecked ? this.trueValue : this.falseValue);
   },
   computed: {},
   methods: {
@@ -86,7 +86,7 @@ export default {
     onChange(e) {
       const isCheckedPrevious = this.isChecked;
       const isChecked = e.target.checked;
-      this.$emit('input', isChecked ? this.trueValue : this.falseValue, e);
+      this.$emit('update:modelValue', isChecked ? this.trueValue : this.falseValue, e);
       if (isCheckedPrevious !== isChecked) {
         this.$emit('change', isChecked ? this.trueValue : this.falseValue, e);
       }
@@ -100,7 +100,7 @@ export default {
   },
   watch: {
     value() {
-      this.isChecked = looseEqual(this.value, this.trueValue);
+      this.isChecked = looseEqual(this.modelValue, this.trueValue);
     },
   },
 };
