@@ -278,4 +278,16 @@ export default {
 .textbox--size-2xl .textbox__textarea {
   @apply py-3 text-xl font-semibold;
 }
+
+/* Chrome, Safari, Edge, Opera */
+.textbox__input::-webkit-outer-spin-button,
+.textbox__input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.textbox__input[type=number] {
+  -moz-appearance: textfield;
+}
 </style>
