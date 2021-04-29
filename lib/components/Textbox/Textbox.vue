@@ -10,6 +10,8 @@
       @focus="handleFocus"
       @input="handleInput"
       @keydown="handleKeyDown"
+      @change="handleChange"
+      @paste="handlePaste"
 
       class="textbox__input"
       :value="modelValue"
@@ -18,6 +20,10 @@
       :required="required"
       :disabled="disabled"
       :readonly="readonly"
+
+      :min="min"
+      :max="max"
+      :step="step"
     />
     <textarea
       v-else
@@ -46,7 +52,7 @@ import autofocus from '../../directives/autofocus';
 
 export default {
   directives: { autofocus },
-  emits: ['update:modelValue', 'focus', 'blur', 'reset', 'keydown'],
+  emits: ['update:modelValue', 'focus', 'blur', 'reset', 'keydown', 'change', 'paste'],
   props: {
     type: {
       type: String,
@@ -169,6 +175,12 @@ export default {
     },
     handleKeyDown(event) {
       this.$emit('keydown', event);
+    },
+    handleChange(event) {
+      this.$emit('change', event.target.value);
+    },
+    handlePaste(event) {
+      this.$emit('paste', event.target.value);
     },
   },
 };
