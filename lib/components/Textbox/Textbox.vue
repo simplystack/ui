@@ -109,6 +109,18 @@ export default {
       type: Boolean,
       default: true,
     },
+    max: {
+      type: Number,
+      default: Infinity,
+    },
+    min: {
+      type: Number,
+      default: -Infinity,
+    },
+    step: {
+      type: Number,
+      default: 1,
+    },
   },
   computed: {
     floatedActive() {
