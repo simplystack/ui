@@ -239,6 +239,10 @@ export default {
   margin-right: 0;
 }
 
+.button--icon-only.button--size-xs {
+  border-radius: 3px;
+  width: auto;
+}
 .button--icon-only.button--size-sm {
   border-radius: 3px;
   width: 24px;

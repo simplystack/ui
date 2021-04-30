@@ -154,6 +154,9 @@ export default {
     getInput() {
       return this.$refs.input || this.$refs.textarea;
     },
+    setInputValue(value) {
+      this.getInput().value = value;
+    },
     focus() {
       this.getInput().focus();
     },
@@ -192,7 +195,7 @@ export default {
       this.$emit('change', event.target.value);
     },
     handlePaste(event) {
-      this.$emit('paste', event.target.value);
+      this.$emit('paste', event);
     },
   },
 };
