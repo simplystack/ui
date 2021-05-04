@@ -212,7 +212,8 @@ export default {
   @apply bg-control-danger;
 }
 
-.button[disabled].button--loading .button__content {
+.button[disabled].button--loading .button__content,
+.button[disabled].button--loading .button__icon {
   visibility: hidden;
   opacity: 0;
 }
