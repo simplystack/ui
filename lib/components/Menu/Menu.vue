@@ -1,6 +1,7 @@
 <template>
   <ul class="menu" role="menu">
     <v-menu-option
+      :key="option.id"
       :disabled="option[keys.disabled]"
       :label="option[keys.type] === 'divider' ? null : option[keys.label] || option"
       :type="option[keys.type]"
@@ -10,7 +11,6 @@
       @keydown.esc.stop="closeMenu"
 
       v-for="option in options"
-      :key="option.id"
     >
       <slot name="option" :option="option"></slot>
     </v-menu-option>
@@ -76,13 +76,13 @@ export default {
 </script>
 
 <style lang="postcss">
-  .menu {
-    @apply outline-none text-primary p-1;
-    list-style: none;
-    max-height: 100vh;
-    max-width: 272px;
-    min-width: 168px;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
+.menu {
+  @apply outline-none text-primary p-1;
+  list-style: none;
+  max-height: 100vh;
+  max-width: 272px;
+  min-width: 168px;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
 </style>
