@@ -17,6 +17,7 @@
       @click="toggleDropdown"
       @keydown.space.prevent="toggleDropdown"
       @keydown.enter.prevent="toggleDropdown"
+      data-test="select-container"
     >
       <div class="select__display" ref="toggle">
         <slot
@@ -75,6 +76,7 @@
       @keydown.enter.prevent.stop="handleOnEnterSelectOption"
       @keydown.tab="onBlur"
       @keydown.up.prevent="highlightOption('prev')"
+      data-test="select-dropdown"
     >
       <div class="select__filter-wrapper" v-if="filterable">
         <input

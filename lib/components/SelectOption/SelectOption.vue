@@ -1,5 +1,10 @@
 <template>
-  <div class="select-option" :class="classes" :data-value="option[keys.value]">
+  <div
+    class="select-option"
+    :class="classes"
+    :data-value="option[keys.value]"
+    data-test="select-option"
+  >
     <slot>
       <div>{{ option[keys.label] }}</div>
     </slot>
@@ -72,7 +77,12 @@ export default {
 }
 
 .select-option--selected {
-  background-color: hsla(var(--color-brand-h), var(--color-brand-s), var(--color-brand-l), 0.08);
+  background-color: hsla(
+    var(--color-brand-h),
+    var(--color-brand-s),
+    var(--color-brand-l),
+    0.08
+  );
   @apply text-brand;
   /* @apply bg-control-primary text-control-primary; */
 }
