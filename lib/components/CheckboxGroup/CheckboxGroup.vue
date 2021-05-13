@@ -40,7 +40,7 @@ export default {
       type: Array,
       required: true,
     },
-    value: {
+    modelValue: {
       type: Array,
       required: true,
     },
@@ -107,7 +107,7 @@ export default {
         return;
       }
       const checked = args[0];
-      const e = args[1];
+      // const e = args[1];
       let value = [];
       const optionValue = option[this.keys.value] || option;
       const i = looseIndexOf(this.modelValue, optionValue);
