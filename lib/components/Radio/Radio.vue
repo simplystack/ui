@@ -24,7 +24,7 @@
 <script>
 export default {
   name: 'VRadio',
-  emits: ['update:modelValue', 'focus', 'blur'],
+  emits: ['update:modelValue', 'focus', 'blur', 'change'],
   props: {
     id: {
       type: [String, Number],
@@ -60,6 +60,7 @@ export default {
   created() {
     if (this.checked) {
       this.$emit('update:modelValue', this.trueValue);
+      this.$emit('change', this.trueValue);
     }
   },
   computed: {
@@ -77,9 +78,10 @@ export default {
       this.isActive = false;
       this.$emit('blur', e);
     },
-    onChange(e) {
+    onChange() {
       if (!this.disabled) {
         this.$emit('update:modelValue', this.trueValue);
+        this.$emit('change', this.trueValue);
       }
 
       // this.$emit('update:modelValue', this.isChecked, e);
