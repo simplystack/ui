@@ -17,6 +17,7 @@ describe('Textbox.vue', () => {
     expect(label.exists()).toBe(true);
     expect(label.text()).toBe('My label');
     expect(input.exists()).toBe(true);
+    expect(input.attributes('type')).toBe('text');
     expect(input.element.value).toBe('My value');
   });
 
