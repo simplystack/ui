@@ -15,21 +15,19 @@ const TestModal = {
   `,
 };
 
+const options = markRaw({
+  title: 'Testing title',
+  props: { msg: 'Rendered modal content' },
+  component: TestModal,
+  onClose: jest.fn(),
+  onDismiss: jest.fn(),
+});
+
 const App = {
   components: { Modal },
-  data() {
-    return {
-      options: markRaw({
-        title: 'Testing title',
-        props: { msg: 'Rendered modal content' },
-        component: TestModal,
-      }),
-    };
-  },
   template: `
     <div>
       <Modal />
-      <button @click="$store.dispatch('modal/open', options)">Open Modal</button>
     </div>
   `,
 };
@@ -39,17 +37,50 @@ const store = createStore({
 });
 
 describe('Modal.vue', () => {
-  it('should render the modal', async () => {
+  it('should open and render modal', async () => {
     const wrapper = mount(App, {
       global: {
         plugins: [store],
       },
     });
 
-    await wrapper.find('button').trigger('click');
+    await store.dispatch('modal/open', options);
 
-    expect(wrapper.find('[role="dialog"]')).toBeDefined();
+    expect(wrapper.find('[role="dialog"]').exists()).toBe(true);
     expect(wrapper.find('.modal-title').text()).toBe('Testing title');
     expect(wrapper.find('p').text()).toBe('Rendered modal content');
+
+    expect(store.getters['modal/opened']).toBe(true);
+  });
+
+  it('should close modal', async () => {
+    const wrapper = mount(App, {
+      global: {
+        plugins: [store],
+      },
+    });
+
+    await store.dispatch('modal/close', { payload: { foo: 'bar' } });
+
+    expect(store.getters['modal/opened']).toBe(false);
+
+    expect(wrapper.find('[role="dialog"]').exists()).toBe(false);
+    expect(options.onClose).toHaveBeenLastCalledWith({ foo: 'bar' });
+  });
+
+  it('should dismiss modal', async () => {
+    const wrapper = mount(App, {
+      global: {
+        plugins: [store],
+      },
+    });
+
+    await store.dispatch('modal/open', options);
+
+    await store.dispatch('modal/dismiss');
+
+    expect(store.getters['modal/opened']).toBe(false);
+    expect(wrapper.find('[role="dialog"]').exists()).toBe(false);
+    expect(options.onDismiss).toHaveBeenCalled();
   });
 });
