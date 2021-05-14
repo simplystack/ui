@@ -5,6 +5,7 @@
       class="modal-mask"
       :role="options.role"
       :class="classes"
+      data-test="modal-root"
     >
       <div
         ref="backdrop"
@@ -17,6 +18,7 @@
           tabindex="-1"
           @click.stop
           @keydown.esc="dismissOnEsc && dismiss()"
+          data-test="modal"
         >
 
           <div class="modal-header">

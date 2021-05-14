@@ -42,12 +42,17 @@ describe('Modal.vue', () => {
       global: {
         plugins: [store],
       },
+      attachTo: document.body,
     });
 
     await store.dispatch('modal/open', options);
 
-    expect(wrapper.find('[role="dialog"]').exists()).toBe(true);
-    expect(wrapper.find('.modal-title').text()).toBe('Testing title');
+    const root = wrapper.find('[data-test="modal-root"]');
+    const modal = wrapper.find('[data-test="modal"]');
+
+    expect(root.exists()).toBe(true);
+    expect(document.activeElement).toBe(modal.element);
+    expect(wrapper.find('h3').text()).toBe('Testing title');
     expect(wrapper.find('p').text()).toBe('Rendered modal content');
 
     expect(store.getters['modal/opened']).toBe(true);
