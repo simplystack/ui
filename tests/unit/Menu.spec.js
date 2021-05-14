@@ -18,7 +18,5 @@ describe('Menu.vue', () => {
 
     expect(wrapper.find('ul').exists()).toBe(true);
     expect(options.length).toBe(3);
-    expect(options[0].text()).toBe('Option 1');
-    expect(options[1].attributes('tabindex')).toBeUndefined(); // meaning option is disabled
   });
 });
