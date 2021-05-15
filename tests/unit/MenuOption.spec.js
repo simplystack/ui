@@ -1,10 +1,10 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 // eslint-disable-next-line import/no-unresolved
 import MenuOption from '@/components/MenuOption/MenuOption.vue';
 
 describe('Menu.vue', () => {
   it('should render menu option', async () => {
-    const wrapper = mount(MenuOption, {
+    const wrapper = shallowMount(MenuOption, {
       props: {
         label: 'Option 1',
       },
@@ -17,7 +17,7 @@ describe('Menu.vue', () => {
   });
 
   it('should render disabled menu option', async () => {
-    const wrapper = mount(MenuOption, {
+    const wrapper = shallowMount(MenuOption, {
       props: {
         label: 'Option 1',
         disabled: true,

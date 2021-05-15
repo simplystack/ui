@@ -1,11 +1,11 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 // eslint-disable-next-line import/no-unresolved
 import Button from '@/components/Button/Button.vue';
 
 describe('Button.vue', () => {
   it('renders default slot', () => {
     const text = 'Button default';
-    const wrapper = mount(Button, {
+    const wrapper = shallowMount(Button, {
       slots: {
         default: text,
       },
@@ -25,12 +25,12 @@ describe('Button.vue', () => {
   //   expect(wrapper.find('svg').exists()).toBeTruthy();
   // });
   it('should render tag <button> with default type "button"', () => {
-    const wrapper = mount(Button);
+    const wrapper = shallowMount(Button);
 
     expect(wrapper.attributes('type')).toBe('button');
   });
   it('should render tag <button> with type "submit"', () => {
-    const wrapper = mount(Button, {
+    const wrapper = shallowMount(Button, {
       props: {
         type: 'submit',
       },
@@ -39,7 +39,7 @@ describe('Button.vue', () => {
     expect(wrapper.attributes('type')).toBe('submit');
   });
   it('should render disabled button', () => {
-    const wrapper = mount(Button, {
+    const wrapper = shallowMount(Button, {
       props: {
         disabled: true,
       },

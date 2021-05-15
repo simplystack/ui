@@ -1,10 +1,10 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 // eslint-disable-next-line import/no-unresolved
 import Radio from '@/components/Radio/Radio.vue';
 
 describe('Radio.vue', () => {
   it('should render radio', async () => {
-    const wrapper = mount(Radio, {
+    const wrapper = shallowMount(Radio, {
       props: {
         name: 'test',
         modelValue: 'foo',
@@ -21,7 +21,7 @@ describe('Radio.vue', () => {
   });
 
   it('should emit "change" event correctly', async () => {
-    const wrapper = mount(Radio, {
+    const wrapper = shallowMount(Radio, {
       props: {
         name: 'test',
         modelValue: 'foo',
@@ -40,7 +40,7 @@ describe('Radio.vue', () => {
   });
 
   it('should emit "update:modelValue" event correctly', async () => {
-    const wrapper = mount(Radio, {
+    const wrapper = shallowMount(Radio, {
       props: {
         name: 'test',
         modelValue: 'foo',

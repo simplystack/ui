@@ -1,10 +1,10 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 // eslint-disable-next-line import/no-unresolved
 import Textbox from '@/components/Textbox/Textbox.vue';
 
 describe('Textbox.vue', () => {
-  it('should render textbox', async () => {
-    const wrapper = mount(Textbox, {
+  it('should renders textbox', async () => {
+    const wrapper = shallowMount(Textbox, {
       props: {
         modelValue: 'My value',
         label: 'My label',
@@ -21,8 +21,8 @@ describe('Textbox.vue', () => {
     expect(input.element.value).toBe('My value');
   });
 
-  it('should emit "update:modelValue" event correctly', async () => {
-    const wrapper = mount(Textbox, {
+  it('should emits "update:modelValue" event correctly', async () => {
+    const wrapper = shallowMount(Textbox, {
       props: {
         modelValue: 'My value',
         label: 'My label',

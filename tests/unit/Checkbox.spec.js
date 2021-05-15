@@ -1,10 +1,10 @@
-import { mount } from '@vue/test-utils';
+import { shallowMount } from '@vue/test-utils';
 // eslint-disable-next-line import/no-unresolved
 import Checkbox from '@/components/Checkbox/Checkbox.vue';
 
 describe('Checkbox.vue', () => {
   it('should render checkbox', async () => {
-    const wrapper = mount(Checkbox, {
+    const wrapper = shallowMount(Checkbox, {
       props: {
         modelValue: false,
         label: 'My label',
@@ -19,7 +19,7 @@ describe('Checkbox.vue', () => {
   });
 
   it('should emit "change" event correctly', async () => {
-    const wrapper = mount(Checkbox, {
+    const wrapper = shallowMount(Checkbox, {
       props: {
         modelValue: false,
       },
@@ -43,7 +43,7 @@ describe('Checkbox.vue', () => {
   });
 
   it('should emit "update:modelValue" event correctly', async () => {
-    const wrapper = mount(Checkbox, {
+    const wrapper = shallowMount(Checkbox, {
       props: {
         modelValue: false,
       },
