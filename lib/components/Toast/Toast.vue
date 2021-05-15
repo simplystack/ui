@@ -1,8 +1,8 @@
 <template>
-  <div class="toast" :class="classes">
+  <div class="toast" :class="classes" data-test="toast">
     <div class="toast__content">
-      <div class="toast__title">{{ computedTitle }}</div>
-      <div class="toast__message">{{ message }}</div>
+      <div class="toast__title" data-test="toast-title">{{ computedTitle }}</div>
+      <div class="toast__message" data-test="toast-message">{{ message }}</div>
     </div>
     <div class="toast__close" v-if="dismissible">
       <v-button appearance="subtle" size="sm" @click="close">
@@ -20,7 +20,7 @@ import VButton from '../Button';
 import { capitalize } from '../../util';
 
 export default {
-  name: 'Toast',
+  name: 'VToast',
   props: {
     type: {
       type: String,
