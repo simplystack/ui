@@ -30,6 +30,7 @@ import VTabHeader from '../TabHeader';
 
 export default {
   name: 'VTabs',
+  emits: ['tab-change'],
   props: {
     wide: {
       type: Boolean,
