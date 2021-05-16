@@ -24,6 +24,7 @@ import Popper from 'popper.js';
 
 export default {
   name: 'VPopover',
+  emits: ['open', 'close'],
   props: {
     trigger: {
       type: String,
