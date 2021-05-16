@@ -1,29 +1,31 @@
-import { shallowMount } from '@vue/test-utils';
+import { mount, shallowMount } from '@vue/test-utils';
 // eslint-disable-next-line import/no-unresolved
 import Button from '@/components/Button/Button.vue';
 
+const WithIconButton = {
+  components: { VButton: Button },
+  template: `
+    <v-button>
+      Button with icon
+      <template v-slot:icon>
+        <svg></svg>
+      </template>
+    </v-button>
+  `,
+};
+
 describe('Button.vue', () => {
   it('renders default slot', () => {
-    const text = 'Button default';
     const wrapper = shallowMount(Button, {
-      slots: {
-        default: text,
-      },
+      slots: { default: 'Button default' },
     });
-    expect(wrapper.text()).toMatch(text);
+    expect(wrapper.text()).toMatch('Button default');
   });
-  // it('should renders icon slot', () => {
-  //   const text = 'Button with icon';
-  //   const icon = '<svg>svg_icon</svg>';
-  //   const wrapper = mount(Button, {
-  //     slots: {
-  //       default: text,
-  //       icon,
-  //     },
-  //   });
-  //   expect(wrapper.text()).toMatch(text);
-  //   expect(wrapper.find('svg').exists()).toBeTruthy();
-  // });
+  it('should renders icon slot', () => {
+    const wrapper = mount(WithIconButton);
+    expect(wrapper.text()).toMatch('Button with icon');
+    expect(wrapper.find('svg').exists()).toBeTruthy();
+  });
   it('should render tag <button> with default type "button"', () => {
     const wrapper = shallowMount(Button);
 
