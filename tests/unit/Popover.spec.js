@@ -47,4 +47,19 @@ describe('Popover.vue', () => {
     expect(popover.emitted('close')).toBeDefined();
     expect(popover.emitted('close').length).toBe(1);
   });
+
+  it('should focus the trigger element on close', async () => {
+    const wrapper = mount(App, { attachTo: document.body });
+    const toggle = wrapper.find('button');
+
+    await toggle.trigger('click');
+
+    const content = wrapper.find('[role="dialog"]');
+
+    expect(document.activeElement).toBe(content.element);
+
+    await toggle.trigger('click');
+
+    expect(document.activeElement).toBe(toggle.element);
+  });
 });

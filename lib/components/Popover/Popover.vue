@@ -129,7 +129,7 @@ export default {
       this.$nextTick(() => {
         this.initPopper();
         this.updatePopper();
-        this.$el.focus();
+        this.$refs.content.focus();
         this.$emit('open');
       });
     },
