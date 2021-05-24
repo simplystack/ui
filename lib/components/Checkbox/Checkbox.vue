@@ -75,10 +75,6 @@ export default {
       isChecked: looseEqual(this.modelValue, this.trueValue) || this.checked,
     };
   },
-  created() {
-    // this.$emit('update:modelValue', this.isChecked ? this.trueValue : this.falseValue);
-    // this.$emit('change', this.isChecked ? this.trueValue : this.falseValue);
-  },
   methods: {
     onFocus(e) {
       this.$emit('focus', e);
@@ -86,17 +82,15 @@ export default {
     onBlur(e) {
       this.$emit('blur', e);
     },
-    async onChange(e) {
+    onChange(e) {
       const isCheckedPrevious = this.isChecked;
       const isChecked = e.target.checked;
+      const value = isChecked ? this.trueValue : this.falseValue;
 
-      await this.$nextTick();
-
-      this.$emit('update:modelValue', isChecked ? this.trueValue : this.falseValue, e);
-      this.$emit('change', isChecked ? this.trueValue : this.falseValue, e);
+      this.$emit('update:modelValue', value, e);
 
       if (isCheckedPrevious !== isChecked) {
-        // this.$emit('update:modelValue', isChecked ? this.trueValue : this.falseValue, e);
+        this.$emit('change', value, e);
       }
     },
     focus() {
@@ -104,7 +98,7 @@ export default {
     },
   },
   watch: {
-    value() {
+    modelValue() {
       this.isChecked = looseEqual(this.modelValue, this.trueValue);
     },
   },

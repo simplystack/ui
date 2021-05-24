@@ -29,6 +29,7 @@ import { looseEqual } from '../../util';
 
 export default {
   name: 'VToggle',
+  emits: ['update:modelValue', 'focus', 'blur', 'change'],
   props: {
     id: {
       type: [String, Number],
@@ -75,10 +76,6 @@ export default {
       isChecked: looseEqual(this.modelValue, this.trueValue) || this.checked,
     };
   },
-  created() {
-    this.$emit('update:modelValue', this.isChecked ? this.trueValue : this.falseValue);
-  },
-  computed: {},
   methods: {
     focus() {
       this.$refs.input.focus();
@@ -86,9 +83,12 @@ export default {
     onChange(e) {
       const isCheckedPrevious = this.isChecked;
       const isChecked = e.target.checked;
-      this.$emit('update:modelValue', isChecked ? this.trueValue : this.falseValue, e);
+      const value = isChecked ? this.trueValue : this.falseValue;
+
+      this.$emit('update:modelValue', value, e);
+
       if (isCheckedPrevious !== isChecked) {
-        this.$emit('change', isChecked ? this.trueValue : this.falseValue, e);
+        this.$emit('change', value, e);
       }
     },
     onFocus(e) {
@@ -99,7 +99,7 @@ export default {
     },
   },
   watch: {
-    value() {
+    modelValue() {
       this.isChecked = looseEqual(this.modelValue, this.trueValue);
     },
   },
