@@ -379,7 +379,7 @@ export default {
     },
   },
   watch: {
-    value(val) {
+    modelValue(val) {
       this.mutableValue = val;
     },
     options(val) {
