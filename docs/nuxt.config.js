@@ -78,11 +78,6 @@ export default {
 
   i18n: {
     locales: [{
-      code: 'ru',
-      iso: 'ru-RU',
-      file: 'ru-RU.js',
-      name: 'Русский'
-    }, {
       code: 'en',
       iso: 'en-US',
       file: 'en-US.js',
