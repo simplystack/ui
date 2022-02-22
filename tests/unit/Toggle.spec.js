@@ -1,22 +1,22 @@
 import { shallowMount, mount } from '@vue/test-utils';
 // eslint-disable-next-line import/no-unresolved
-import Toggle from '@/components/Toggle/Toggle.vue';
+import UIToggle from '@/components/Toggle/Toggle.vue';
 
 const App = {
-  components: { VToggle: Toggle },
+  components: { UIToggle },
   data() {
     return {
       checked: false,
     };
   },
   template: `
-    <v-toggle v-model="checked" title="My label" />
+    <UIToggle v-model="checked" title="My label" />
   `,
 };
 
 describe('Toggle.vue', () => {
   it('should render toggle', async () => {
-    const wrapper = shallowMount(Toggle, {
+    const wrapper = shallowMount(UIToggle, {
       props: {
         modelValue: false,
         label: 'My label',
@@ -33,18 +33,17 @@ describe('Toggle.vue', () => {
   it('should emit "change" event correctly', async () => {
     const wrapper = mount(App);
 
-    const toggle = wrapper.findComponent({ name: 'VToggle' });
-    const label = toggle.find('label');
+    const toggle = wrapper.findComponent({ name: 'UIToggle' });
     const input = toggle.find('input');
 
-    await label.trigger('click');
+    await input.setValue();
 
     expect(toggle.emitted('change')).toBeDefined();
     expect(toggle.emitted('change').length).toBe(1);
     expect(toggle.emitted('change')[0][0]).toBe(true);
     expect(input.element.checked).toBe(true);
 
-    await label.trigger('click');
+    await input.setValue(false);
 
     expect(toggle.emitted('change')).toBeDefined();
     expect(toggle.emitted('change').length).toBe(2);
@@ -55,18 +54,17 @@ describe('Toggle.vue', () => {
   it('should emits "update:modelValue" event correctly', async () => {
     const wrapper = mount(App);
 
-    const toggle = wrapper.findComponent({ name: 'VToggle' });
-    const label = toggle.find('label');
+    const toggle = wrapper.findComponent({ name: 'UIToggle' });
     const input = toggle.find('input');
 
-    await label.trigger('click');
+    await input.setValue();
 
     expect(toggle.emitted('update:modelValue')).toBeDefined();
     expect(toggle.emitted('update:modelValue')).toHaveLength(1);
     expect(toggle.emitted('update:modelValue')[0][0]).toBe(true);
     expect(input.element.checked).toBeTruthy();
 
-    await label.trigger('click');
+    await input.setValue(false);
 
     expect(toggle.emitted('update:modelValue')).toBeDefined();
     expect(toggle.emitted('update:modelValue')).toHaveLength(2);

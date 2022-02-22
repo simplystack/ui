@@ -28,7 +28,7 @@
 import { looseEqual } from '../../util';
 
 export default {
-  name: 'VToggle',
+  name: 'UIToggle',
   emits: ['update:modelValue', 'focus', 'blur', 'change'],
   props: {
     id: {

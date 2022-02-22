@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  name: 'Spinner',
+  name: 'UISpinner',
   props: {
     type: {
       type: String,

@@ -18,7 +18,7 @@
 
 <script>
 export default {
-  name: 'VSelectOption',
+  name: 'UISelectOption',
   props: {
     option: {
       type: [String, Object],

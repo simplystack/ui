@@ -28,7 +28,7 @@ import VPopover from '../Popover';
 import VMenu from '../Menu';
 
 export default {
-  name: 'VDropdown',
+  name: 'UIDropdown',
   props: {
     placement: {
       type: String,

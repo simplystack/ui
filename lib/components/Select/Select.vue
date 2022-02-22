@@ -1,13 +1,23 @@
 <template>
-  <div class="select" :class="classes" v-clickoutside="handleClickOutside">
-    <label v-if="showLabel" class="select__label">{{ label }}</label>
-
-    <input
-      type="hidden"
-      :name="name"
-      :value="modelValue.value"
-      :disabled="disabled"
-    />
+  <div
+    class="select"
+    :class="classes"
+    v-clickoutside="handleClickOutside"
+  >
+    <label
+      :for="id"
+      v-if="showLabel"
+      class="select__label"
+    >
+      {{ label }}
+      <input
+        type="hidden"
+        :id="id"
+        :name="name"
+        :value="modelValue.value"
+        :disabled="disabled"
+      />
+    </label>
 
     <div
       ref="container"
@@ -119,12 +129,13 @@ import { scrollIntoView, resetScroll } from '../../util/elementScroll';
 import clickoutside from '../../directives/clickoutside';
 
 export default {
-  name: 'VSelect',
+  name: 'UISelect',
   emits: ['update:modelValue', 'open', 'close', 'clear', 'focus', 'blur', 'select'],
   directives: { clickoutside },
   props: {
     id: {
       type: [Number, String],
+      default: '',
     },
     tabindex: {
       type: [Number, String],
@@ -132,6 +143,7 @@ export default {
     },
     name: {
       type: String,
+      default: '',
     },
     label: {
       type: String,

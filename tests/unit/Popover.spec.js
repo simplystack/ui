@@ -34,7 +34,7 @@ describe('Popover.vue', () => {
 
   it('should emits events on open/close', async () => {
     const wrapper = mount(App);
-    const popover = wrapper.findComponent({ name: 'VPopover' });
+    const popover = wrapper.findComponent({ name: 'UIPopover' });
     const toggle = popover.find('button');
 
     await toggle.trigger('click');

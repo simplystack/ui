@@ -32,7 +32,7 @@
 import VRadio from '../Radio';
 
 export default {
-  name: 'VRadioGroup',
+  name: 'UIRadioGroup',
   emits: ['update:modelValue', 'focus', 'blur'],
   props: {
     name: {

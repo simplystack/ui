@@ -23,7 +23,7 @@
 
 <script>
 export default {
-  name: 'VRadio',
+  name: 'UIRadio',
   emits: ['update:modelValue', 'focus', 'blur', 'change'],
   props: {
     id: {

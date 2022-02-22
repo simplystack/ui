@@ -17,7 +17,7 @@
 import { nanoid } from 'nanoid';
 
 export default {
-  name: 'VTab',
+  name: 'UITab',
   emits: ['select', 'deselect'],
   props: {
     id: {

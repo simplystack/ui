@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: 'VTabHeader',
+  name: 'UITabHeader',
   props: {
     id: {
       type: String,

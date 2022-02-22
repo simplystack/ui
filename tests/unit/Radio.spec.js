@@ -30,9 +30,7 @@ describe('Radio.vue', () => {
       },
     });
 
-    const input = wrapper.find('input');
-
-    await input.trigger('click');
+    await wrapper.find('input').setValue();
 
     expect(wrapper.emitted('change')).toBeDefined();
     expect(wrapper.emitted('change').length).toBe(1);
@@ -49,9 +47,7 @@ describe('Radio.vue', () => {
       },
     });
 
-    const input = wrapper.find('input');
-
-    await input.trigger('click');
+    await wrapper.find('input').setValue();
 
     expect(wrapper.emitted('update:modelValue')).toBeDefined();
     expect(wrapper.emitted('update:modelValue').length).toBe(1);

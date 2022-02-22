@@ -31,7 +31,7 @@ describe('Tabs.vue', () => {
 
     await flushPromises();
 
-    const tabs = wrapper.findComponent({ name: 'VTabs' });
+    const tabs = wrapper.findComponent({ name: 'UITabs' });
     const tab = wrapper.findComponent('[id="tab-3"]');
     const list = wrapper.findAll('li');
 

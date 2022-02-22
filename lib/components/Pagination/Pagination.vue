@@ -64,7 +64,7 @@
 import VButton from '../Button';
 
 export default {
-  name: 'VPagination',
+  name: 'UIPagination',
   props: {
     value: {
       type: Number,

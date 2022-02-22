@@ -26,7 +26,7 @@
 import VSpinner from '../Spinner';
 
 export default {
-  name: 'VButton',
+  name: 'UIButton',
   props: {
     type: {
       type: String,

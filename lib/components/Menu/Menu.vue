@@ -30,7 +30,7 @@
 import VMenuOption from '../MenuOption';
 
 export default {
-  name: 'VMenu',
+  name: 'UIMenu',
   emits: ['select', 'close'],
   props: {
     options: {

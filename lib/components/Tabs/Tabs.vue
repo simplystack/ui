@@ -29,7 +29,7 @@
 import VTabHeader from '../TabHeader';
 
 export default {
-  name: 'VTabs',
+  name: 'UITabs',
   emits: ['tab-change'],
   props: {
     wide: {

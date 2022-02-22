@@ -3,49 +3,44 @@
     @submit.prevent="submit"
     class="space-y-2 pt-4"
   >
-    <v-textbox
+    <UITextbox
       v-model="form.email"
       label="Email"
       placeholder="Enter your email"
     />
-    <v-textbox
+    <UITextbox
       v-model="form.password"
       type="password"
       label="Password"
       placeholder="Enter your password"
     />
-    <v-button
+    <UIButton
       type="submit"
       :loading="submitting"
       appearance="primary"
       class="w-full"
     >
       Submit
-    </v-button>
+    </UIButton>
   </form>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue';
 
-export default {
-  setup() {
-    const form = ref({
-      email: '',
-      password: '',
-    });
-    const submitting = ref(false);
+const form = ref({
+  email: '',
+  password: '',
+});
 
-    const submit = () => {
-      submitting.value = true;
+const submitting = ref(false);
 
-      setTimeout(() => {
-        console.log(form.value);
-        submitting.value = false;
-      }, 2000);
-    };
+const submit = () => {
+  submitting.value = true;
 
-    return { form, submitting, submit };
-  },
+  setTimeout(() => {
+    console.log(form.value);
+    submitting.value = false;
+  }, 2000);
 };
 </script>

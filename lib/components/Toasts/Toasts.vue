@@ -17,7 +17,7 @@
 import VToast from '../Toast';
 
 export default {
-  name: 'VToasts',
+  name: 'UIToasts',
   props: {
     position: {
       type: String,

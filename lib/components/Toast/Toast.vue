@@ -20,7 +20,7 @@ import VButton from '../Button';
 import { capitalize } from '../../util';
 
 export default {
-  name: 'VToast',
+  name: 'UIToast',
   props: {
     type: {
       type: String,

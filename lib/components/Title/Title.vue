@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: 'VTitle',
+  name: 'UITitle',
   props: {
     level: {
       type: [String, Number],

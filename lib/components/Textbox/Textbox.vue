@@ -1,5 +1,5 @@
 <template>
-  <label class="textbox" :class="classes">
+  <label class="textbox" :class="classes" :for="id">
     <span v-if="label" class="textbox__label">{{ label }}</span>
     <input
       v-if="!multiline"
@@ -14,6 +14,8 @@
       @paste="handlePaste"
 
       class="textbox__input"
+      :id="id"
+      :name="name"
       :value="modelValue"
       :placeholder="placeholder"
       :type="type"
@@ -36,6 +38,8 @@
       @keydown="handleKeyDown"
 
       class="textbox__textarea"
+      :id="id"
+      :name="name"
       :readonly="readonly"
       :disabled="disabled"
       :required="required"
@@ -51,9 +55,18 @@
 import autofocus from '../../directives/autofocus';
 
 export default {
+  name: 'UITextbox',
   directives: { autofocus },
   emits: ['update:modelValue', 'focus', 'blur', 'reset', 'keydown', 'change', 'paste'],
   props: {
+    id: {
+      type: [String, Number],
+      default: null,
+    },
+    name: {
+      type: String,
+      default: null,
+    },
     type: {
       type: String,
       default: 'text',

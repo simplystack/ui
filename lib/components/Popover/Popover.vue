@@ -23,7 +23,7 @@
 import Popper from 'popper.js';
 
 export default {
-  name: 'VPopover',
+  name: 'UIPopover',
   emits: ['open', 'close'],
   props: {
     trigger: {

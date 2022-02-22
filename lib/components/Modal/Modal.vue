@@ -7,6 +7,7 @@
       :class="classes"
       data-test="modal-root"
     >
+      <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
       <div
         ref="backdrop"
         class="modal-backdrop"
@@ -47,7 +48,7 @@ import VButton from '../Button';
 const modalOpenClass = 'overflow-hidden';
 
 export default {
-  name: 'VModal',
+  name: 'UIModal',
   computed: {
     opened() {
       return this.$store.getters['modal/opened'];
@@ -161,10 +162,7 @@ export default {
 }
 
 .modal-backdrop {
-  @apply min-h-full flex flex-col items-center justify-center p-2;
-  @screen md {
-    @apply p-4;
-  }
+  @apply min-h-full flex flex-col items-center justify-center p-2 md:p-4;
 }
 
 .modal-header {

@@ -1,22 +1,22 @@
 import { shallowMount, mount } from '@vue/test-utils';
 // eslint-disable-next-line import/no-unresolved
-import Checkbox from '@/components/Checkbox/Checkbox.vue';
+import UICheckbox from '@/components/Checkbox/Checkbox.vue';
 
 const App = {
-  components: { VCheckbox: Checkbox },
+  components: { UICheckbox },
   data() {
     return {
       checked: false,
     };
   },
   template: `
-    <v-checkbox v-model="checked" title="My label" />
+    <UICheckbox v-model="checked" title="My label" />
   `,
 };
 
 describe('Checkbox.vue', () => {
   it('should render checkbox', async () => {
-    const wrapper = shallowMount(Checkbox, {
+    const wrapper = shallowMount(UICheckbox, {
       props: {
         modelValue: false,
         label: 'My label',
@@ -33,18 +33,17 @@ describe('Checkbox.vue', () => {
   it('should emit "change" event correctly', async () => {
     const wrapper = mount(App);
 
-    const checkbox = wrapper.findComponent({ name: 'VCheckbox' });
-    const label = checkbox.find('label');
+    const checkbox = wrapper.findComponent({ name: 'UICheckbox' });
     const input = checkbox.find('input');
 
-    await label.trigger('click');
+    await input.setValue();
 
     expect(checkbox.emitted('change')).toBeDefined();
     expect(checkbox.emitted('change').length).toBe(1);
     expect(checkbox.emitted('change')[0][0]).toBe(true);
     expect(input.element.checked).toBe(true);
 
-    await label.trigger('click');
+    await input.setValue(false);
 
     expect(checkbox.emitted('change')).toBeDefined();
     expect(checkbox.emitted('change').length).toBe(2);
@@ -55,18 +54,17 @@ describe('Checkbox.vue', () => {
   it('should emit "update:modelValue" event correctly', async () => {
     const wrapper = mount(App);
 
-    const checkbox = wrapper.findComponent({ name: 'VCheckbox' });
-    const label = checkbox.find('label');
+    const checkbox = wrapper.findComponent({ name: 'UICheckbox' });
     const input = checkbox.find('input');
 
-    await label.trigger('click');
+    await input.setValue();
 
     expect(checkbox.emitted('update:modelValue')).toBeDefined();
     expect(checkbox.emitted('update:modelValue').length).toBe(1);
     expect(checkbox.emitted('update:modelValue')[0][0]).toBe(true);
     expect(input.element.checked).toBe(true);
 
-    await label.trigger('click');
+    await input.setValue(false);
 
     expect(checkbox.emitted('update:modelValue')).toBeDefined();
     expect(checkbox.emitted('update:modelValue').length).toBe(2);

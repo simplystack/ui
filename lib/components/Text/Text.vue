@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'VText',
+  name: 'UIText',
   props: {
     tag: {
       type: String,

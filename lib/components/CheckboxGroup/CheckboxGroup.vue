@@ -31,7 +31,7 @@ import VCheckbox from '../Checkbox';
 import { looseIndexOf } from '../../util';
 
 export default {
-  name: 'VCheckboxGroup',
+  name: 'UICheckboxGroup',
   props: {
     name: {
       type: String,

@@ -26,7 +26,7 @@
 
 <script>
 export default {
-  name: 'VProgress',
+  name: 'UIProgress',
   props: {
     type: {
       type: String,

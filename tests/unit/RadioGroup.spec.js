@@ -44,10 +44,10 @@ describe('RadioGroup.vue', () => {
 
     const inputs = wrapper.findAll('input');
 
-    await inputs[0].trigger('click');
+    await inputs[0].setValue();
     expect(wrapper.emitted('update:modelValue')[0][0]).toBe('box-1');
 
-    await inputs[2].trigger('click');
+    await inputs[2].setValue();
 
     expect(wrapper.emitted('update:modelValue')[1][0]).toBe('box-3');
   });

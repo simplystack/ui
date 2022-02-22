@@ -30,7 +30,7 @@
 import { looseEqual } from '../../util';
 
 export default {
-  name: 'VCheckbox',
+  name: 'UICheckbox',
   emits: ['update:modelValue', 'focus', 'blur', 'change'],
   props: {
     id: {

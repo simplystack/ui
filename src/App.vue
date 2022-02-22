@@ -1,24 +1,32 @@
 <template>
-  <div class="p-8">
-    <v-modal/>
-    <v-button appearance="primary" @click="open">
+  <div
+    class="min-h-screen flex items-center bg-primary text-primary space-x-8 p-8"
+    data-mode="dark"
+  >
+    <UIModal/>
+    <UIButton appearance="primary" @click="open">
       Open Modal
-    </v-button>
-    {{ $store.state.count }}
+    </UIButton>
+
+    <UIRadio name="radio-choice" v-model="form.choice" true-value="radio-1" label="Radio 1" />
+    <UIRadio name="radio-choice" v-model="form.choice" true-value="radio-2" label="Radio 2" />
   </div>
 </template>
 
-<script>
-import { defineAsyncComponent } from 'vue';
+<script setup>
+import { defineAsyncComponent, reactive } from 'vue';
+import { useStore } from 'vuex';
 
-export default {
-  methods: {
-    open() {
-      this.$store.dispatch('modal/open', {
-        title: 'New Modal',
-        component: defineAsyncComponent(() => import('@/LoginModal.vue')),
-      });
-    },
-  },
+const store = useStore();
+
+const form = reactive({
+  choice: 'radio-1',
+});
+
+const open = () => {
+  store.dispatch('modal/open', {
+    title: 'Login',
+    component: defineAsyncComponent(() => import('@/LoginModal.vue')),
+  });
 };
 </script>
