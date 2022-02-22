@@ -1,8 +1,7 @@
 const theme = require('./theme');
 
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.{vue,js}", "./lib/**/*.vue"],
   theme: {
     extend: {
       ...theme,

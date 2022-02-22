@@ -1,8 +1,8 @@
 import App from '@/App.vue';
 import { createApp } from 'vue';
 import store from '@/store';
-import ui, { ModalPlugin } from '../lib';
 import '@/app.css';
+import ui, { ModalPlugin } from '../lib';
 import '../main.css';
 
 const app = createApp(App);
