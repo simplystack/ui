@@ -1,15 +1,13 @@
-const theme = require('./theme');
-
+/* eslint-disable global-require */
 module.exports = {
-  purge: [],
+  content: ['./lib/**/*.vue', './src/**/*.vue'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
-      ...theme,
-    },
+    extend: {},
   },
   variants: {
     extend: {},
   },
+  presets: [require('./preset')],
   plugins: [],
 };

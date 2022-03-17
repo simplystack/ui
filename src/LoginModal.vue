@@ -4,15 +4,15 @@
     class="space-y-2 pt-4"
   >
     <v-textbox
+      id="form-modal-email"
       v-model="form.email"
       label="Email"
-      placeholder="Enter your email"
     />
     <v-textbox
+      id="form-modal-password"
       v-model="form.password"
       type="password"
       label="Password"
-      placeholder="Enter your password"
     />
     <v-button
       type="submit"

@@ -1,10 +1,21 @@
 <template>
-  <label class="textbox" :class="classes">
-    <span v-if="label" class="textbox__label">{{ label }}</span>
+  <label class="relative flex items-start flex-col" :for="id">
+    <span
+      class="text-secondary text-sm mb-1"
+      :class="[
+        { 'absolute left-4': floated },
+        floated
+          ? filled
+            ? 'top-[6px] text-[11px]'
+            : 'top-3.5'
+          : ''
+      ]"
+    >
+      {{ label }}
+    </span>
     <input
       v-if="!multiline"
       ref="input"
-      v-autofocus="autofocus"
 
       @blur="handleBlur"
       @focus="handleFocus"
@@ -13,47 +24,89 @@
       @change="handleChange"
       @paste="handlePaste"
 
-      class="textbox__input"
+      :id="id"
       :value="modelValue"
-      :placeholder="placeholder"
       :type="type"
       :required="required"
       :disabled="disabled"
       :readonly="readonly"
+      :placeholder="placeholder"
 
       :min="min"
       :max="max"
       :step="step"
+
+      class="
+        appearance-none
+        outline-none
+        border
+        w-full
+        h-12
+        rounded
+        px-4
+        text-sm
+        focus:ring-1
+      "
+      :class="[
+        { 'pt-[16px]': floated && filled },
+        disabled
+          ? 'bg-control-disabled cursor-not-allowed'
+          : error
+            ? 'bg-control-default border-control-danger focus:ring-danger shadow-sm '
+            // eslint-disable-next-line max-len
+            : 'bg-control-default border-control-default hover:border-control-hover focus:border-control-focus focus:ring-primary shadow-sm '
+      ]"
     />
     <textarea
       v-else
       ref="textarea"
-      v-autofocus="autofocus"
 
       @blur="handleBlur"
       @focus="handleFocus"
       @input="handleInput"
       @keydown="handleKeyDown"
 
-      class="textbox__textarea"
+      :id="id"
       :readonly="readonly"
       :disabled="disabled"
       :required="required"
       :value="modelValue"
       :rows="rows"
       :placeholder="placeholder"
+
+      class="
+        appearance-none
+        outline-none
+        border
+        w-full
+        rounded
+        px-4
+        pt-6
+        text-sm
+        focus:ring-1
+      "
+      :class="[
+        disabled
+          ? 'bg-control-disabled cursor-not-allowed'
+          : error
+            ? 'bg-control-default border-control-danger focus:ring-danger shadow-sm '
+            // eslint-disable-next-line max-len
+            : 'bg-control-default border-control-default hover:border-control-hover focus:border-control-focus focus:ring-primary shadow-sm '
+      ]"
     />
-    <span v-if="error" class="textbox__message">{{ errorText }}</span>
+    <span v-if="error" class="text-xs text-danger mt-1">{{ errorText }}</span>
   </label>
 </template>
 
 <script>
-import autofocus from '../../directives/autofocus';
-
 export default {
-  directives: { autofocus },
+  name: 'UiTextbox',
   emits: ['update:modelValue', 'focus', 'blur', 'reset', 'keydown', 'change', 'paste'],
   props: {
+    id: {
+      type: [Number, String],
+      default: '',
+    },
     type: {
       type: String,
       default: 'text',
@@ -88,7 +141,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'xl',
+      default: 'lg',
     },
     rows: {
       type: Number,
@@ -123,18 +176,8 @@ export default {
     },
   },
   computed: {
-    floatedActive() {
-      return this.floated && this.modelValue !== '' && this.modelValue !== undefined && this.modelValue !== null;
-    },
-    classes() {
-      return [
-        `textbox--size-${this.size}`,
-        { 'textbox--disabled': this.disabled },
-        { 'textbox--readonly': this.readonly },
-        { 'textbox--error': this.error },
-        { 'textbox--floated': this.floated },
-        { 'textbox--floated-active': this.floatedActive },
-      ];
+    filled() {
+      return this.modelValue !== '' && this.modelValue !== undefined && this.modelValue !== null;
     },
   },
   data() {
@@ -200,109 +243,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss">
-.textbox {
-  @apply flex flex-col relative;
-}
-
-.textbox__input, .textbox__textarea {
-  @apply bg-control-default w-full border-control rounded outline-none px-3;
-}
-
-.textbox__input:hover {
-  @apply border-control-hover;
-}
-
-.textbox__input:focus, .textbox__textarea:focus {
-  @apply shadow border-control-primary;
-}
-
-.textbox__label {
-  @apply font-semibold mb-1;
-}
-
-.textbox__message {
-  @apply text-danger text-sm;
-}
-
-.textbox--floated .textbox__label {
-  @apply absolute font-bold uppercase text-secondary;
-  font-size: 10px;
-  padding: 7px 0 0 12px;
-  opacity: 0;
-  visibility: hidden;
-}
-
-.textbox--floated-active .textbox__label {
-  opacity: 1;
-  visibility: visible;
-}
-
-.textbox--floated-active .textbox__input {
-  padding-top: 16px;
-}
-
-.textbox--disabled .textbox__input, .textbox--disabled .textbox__textarea {
-  @apply bg-control-disabled text-control-disabled border-control-disabled cursor-not-allowed;
-}
-
-.textbox--readonly .textbox__input, .textbox--readonly .textbox__textarea {
-  @apply bg-control-disabled;
-}
-
-.textbox--error .textbox__input, .textbox--error .textbox__textarea {
-  @apply border-control-danger;
-}
-
-.textbox--error .textbox__label, .textbox--error .textbox__label {
-  @apply text-danger;
-}
-
-.textbox--size-sm .textbox__input {
-  @apply h-6;
-}
-.textbox--size-md .textbox__input {
-  @apply h-8;
-}
-.textbox--size-lg .textbox__input {
-  @apply h-10;
-}
-.textbox--size-xl .textbox__input {
-  @apply h-12;
-}
-.textbox--size-2xl .textbox__input {
-  @apply h-16 text-xl font-semibold;
-}
-
-.textbox--size-sm .textbox__textarea {
-  @apply py-3;
-}
-.textbox--size-md .textbox__textarea {
-  @apply py-3;
-}
-.textbox--size-lg .textbox__textarea {
-  @apply py-3;
-}
-.textbox--size-xl .textbox__textarea {
-  @apply py-3;
-}
-.textbox--size-xl.textbox--floated-active .textbox__textarea {
-  padding-top: theme('height.5');
-}
-.textbox--size-2xl .textbox__textarea {
-  @apply py-3 text-xl font-semibold;
-}
-
-/* Chrome, Safari, Edge, Opera */
-.textbox__input::-webkit-outer-spin-button,
-.textbox__input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Firefox */
-.textbox__input[type=number] {
-  -moz-appearance: textfield;
-}
-</style>

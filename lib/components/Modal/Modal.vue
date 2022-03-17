@@ -11,6 +11,7 @@
         ref="backdrop"
         class="modal-backdrop"
         @click="dismissOnBackdrop && dismiss()"
+        @keydown.esc="dismissOnEsc && dismiss()"
       >
         <div
           ref="container"
@@ -161,10 +162,7 @@ export default {
 }
 
 .modal-backdrop {
-  @apply min-h-full flex flex-col items-center justify-center p-2;
-  @screen md {
-    @apply p-4;
-  }
+  @apply min-h-full flex flex-col items-center justify-center p-2 md:p-4;
 }
 
 .modal-header {

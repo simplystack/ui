@@ -1,6 +1,8 @@
 <template>
   <div class="select" :class="classes" v-clickoutside="handleClickOutside">
-    <label v-if="showLabel" class="select__label">{{ label }}</label>
+    <span v-if="showLabel" class="select__label" :for="name">
+      {{ label }}
+    </span>
 
     <input
       type="hidden"
@@ -79,6 +81,7 @@
       data-test="select-dropdown"
     >
       <div class="select__filter-wrapper" v-if="filterable">
+        <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
         <input
           tabindex="0"
           ref="filter"
@@ -125,6 +128,7 @@ export default {
   props: {
     id: {
       type: [Number, String],
+      default: '',
     },
     tabindex: {
       type: [Number, String],
@@ -132,6 +136,7 @@ export default {
     },
     name: {
       type: String,
+      default: '',
     },
     label: {
       type: String,

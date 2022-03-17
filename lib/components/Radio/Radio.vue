@@ -1,10 +1,17 @@
 <template>
-  <label class="radio" :for="id" :class="[{'radio--disabled': disabled}]">
+  <label
+    :tabindex="tabindex"
+    class="group outline-none inline-flex items-center space-x-2"
+    :class="[disabled ? 'cursor-not-allowed' : 'cursor-pointer']"
+    @keydown.space.prevent="$refs.input.click()"
+    :for="id"
+  >
     <input
-      class="radio__input"
+      ref="input"
       type="radio"
 
       :id="id"
+      hidden
       :checked="checked"
       :disabled="disabled"
       :name="name"
@@ -16,8 +23,32 @@
       @focus="onFocus"
 
     >
-    <span class="radio__circle"></span>
-    <span class="radio__text">{{ label }}</span>
+    <span
+      class="
+        inline-flex items-center justify-center
+        w-4 h-4
+        border
+        rounded-full
+      "
+      :class="[
+        disabled
+          ? 'bg-control-disabled border-control-disabled cursor-not-allowed'
+          : isChecked
+            // eslint-disable-next-line max-len
+            ? 'bg-control-primary border-control-primary group-focus:border-control-focus group-focus:ring-2 group-focus:ring-primary/50'
+            // eslint-disable-next-line max-len
+            : 'bg-control-default border-control-default group-hover:border-control-hover group-focus:border-control-focus group-focus:ring-2 group-focus:ring-primary/50'
+
+      ]"
+    >
+      <span
+        v-if="!disabled && isChecked"
+        class="inline-block bg-white w-1 h-1 rounded-full"
+      ></span>
+    </span>
+    <span class="text-sm font-medium">
+      {{ label }}
+    </span>
   </label>
 </template>
 
@@ -37,9 +68,6 @@ export default {
       type: String,
       required: true,
     },
-    tabindex: {
-      type: [String, Number],
-    },
     modelValue: {
       type: [Number, String],
       required: true,
@@ -51,6 +79,10 @@ export default {
     checked: {
       type: Boolean,
       default: false,
+    },
+    tabindex: {
+      type: [String, Number],
+      default: 0,
     },
     disabled: {
       type: Boolean,
@@ -79,12 +111,12 @@ export default {
       this.$emit('blur', e);
     },
     onChange() {
-      if (!this.disabled) {
-        this.$emit('update:modelValue', this.trueValue);
-        this.$emit('change', this.trueValue);
+      if (this.disabled) {
+        return;
       }
-
       // this.$emit('update:modelValue', this.isChecked, e);
+      this.$emit('update:modelValue', this.trueValue);
+      this.$emit('change', this.trueValue);
     },
     focus() {
       this.$refs.input.focus();
@@ -92,55 +124,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss">
-.radio {
-  @apply inline-flex items-center cursor-pointer;
-}
-.radio:hover .radio__circle {
-  @apply border-control-hover;
-}
-.radio--disabled {
-  @apply cursor-not-allowed;
-}
-
-.radio__circle {
-  @apply block flex-shrink-0 relative h-5 w-5 border-control rounded-full mr-2 bg-primary;
-}
-.radio__input:checked + .radio__circle {
-  @apply border-control-primary bg-control-primary;
-}
-.radio__circle:after {
-  background: #fff;
-  border-radius: 50%;
-  content: "";
-  height: 8px;
-  left: 50%;
-  opacity: 0;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%,-50%) scale(.5);
-  transition: transform 200ms ease;
-  width: 8px;
-}
-
-.radio__input {
-  @apply absolute appearance-none;
-}
-.radio__input:checked + .radio__circle:after {
-  opacity: 1;
-  transform: translate(-50%,-50%) scale(1);
-}
-.radio__input:focus + .radio__circle {
-  @apply shadow;
-}
-.radio__input:disabled + .radio__circle {
-  @apply bg-control-disabled border-control-disabled;
-}
-.radio__input[disabled]:checked + .radio__circle {
-  @apply bg-control-disabled border-control-disabled;
-}
-.radio__text {
-  @apply font-semibold;
-}
-</style>

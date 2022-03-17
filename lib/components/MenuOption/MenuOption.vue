@@ -2,7 +2,7 @@
   <li
     class="menu-option"
     ref="menuOption"
-    role="menu-item"
+    role="menuitem"
     :class="classes"
     :tabindex="isDivider || disabled ? null : '0'"
     v-bind="$attrs"

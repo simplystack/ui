@@ -54,7 +54,7 @@
 
 <script>
 export default {
-  name: 'Spinner',
+  name: 'VSpinner',
   props: {
     type: {
       type: String,

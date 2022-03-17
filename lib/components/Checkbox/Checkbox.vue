@@ -1,11 +1,10 @@
 <template>
   <label
+    :tabindex="tabindex"
+    class="group outline-none inline-flex items-center space-x-2"
+    :class="[disabled ? 'cursor-not-allowed' : 'cursor-pointer']"
+    @keydown.space.prevent="$refs.input.click()"
     :for="id"
-    class="checkbox"
-    :class="{
-      'checkbox--indeterminate': indeterminate,
-      'checkbox--disabled': disabled,
-    }"
   >
     <input
       :id="id"
@@ -16,21 +15,62 @@
       :tabindex="tabindex"
       ref="input"
       type="checkbox"
-      class="checkbox__input"
+      hidden
       @blur="onBlur"
       @focus="onFocus"
       @change="onChange"
     />
-    <div class="checkbox__squad"></div>
-    <span class="checkbox__text">{{ label }}</span>
+    <div
+      class="w-4 h-4 border rounded-sm"
+      :class="[
+        disabled
+          ? 'bg-control-disabled border-control-disabled'
+          : isChecked
+            // eslint-disable-next-line max-len
+            ? 'bg-control-primary border-control-primary group-focus:border-control-focus group-focus:ring-2 group-focus:ring-primary/50'
+            // eslint-disable-next-line max-len
+            : 'bg-control-default border-control-default group-hover:border-control-hover group-focus:border-control-focus group-focus:ring-2 group-focus:ring-primary/50'
+
+      ]"
+    >
+      <svg
+        v-if="!disabled && isChecked"
+        viewBox="0 0 16 16"
+        fill="white"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5
+          9.086l4.293-4.293a1 1 0 011.414 0z"
+        />
+      </svg>
+    </div>
+    <span class="font-medium text-sm" :class="[{ 'text-secondary': disabled }]">{{ label }}</span>
   </label>
 </template>
 
 <script>
-import { looseEqual } from '../../util';
+/**
+ * Quick object check - this is primarily used to tell
+ * Objects from primitive values when we know the value
+ * is a JSON-compliant type.
+ */
+export function isObject(obj) {
+  return obj === Object(obj);
+}
+/**
+ * Check if two values are loosely equal - that is,
+ * if they are plain objects, do they have the same shape?
+ */
+export function looseEqual(a, b) {
+  // eslint-disable-next-line eqeqeq
+  return a == b || (
+    isObject(a) && isObject(b) ? JSON.stringify(a) === JSON.stringify(b) : false
+  );
+}
 
 export default {
-  name: 'VCheckbox',
+  name: 'UiCheckbox',
   emits: ['update:modelValue', 'focus', 'blur', 'change'],
   props: {
     id: {
@@ -64,7 +104,10 @@ export default {
       type: Boolean,
       default: false,
     },
-    tabindex: [String, Number],
+    tabindex: {
+      type: [String, Number],
+      default: 0,
+    },
     disabled: {
       type: Boolean,
       default: false,
@@ -86,9 +129,7 @@ export default {
       const isCheckedPrevious = this.isChecked;
       const isChecked = e.target.checked;
       const value = isChecked ? this.trueValue : this.falseValue;
-
       this.$emit('update:modelValue', value, e);
-
       if (isCheckedPrevious !== isChecked) {
         this.$emit('change', value, e);
       }
@@ -104,55 +145,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss">
-.checkbox {
-  @apply flex items-center cursor-pointer;
-}
-.checkbox:hover .checkbox__squad {
-  @apply border-control-hover;
-}
-.checkbox--disabled {
-  @apply cursor-not-allowed;
-}
-.checkbox__squad {
-  @apply relative h-5 w-5 border-control rounded mr-2 bg-control-default;
-}
-
-.checkbox__input {
-  @apply absolute appearance-none;
-}
-.checkbox__input:checked + .checkbox__squad {
-  @apply bg-control-primary border-control-primary text-control-primary;
-}
-.checkbox__input:checked + .checkbox__squad:after {
-  border-bottom: 2px solid currentColor;
-  border-right: 2px solid currentColor;
-  bottom: 5px;
-  content: "";
-  display: block;
-  height: 10px;
-  left: 7px;
-  opacity: 0;
-  position: absolute;
-  transform: rotate(45deg);
-  transition: all 200ms ease;
-  width: 5px;
-}
-.checkbox__input:checked + .checkbox__squad:after {
-  opacity: 1;
-}
-.checkbox__input:focus + .checkbox__squad {
-  @apply shadow;
-}
-.checkbox__input:disabled + .checkbox__squad {
-  @apply bg-control-disabled border-control-disabled;
-}
-.checkbox__input[disabled]:checked + .checkbox__squad {
-  @apply bg-control-disabled border-control-disabled text-control-disabled;
-}
-
-.checkbox__text {
-  @apply font-semibold;
-}
-</style>

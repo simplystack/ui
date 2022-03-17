@@ -27,7 +27,7 @@
 import VCrossIcon from '../../icons/CrossIcon.vue';
 
 export default {
-  name: 'Pane',
+  name: 'VPane',
   computed: {
     opened() {
       return this.$store.getters['pane/opened'];

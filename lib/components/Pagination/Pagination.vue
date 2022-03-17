@@ -1,5 +1,5 @@
 <template>
-  <ul class="pagination" :class="[{'pagination--centerd': centered}]">
+  <ul class="flex items-center" :class="[{'justify-center': centered}]">
     <li class="ml-1" v-if="firstLast">
       <v-button
         :size="size"
@@ -65,8 +65,9 @@ import VButton from '../Button';
 
 export default {
   name: 'VPagination',
+  emits: ['update:modelValue'],
   props: {
-    value: {
+    modelValue: {
       type: Number,
       default: 1,
     },
@@ -97,7 +98,7 @@ export default {
   },
   data() {
     return {
-      currentPage: this.value,
+      currentPage: this.modelValue,
     };
   },
   computed: {
@@ -133,38 +134,29 @@ export default {
   },
   methods: {
     onClickFirstPage() {
-      this.$emit('input', 1);
+      this.$emit('update:modelValue', 1);
     },
     onClickPreviousPage() {
-      this.$emit('input', this.currentPage - 1);
+      this.$emit('update:modelValue', this.currentPage - 1);
     },
     onClickPage(page) {
-      this.$emit('input', page);
+      this.$emit('update:modelValue', page);
     },
     onClickNextPage() {
-      this.$emit('input', this.currentPage + 1);
+      this.$emit('update:modelValue', this.currentPage + 1);
     },
     onClickLastPage() {
-      this.$emit('input', this.totalPages);
+      this.$emit('update:modelValue', this.totalPages);
     },
     isPageActive(page) {
       return this.currentPage === page;
     },
   },
   watch: {
-    value(value) {
+    modelValue(value) {
       this.currentPage = value;
     },
   },
   components: { VButton },
 };
 </script>
-
-<style lang="postcss">
-.pagination {
-  @apply flex items-center;
-}
-.pagination--centerd {
-  @apply justify-center;
-}
-</style>
