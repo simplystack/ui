@@ -1,12 +1,12 @@
 <template>
   <div
-    class="tab"
+    class="outline-none"
     role="tabpanel"
 
     :id="id"
     :aria-hidden="active? null: 'true'"
     :tabindex="active ? '0' : null"
-    :class="[{'tab--visible': active}]"
+    :class="[active ? 'block' : 'hidden']"
   >
     <slot></slot>
   </div>
@@ -64,13 +64,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss">
-.tab {
-  @apply outline-none hidden;
-}
-
-.tab--visible {
-  @apply block;
-}
-</style>

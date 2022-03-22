@@ -2,11 +2,11 @@
   <div class="toast" :class="classes" data-test="toast">
     <div class="toast__content">
       <div class="toast__title" data-test="toast-title">{{ computedTitle }}</div>
-      <div class="toast__message" data-test="toast-message">{{ message }}</div>
+      <div class="text-sm" data-test="toast-message">{{ message }}</div>
     </div>
     <div class="toast__close" v-if="dismissible">
       <v-button appearance="subtle" size="sm" @click="close">
-        <template v-slot:icon>
+        <template #icon>
           <v-cross-icon height="16" width="16" />
         </template>
       </v-button>

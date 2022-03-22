@@ -8,8 +8,8 @@
     v-bind="$attrs"
   >
     <slot v-if="!isDivider">
-      <div class="menu-option__content">
-        <div class="menu-option__text">{{ label }}</div>
+      <div class="menu-option__content overflow-hidden">
+        <div class="font-semibold text-sm flex-1 truncate">{{ label }}</div>
       </div>
     </slot>
   </li>
@@ -76,14 +76,6 @@ export default {
   flex-grow: 1;
   min-height: 40px;
   padding: 0 16px;
-}
-.menu-option__text {
-  @apply font-semibold;
-  display: block;
-  flex-grow: 1;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .menu-option:not(.menu-option--divider).menu-option--disabled {
   @apply text-control-disabled;

@@ -13,7 +13,7 @@ describe('Pagination.vue', () => {
     expect(wrapper.find('button').attributes('aria-label')).toBe('Go to first page');
     expect(wrapper.find('button').attributes('disabled')).toBeDefined();
 
-    expect(wrapper.find('button.active').text()).toBe('1');
+    expect(wrapper.find('[aria-current="true"]').text()).toBe('1');
   });
 
   it('should paginate correctly', async () => {
@@ -27,10 +27,10 @@ describe('Pagination.vue', () => {
 
     await nextButton.trigger('click');
 
-    expect(wrapper.emitted().input[0]).toEqual([2]);
+    expect(wrapper.emitted()['update:modelValue'][0]).toEqual([2]);
 
-    await wrapper.setProps({ value: 2 });
+    await wrapper.setProps({ modelValue: 2 });
 
-    expect(wrapper.find('button.active').text()).toBe('2');
+    expect(wrapper.find('[aria-current="true"]').text()).toBe('2');
   });
 });

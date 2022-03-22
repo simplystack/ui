@@ -50,27 +50,10 @@
 </template>
 
 <script>
-/**
- * Quick object check - this is primarily used to tell
- * Objects from primitive values when we know the value
- * is a JSON-compliant type.
- */
-export function isObject(obj) {
-  return obj === Object(obj);
-}
-/**
- * Check if two values are loosely equal - that is,
- * if they are plain objects, do they have the same shape?
- */
-export function looseEqual(a, b) {
-  // eslint-disable-next-line eqeqeq
-  return a == b || (
-    isObject(a) && isObject(b) ? JSON.stringify(a) === JSON.stringify(b) : false
-  );
-}
+import { looseEqual } from '../../util';
 
 export default {
-  name: 'UiCheckbox',
+  name: 'VCheckbox',
   emits: ['update:modelValue', 'focus', 'blur', 'change'],
   props: {
     id: {

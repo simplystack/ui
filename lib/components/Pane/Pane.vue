@@ -1,25 +1,62 @@
 <template>
-  <transition name="pane">
-    <aside
+  <transition
+    enter-active-class="ease-in-out duration-200"
+    enter-from-class="opacity-0"
+    enter-to-class="opacity-100"
+    leave-active-class="ease-in-out duration-200"
+    leave-from-class="opacity-100"
+    leave-to-class="opacity-0"
+    @after-enter="showPanel = true"
+  >
+    <div
       v-if="opened"
-      ref="container"
-      class="pane"
-      :class="classes"
-      :style="{ width: `${options.width}px`}"
+      class="fixed z-30 inset-0 bg-tone transition-opacity"
+      aria-hidden="true"
+      @click="showPanel = false"
     >
-      <header class="pane__header">
-        <h3 class="pane__title">{{ options.title }}</h3>
-        <v-button class="pane__close" appearance="subtle" size="sm" @click="close">
-          <template v-slot:icon>
-            <v-cross-icon :height="16" :width="16" />
-          </template>
-        </v-button>
-      </header>
-
-      <main>
-        <component :is="options.component" />
-      </main>
-    </aside>
+      <div class="absolute inset-y-0 right-0 pl-10 max-w-full flex">
+        <transition
+          appear
+          enter-active-class="transform transition ease-in-out duration-300"
+          enter-from-class="translate-x-full"
+          enter-to-class="translate-x-0"
+          leave-active-class="transform transition ease-in-out duration-300"
+          leave-from-class="translate-x-0"
+          leave-to-class="translate-x-full"
+          @after-leave="close"
+        >
+          <div v-if="showPanel" :style="{ width: `${options.width}px`}">
+            <div
+              @click.stop
+              class="h-full flex flex-col py-6 bg-primary shadow-xl overflow-y-scroll"
+            >
+              <div class="px-4 sm:px-6">
+                <div class="flex items-start justify-between">
+                  <h2 class="text-2xl font-medium ">
+                    {{ options.title }}
+                  </h2>
+                  <div class="ml-3 h-7 flex items-center">
+                    <v-button
+                      size="sm"
+                      type="button"
+                      appearance="subtle"
+                      @click="showPanel = false"
+                    >
+                      <template v-slot:icon>
+                        <v-cross-icon :height="16" :width="16" />
+                      </template>
+                    </v-button>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-6 relative flex-1 px-4 sm:px-6">
+                <component v-bind="options.props" :is="options.component" />
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
+    </div>
   </transition>
 </template>
 
@@ -28,6 +65,11 @@ import VCrossIcon from '../../icons/CrossIcon.vue';
 
 export default {
   name: 'VPane',
+  data() {
+    return {
+      showPanel: false,
+    };
+  },
   computed: {
     opened() {
       return this.$store.getters['pane/opened'];
@@ -35,14 +77,10 @@ export default {
     options() {
       return this.$store.getters['pane/options'];
     },
-    classes() {
-      return [
-        `pane--${this.options.side}`,
-      ];
-    },
   },
   methods: {
     close() {
+      this.showPanel = false;
       this.$store.dispatch('pane/close');
     },
     handleOutsideClick(e) {
@@ -62,52 +100,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss">
-.pane {
-  @apply fixed z-20 bg-primary top-0 bottom-0 shadow-lg overflow-y-auto;
-  transition: all 0.3s ease;
-  transform: translateX(0);
-  opacity: 1;
-}
-.pane__header {
-  @apply sticky top-0 flex items-center border-b p-4;
-}
-.pane__title {
-  @apply truncate flex-grow text-xl font-bold;
-}
-.pane__close {
-  @apply ml-2;
-}
-
-.pane--right {
-  @apply border-l right-0;
-}
-.pane--left {
-  @apply border-r left-0;
-}
-
-.pane-enter-from, .pane-leave-active {
-  opacity: 1;
-}
-
-.pane-enter-from, .pane-leave-active {
-  opacity: 0;
-}
-
-.pane--left.pane-enter-from, .pane--left.pane-leave-active {
-  transform: translateX(80px);
-}
-
-.pane--left.pane-enter-from, .pane--left.pane-leave-active {
-  transform: translateX(-80px);
-}
-
-.pane--right.pane-enter-from, .pane--right.pane-leave-active {
-  transform: translateX(-80px);
-}
-
-.pane--right.pane-enter-from, .pane--right.pane-leave-active {
-  transform: translateX(80px);
-}
-</style>

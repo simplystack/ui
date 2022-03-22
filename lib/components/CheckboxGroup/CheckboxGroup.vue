@@ -1,9 +1,8 @@
 <template>
-  <div class="checkbox-group">
-    <div class="checkbox-group__label">{{ label }}</div>
-    <div class="checkbox-group__list">
+  <div>
+    <div class="font-medium text-sm mb-1">{{ label }}</div>
+    <div class="flex items-center space-x-2">
       <div
-        class="checkbox-group__item"
         :key="option[keys.id] || `${name}-${i}`"
         v-for="(option, i) in options"
       >

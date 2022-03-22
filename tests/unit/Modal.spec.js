@@ -1,7 +1,7 @@
 /* eslint-disable import/extensions */
 /* eslint-disable import/no-unresolved */
 import { mount } from '@vue/test-utils';
-import { markRaw } from 'vue';
+import { markRaw, nextTick } from 'vue';
 import { createStore } from 'vuex';
 import Modal from '@/components/Modal/Modal.vue';
 import modalStore from '@/components/Modal/store';
@@ -41,6 +41,9 @@ describe('Modal.vue', () => {
     const wrapper = mount(App, {
       global: {
         plugins: [store],
+        stubs: {
+          transition: false,
+        },
       },
       attachTo: document.body,
     });
@@ -48,9 +51,23 @@ describe('Modal.vue', () => {
     await store.dispatch('modal/open', options);
 
     const root = wrapper.find('[data-test="modal-root"]');
-    const modal = wrapper.find('[data-test="modal"]');
 
     expect(root.exists()).toBe(true);
+
+    // TODO find a better solution
+    // There is no way to test transition hooks in current vue-utils so
+    // we have to manually call hook's handlers
+    wrapper.findComponent({ name: 'VModal' }).vm.onEnterBackdrop();
+    await nextTick();
+    wrapper.findComponent({ name: 'VModal' }).vm.onAfterEnterBackdrop();
+    await nextTick();
+    wrapper.findComponent({ name: 'VModal' }).vm.onAfterEnterModal();
+    await nextTick();
+
+    const modal = wrapper.find('[data-test="modal"]');
+
+    expect(modal.exists()).toBe(true);
+
     expect(document.activeElement).toBe(modal.element);
     expect(wrapper.find('h3').text()).toBe('Testing title');
     expect(wrapper.find('p').text()).toBe('Rendered modal content');
@@ -69,6 +86,14 @@ describe('Modal.vue', () => {
 
     expect(store.getters['modal/opened']).toBe(false);
 
+    // TODO find a better solution
+    // There is no way to test transition hooks in current vue-utils so
+    // we have to manually call hook's handlers
+    wrapper.findComponent({ name: 'VModal' }).vm.onAfterLeaveModal();
+    await nextTick();
+    wrapper.findComponent({ name: 'VModal' }).vm.onLeaveBackdrop();
+    await nextTick();
+
     expect(wrapper.find('[role="dialog"]').exists()).toBe(false);
     expect(options.onClose).toHaveBeenLastCalledWith({ foo: 'bar' });
   });
@@ -83,6 +108,14 @@ describe('Modal.vue', () => {
     await store.dispatch('modal/open', options);
 
     await store.dispatch('modal/dismiss');
+
+    // TODO find a better solution
+    // There is no way to test transition hooks in current vue-utils so
+    // we have to manually call hook's handlers
+    wrapper.findComponent({ name: 'VModal' }).vm.onAfterLeaveModal();
+    await nextTick();
+    wrapper.findComponent({ name: 'VModal' }).vm.onLeaveBackdrop();
+    await nextTick();
 
     expect(store.getters['modal/opened']).toBe(false);
     expect(wrapper.find('[role="dialog"]').exists()).toBe(false);

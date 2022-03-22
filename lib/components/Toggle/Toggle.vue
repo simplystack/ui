@@ -168,6 +168,6 @@ export default {
 }
 
 .toggle__label {
-  @apply font-semibold ml-2;
+  @apply font-medium text-sm ml-2;
 }
 </style>

@@ -4,15 +4,32 @@
     class="
       appearance-none
       outline-none
-      h-12
       text-sm
-      rounded
       font-medium
-      px-4
       transition-colors
       duration-100 ease-linear
     "
     :class="[
+      size === 'sm' ? 'rounded-sm' : 'rounded',
+      {'h-6': size === 'sm'},
+      {'h-8': size === 'md'},
+      {'h-10': size === 'lg'},
+      {'h-12': size === 'xl'},
+      ...(
+        iconOnly
+          ? [
+            {'w-6': size === 'sm'},
+            {'w-8': size === 'md'},
+            {'w-10': size === 'lg'},
+            {'w-12': size === 'xl'},
+          ]
+          : [
+            {'px-2': size === 'sm'},
+            {'px-3': size === 'md'},
+            {'px-4': size === 'lg'},
+            {'px-4': size === 'xl'},
+          ]
+      ),
       ...(
         disabled || loading
           ? ['bg-control-disabled text-control-disabled cursor-not-allowed']
@@ -41,10 +58,10 @@
     :type="type"
     v-bind="$attrs"
   >
-    <div class :class="[{ 'hidden': loading }]">
+    <div :class="[{ 'hidden': loading }]">
       <slot />
     </div>
-    <div class v-if="$slots.icon">
+    <div class="flex items-center justify-center" v-if="iconOnly">
       <slot name="icon" />
     </div>
     <div class="flex items-center justify-center" v-if="loading">
@@ -76,7 +93,7 @@ export default {
     },
     size: {
       type: String,
-      default: 'xl',
+      default: 'lg',
       validator(appearance) {
         return ['xs', 'sm', 'md', 'lg', 'xl'].indexOf(appearance) > -1;
       },
@@ -108,6 +125,9 @@ export default {
         // { 'button--icon-first': this.iconFirst },
         // { 'button--inverted': this.inverted },
       ];
+    },
+    iconOnly() {
+      return !!this.$slots.icon;
     },
     spinnerSize() {
       switch (this.size) {

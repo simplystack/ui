@@ -1,41 +1,69 @@
 <template>
-  <transition name="modal" @after-enter="onEnter" @after-leave="onLeave">
+  <transition
+    enter-from-class="opacity-0"
+    enter-active-class="ease-out duration-300"
+    enter-to-class="opacity-100"
+    leave-from-class="opacity-100"
+    leave-active-class="ease-in duration-200"
+    leave-to-class="opacity-0"
+    @enter="onEnterBackdrop"
+    @after-enter="onAfterEnterBackdrop"
+    @after-leave="onLeaveBackdrop"
+  >
     <div
-      v-if="opened"
-      class="modal-mask"
+      v-if="showBackdrop"
+      class="fixed inset-0 z-20 bg-tone overflow-auto"
       :role="options.role"
-      :class="classes"
       data-test="modal-root"
     >
       <div
         ref="backdrop"
-        class="modal-backdrop"
+        class="min-h-full flex flex-col items-center justify-center p-2 md:p-4"
         @click="dismissOnBackdrop && dismiss()"
-        @keydown.esc="dismissOnEsc && dismiss()"
       >
-        <div
-          ref="container"
-          class="modal-body"
-          tabindex="-1"
-          @click.stop
-          @keydown.esc="dismissOnEsc && dismiss()"
-          data-test="modal"
+        <transition
+          enter-from-class="opacity-0 scale-110"
+          enter-active-class="ease-out duration-300"
+          enter-to-class="opacity-100 scale-100"
+          leave-from-class="opacity-100 scale-100"
+          leave-active-class="ease-in duration-200"
+          leave-to-class="opacity-0 scale-110"
+          @after-enter="onAfterEnterModal"
+          @after-leave="onAfterLeaveModal"
         >
+          <div
+            v-if="showModal"
+            ref="container"
+            class="
+              max-w-xl w-full
+              bg-primary
+              rounded
+              focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-primary
+              p-4
+            "
+            tabindex="-1"
+            @click.stop
+            @keydown.esc="dismissOnEsc && dismiss()"
+            data-test="modal"
+          >
 
-          <div class="modal-header">
-            <h3 class="modal-title">{{ options.title }}</h3>
+            <div class="flex items-center justify-between">
+              <h3 class="font-bold text-xl flex-1">{{ options.title }}</h3>
 
-            <v-button appearance="subtle" icon size="sm" @click="dismiss()">
-              <v-cross-icon :height="16" :width="16" />
-            </v-button>
+              <v-button appearance="subtle" size="sm" @click="dismiss()">
+                <template #icon>
+                  <v-cross-icon :height="16" :width="16" />
+                </template>
+              </v-button>
+            </div>
+
+            <div class="">
+              <component v-bind="options.props" :is="options.component" />
+            </div>
+
+            <div tabindex="0" @focus.stop="redirectFocus"></div>
           </div>
-
-          <div class="modal-content">
-            <component v-bind="options.props" :is="options.component" />
-          </div>
-
-          <div tabindex="0" @focus.stop="redirectFocus"></div>
-        </div>
+        </transition>
       </div>
     </div>
   </transition>
@@ -45,10 +73,11 @@
 import VCrossIcon from '../../icons/CrossIcon.vue';
 import VButton from '../Button';
 
-const modalOpenClass = 'overflow-hidden';
-
 export default {
   name: 'VModal',
+  data() {
+    return { showBackdrop: false, showModal: false };
+  },
   computed: {
     opened() {
       return this.$store.getters['modal/opened'];
@@ -68,20 +97,27 @@ export default {
     dismissOnEsc() {
       return this.options.dismissOn.indexOf('esc') > -1;
     },
-    classes() {
-      return [
-        `modal--size-${this.options.size}`,
-      ];
-    },
   },
   methods: {
-    open() {
-      this.$nextTick(() => {
-        this.lastfocusedElement = document.activeElement;
-        this.$refs.container.focus();
-        document.body.classList.add(modalOpenClass);
-        document.addEventListener('focus', this.restrictFocus, true);
-      });
+    // Handle Backdrop transition hooks
+    onEnterBackdrop() {
+      this.lastfocusedElement = document.activeElement;
+      document.body.classList.add('overflow-hidden');
+      document.addEventListener('focus', this.restrictFocus, true);
+    },
+    onAfterEnterBackdrop() {
+      this.showModal = true;
+    },
+    onLeaveBackdrop() {
+      document.body.classList.remove('overflow-hidden');
+    },
+    // Handle Modal transition hooks
+    onAfterEnterModal() {
+      this.redirectFocus();
+    },
+    onAfterLeaveModal() {
+      this.showBackdrop = false;
+      this.teardownModal();
     },
     handleClose() {
       if (!this.options.dismissible) {
@@ -102,19 +138,11 @@ export default {
       }
     },
     dismiss() {
+      this.showModal = false;
       this.$store.dispatch('modal/dismiss');
     },
-    clear() {
-      this.$nextTick(() => {
-        this.teardownModal();
-      });
-    },
-    onEnter() {},
-    onLeave() {
-      document.body.classList.remove(modalOpenClass);
-    },
     teardownModal() {
-      document.body.classList.remove(modalOpenClass);
+      document.body.classList.remove('overflow-hidden');
       document.removeEventListener('focus', this.restrictFocus, true);
       if (this.lastfocusedElement) {
         this.lastfocusedElement.focus();
@@ -141,71 +169,16 @@ export default {
   watch: {
     opened(opened) {
       if (opened) {
-        this.open();
+        this.showBackdrop = true;
       } else {
         if (this.dismissed) {
           this.handleDismiss();
         } else {
           this.handleClose();
         }
-        this.clear();
+        this.showModal = false;
       }
     },
   },
 };
 </script>
-
-<style lang="postcss">
-.modal-mask {
-  @apply fixed inset-0 z-20 bg-tone overflow-auto;
-  transition: opacity 0.3s ease;
-}
-
-.modal-backdrop {
-  @apply min-h-full flex flex-col items-center justify-center p-2 md:p-4;
-}
-
-.modal-header {
-  @apply flex items-center justify-between;
-}
-
-.modal-title {
-  @apply font-bold text-xl flex-1;
-}
-
-.modal-body {
-  @apply bg-primary rounded shadow-lg mx-auto w-full p-4;
-  max-width: 544px;
-  transition: transform 0.3s ease;
-}
-
-.modal-body:focus {
-  outline: 2px solid var(--color-brand);
-  outline-offset: 2px;
-}
-
-.modal--size-sm .modal-body {
-  max-width: 320px;
-}
-
-.modal--size-md .modal-body {
-  max-width: 544px;
-}
-
-.modal--size-lg .modal-body {
-  max-width: 720px;
-}
-
-.modal--size-xl .modal-body {
-  max-width: 1024px;
-}
-
-.modal-enter-from, .modal-leave-active {
-  opacity: 0;
-}
-
-.modal-enter-from .modal-body,
-.modal-leave-active .modal-body {
-  transform: scale(1.1);
-}
-</style>

@@ -1,63 +1,68 @@
 <template>
-  <ul class="flex items-center" :class="[{'justify-center': centered}]">
-    <li class="ml-1" v-if="firstLast">
-      <v-button
-        :size="size"
-        @click="onClickFirstPage"
-        aria-label="Go to first page"
-        :disabled="isInFirstPage"
-      >
-        First
-      </v-button>
-    </li>
+  <nav role="navigation" aria-label="Pagination Navigation">
+    <ul
+      class="flex items-center space-x-1"
+      :class="[{'justify-center': centered}]"
+    >
+      <li v-if="firstLast">
+        <v-button
+          :size="size"
+          @click="onClickFirstPage"
+          aria-label="Go to first page"
+          :disabled="isInFirstPage"
+        >
+          First
+        </v-button>
+      </li>
 
-    <li class="ml-1">
-      <v-button
-        :size="size"
-        @click.prevent="onClickPreviousPage"
-        aria-label="Go to previous page"
-        :disabled="isInFirstPage"
-      >
-        Previous
-      </v-button>
-    </li>
+      <li>
+        <v-button
+          :size="size"
+          @click.prevent="onClickPreviousPage"
+          aria-label="Go to previous page"
+          :disabled="isInFirstPage"
+        >
+          Previous
+        </v-button>
+      </li>
 
-    <li v-for="(page, i) in pages" :key="i" class="ml-1">
-      <v-button
-        :size="size"
-        @click.prevent="onClickPage(page.name)"
+      <li v-for="(page, i) in pages" :key="i">
+        <v-button
+          :size="size"
+          @click.prevent="onClickPage(page.name)"
 
-        :appearance="isPageActive(page.name) ? 'primary' : 'default'"
-        :class="{ active: isPageActive(page.name) }"
-        :aria-label="`Go to page number ${page.name}`"
+          :appearance="isPageActive(page.name) ? 'primary' : 'default'"
+          :aria-current="isPageActive(page.name) ? 'true' : null"
+          :aria-label="`Go to page number ${page.name}`"
 
-      >
-        {{ page.name }}
-      </v-button>
-    </li>
+        >
+          <template #icon>{{ page.name }}</template>
+        </v-button>
+      </li>
 
-    <li class="ml-1">
-      <v-button
-        :size="size"
-        @click="onClickNextPage"
-        :disabled="isInLastPage"
-        aria-label="Go to next page"
-      >
-        Next
-      </v-button>
-    </li>
+      <li>
+        <v-button
+          :size="size"
+          @click="onClickNextPage"
+          :disabled="isInLastPage"
+          aria-label="Go to next page"
+        >
+          Next
+        </v-button>
+      </li>
 
-    <li class="ml-1" v-if="firstLast">
-      <v-button
-        :size="size"
-        @click="onClickLastPage"
-        :disabled="isInLastPage"
-        aria-label="Go to last page"
-      >
-        Last
-      </v-button>
-    </li>
-  </ul>
+      <li v-if="firstLast">
+        <v-button
+          :size="size"
+          @click="onClickLastPage"
+          :disabled="isInLastPage"
+          aria-label="Go to last page"
+        >
+          Last
+        </v-button>
+      </li>
+    </ul>
+  </nav>
 </template>
 
 <script>

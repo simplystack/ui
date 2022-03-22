@@ -35,16 +35,6 @@
         </p>
       </div>
 
-      <div class="grid grid-cols-3 gap-4 py-4">
-        <v-button disabled appearance="default">Disabled</v-button>
-        <v-button appearance="default">Default</v-button>
-        <v-button appearance="primary">Primary</v-button>
-        <v-button appearance="secondary">Secondary</v-button>
-        <v-button appearance="danger">Danger</v-button>
-        <v-button appearance="subtle">Subtle</v-button>
-        <v-button loading>Loading</v-button>
-      </div>
-
       <div class="py-4">
         <form @submit.prevent class="bg-primary shadow rounded-lg space-y-4 p-4">
           <v-textbox
@@ -83,6 +73,9 @@
           <div class="flex items-center space-x-4">
             <v-radio v-model="form.choice" name="choice" true-value="choice-1" label="Choice 1" />
             <v-radio v-model="form.choice" name="choice" true-value="choice-2" label="Choice 2" />
+          </div>
+          <div>
+            <v-toggle label="Save settings" v-model="form.remember" />
           </div>
           <v-button
             appearance="primary"
@@ -135,11 +128,125 @@
           v-model="pagination.value"
         />
       </div>
+
+      <div class="py-4">
+        <v-dropdown
+
+          :options="[
+            { id: 1, label: 'Option 1' },
+            { id: 2, label: 'Option 2 Long title for testing truncate' },
+            { id: 3, label: 'Option 3' },
+          ]"
+        >
+          <template #toggle>
+            <v-button appearance="primary">Dropdown</v-button>
+          </template>
+        </v-dropdown>
+      </div>
+
+      <div class="py-4">
+        <div class="grid grid-cols-4">
+          <v-spinner />
+          <v-spinner color="secondary"></v-spinner>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-4 gap-4 py-4">
+        <div class="space-y-2">
+          <p class="text-sm uppercase font-medium text-center text-secondary">small</p>
+          <v-button size="sm" class="w-full" disabled appearance="default">Disabled</v-button>
+          <v-button size="sm" class="w-full" appearance="default">Default</v-button>
+          <v-button size="sm" class="w-full" appearance="primary">Primary</v-button>
+          <v-button size="sm" class="w-full" appearance="secondary">Second</v-button>
+          <v-button size="sm" class="w-full" appearance="danger">Danger</v-button>
+          <v-button size="sm" class="w-full" appearance="subtle">Subtle</v-button>
+          <v-button size="sm" class="w-full" loading>Loading</v-button>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-sm uppercase font-medium text-center text-secondary">medium</p>
+          <v-button size="md" class="w-full" disabled appearance="default">Disabled</v-button>
+          <v-button size="md" class="w-full" appearance="default">Default</v-button>
+          <v-button size="md" class="w-full" appearance="primary">Primary</v-button>
+          <v-button size="md" class="w-full" appearance="secondary">Second</v-button>
+          <v-button size="md" class="w-full" appearance="danger">Danger</v-button>
+          <v-button size="md" class="w-full" appearance="subtle">Subtle</v-button>
+          <v-button size="md" class="w-full" loading>Loading</v-button>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-sm uppercase font-medium text-center text-secondary">large</p>
+          <v-button size="lg" class="w-full" disabled appearance="default">Disabled</v-button>
+          <v-button size="lg" class="w-full" appearance="default">Default</v-button>
+          <v-button size="lg" class="w-full" appearance="primary">Primary</v-button>
+          <v-button size="lg" class="w-full" appearance="secondary">Second</v-button>
+          <v-button size="lg" class="w-full" appearance="danger">Danger</v-button>
+          <v-button size="lg" class="w-full" appearance="subtle">Subtle</v-button>
+          <v-button size="lg" class="w-full" loading>Loading</v-button>
+        </div>
+
+        <div class="space-y-2">
+          <p class="text-sm uppercase font-medium text-center text-secondary">x large</p>
+          <v-button size="xl" class="w-full" disabled appearance="default">Disabled</v-button>
+          <v-button size="xl" class="w-full" appearance="default">Default</v-button>
+          <v-button size="xl" class="w-full" appearance="primary">Primary</v-button>
+          <v-button size="xl" class="w-full" appearance="secondary">Second</v-button>
+          <v-button size="xl" class="w-full" appearance="danger">Danger</v-button>
+          <v-button size="xl" class="w-full" appearance="subtle">Subtle</v-button>
+          <v-button size="xl" class="w-full" loading>Loading</v-button>
+        </div>
+
+        <div class="flex items-center space-y-2">
+          <v-button size="sm" appearance="primary">
+            <template #icon>
+              <v-archive-icon class="w-4 h-4" />
+            </template>
+          </v-button>
+        </div>
+
+        <div class="flex items-center space-y-2">
+          <v-button size="md" appearance="primary">
+            <template #icon>
+              <v-archive-icon class="w-5 h-5" />
+            </template>
+          </v-button>
+        </div>
+
+        <div class="flex items-center space-y-2">
+          <v-button size="lg" appearance="primary">
+            <template #icon>
+              <v-archive-icon class="w-5 h-5" />
+            </template>
+          </v-button>
+        </div>
+
+        <div class="flex items-center space-y-2">
+          <v-button size="xl" appearance="primary">
+            <template #icon>
+              <v-archive-icon class="w-5 h-5" />
+            </template>
+          </v-button>
+        </div>
+      </div>
+
+      <div class="py-4">
+        <v-checkbox-group
+          label="Group 1"
+          v-model="checkboxGroupValues"
+          :options="[
+            { id: '1', name: 'test', value: 'box-1', label: 'Box 1' },
+            { id: '2', name: 'test', value: 'box-2', label: 'Box 2' },
+            { id: '3', name: 'test', value: 'box-3', label: 'Box 3' },
+          ]"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import VArchiveIcon from '@/ArchiveIcon.vue';
+
 import {
   defineAsyncComponent, nextTick, reactive, ref,
 } from 'vue';
@@ -155,6 +262,8 @@ const currentToast = ref();
 // const isTerrapacket = computed(() => currentTheme.value === 'terrapacket');
 
 const themes = ['light', 'dark', 'sepia'];
+
+const checkboxGroupValues = [];
 
 const form = reactive({
   email: 'best@serverhub.com',
@@ -176,6 +285,8 @@ const openModal = (theme) => {
   nextTick(() => {
     store.dispatch('modal/open', {
       title: 'Testing modal',
+      onClose: (data) => console.log('on close', data),
+      onDismiss: () => console.log('modal was dismissed'),
       component: defineAsyncComponent(() => import('./LoginModal.vue')),
     });
   });
@@ -198,7 +309,7 @@ const showToast = (theme) => {
   nextTick(() => {
     store.dispatch('toasts/create', {
       title: 'Testing toast',
-      text: 'ekkw',
+      message: 'Everything is good',
     });
   });
 };

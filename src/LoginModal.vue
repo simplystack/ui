@@ -27,9 +27,12 @@
 
 <script>
 import { ref } from 'vue';
+import { useStore } from 'vuex';
 
 export default {
   setup() {
+    const store = useStore();
+
     const form = ref({
       email: '',
       password: '',
@@ -40,8 +43,9 @@ export default {
       submitting.value = true;
 
       setTimeout(() => {
-        console.log(form.value);
         submitting.value = false;
+
+        store.dispatch('modal/close', { payload: form.value });
       }, 2000);
     };
 

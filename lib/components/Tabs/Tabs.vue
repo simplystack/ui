@@ -1,6 +1,6 @@
 <template>
-  <div class="tabs" :class="classes">
-    <ul class="tabs__list" role="tablist">
+  <div>
+    <ul class="flex flex-wrap items-center border-b-2" role="tablist">
       <v-tab-header
         :ref="setItemTabHeadersRef"
 
@@ -19,7 +19,7 @@
       </v-tab-header>
     </ul>
 
-    <div class="tabs__body">
+    <div class="pt-4">
       <slot></slot>
     </div>
   </div>
@@ -44,13 +44,6 @@ export default {
       activeTabId: null,
       activeTabIndex: -1,
     };
-  },
-  computed: {
-    classes() {
-      return [
-        { 'tabs--wide': this.wide },
-      ];
-    },
   },
   beforeUpdate() {
     this.tabHeadersRefs = [];
@@ -176,9 +169,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss">
-.tabs__list {
-  @apply flex flex-wrap items-center border-b-2;
-}
-</style>
