@@ -1,7 +1,10 @@
 <template>
   <div>
     <div class="font-medium text-sm mb-1">{{ label }}</div>
-    <div class="flex items-center space-x-2">
+    <div
+      class="flex"
+      :class="[vertical ? 'items-start flex-col space-y-4' : 'items-center space-x-4']"
+    >
       <div
         :key="option[keys.id] || `${name}-${i}`"
         v-for="(option, i) in options"
@@ -65,13 +68,6 @@ export default {
     vertical: {
       type: Boolean,
       default: false,
-    },
-  },
-  computed: {
-    classes() {
-      return [
-        { 'checkbox-group--vertical': this.vertical },
-      ];
     },
   },
   data() {

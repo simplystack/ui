@@ -230,15 +230,26 @@
       </div>
 
       <div class="py-4">
-        <v-checkbox-group
-          label="Group 1"
-          v-model="checkboxGroupValues"
-          :options="[
-            { id: '1', name: 'test', value: 'box-1', label: 'Box 1' },
-            { id: '2', name: 'test', value: 'box-2', label: 'Box 2' },
-            { id: '3', name: 'test', value: 'box-3', label: 'Box 3' },
-          ]"
-        />
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <v-checkbox-group
+              label="Group 1"
+              v-model="checkboxGroupValues"
+              :options="[
+                { id: '1', name: 'test', value: 'box-1', label: 'Box 1' },
+                { id: '2', name: 'test', value: 'box-2', label: 'Box 2' },
+                { id: '3', name: 'test', value: 'box-3', label: 'Box 3' },
+              ]"
+            />
+          </div>
+          <div class="flex flex-col items-start space-y-4">
+            <v-checkbox v-model="checkboxes.checked" label="Checked" />
+            <v-checkbox v-model="checkboxes.unchecked" label="Unchecked" />
+
+            <v-checkbox disabled v-model="checkboxes.unchecked" label="Unchecked" />
+            <v-checkbox disabled v-model="checkboxes.checked" label="Checked" />
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -264,6 +275,11 @@ const currentToast = ref();
 const themes = ['light', 'dark', 'sepia'];
 
 const checkboxGroupValues = [];
+
+const checkboxes = reactive({
+  checked: true,
+  unchecked: false,
+});
 
 const form = reactive({
   email: 'best@serverhub.com',

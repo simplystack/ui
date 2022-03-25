@@ -21,22 +21,34 @@
       @change="onChange"
     />
     <div
-      class="w-4 h-4 border rounded-sm"
+      class="w-4 h-4 flex items-center justify-center border rounded-sm"
       :class="[
         disabled
-          ? 'bg-control-disabled border-control-disabled'
-          : isChecked
-            // eslint-disable-next-line max-len
-            ? 'bg-control-primary border-control-primary group-focus:border-control-focus group-focus:ring-2 group-focus:ring-primary/50'
-            // eslint-disable-next-line max-len
-            : 'bg-control-default border-control-default group-hover:border-control-hover group-focus:border-control-focus group-focus:ring-2 group-focus:ring-primary/50'
+          ? 'text-secondary bg-control-disabled border-control-default'
+          : isChecked || indeterminate
+            ? `
+                text-white
+                bg-control-primary
+                border-control-primary
+                group-focus:border-control-focus
+                group-focus:ring-2
+                group-focus:ring-primary/50
+              `
+            : `
+                bg-control-default
+                border-control-default
+                group-hover:border-control-hover
+                group-focus:border-control-focus
+                group-focus:ring-2
+                group-focus:ring-primary/50
+              `
 
       ]"
     >
       <svg
-        v-if="!disabled && isChecked"
+        v-if="isChecked"
         viewBox="0 0 16 16"
-        fill="white"
+        fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

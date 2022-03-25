@@ -32,17 +32,27 @@
       "
       :class="[
         disabled
-          ? 'bg-control-disabled border-control-disabled cursor-not-allowed'
+          ? 'bg-control-disabled border-control-default cursor-not-allowed'
           : isChecked
-            // eslint-disable-next-line max-len
-            ? 'bg-control-primary border-control-primary group-focus:border-control-focus group-focus:ring-2 group-focus:ring-primary/50'
-            // eslint-disable-next-line max-len
-            : 'bg-control-default border-control-default group-hover:border-control-hover group-focus:border-control-focus group-focus:ring-2 group-focus:ring-primary/50'
+            ? `
+                bg-control-primary
+                border-control-primary
+                group-focus:border-control-focus
+                group-focus:ring-2
+                group-focus:ring-primary/50
+              `
+            : `
+                bg-control-default
+                border-control-default
+                group-hover:border-control-hover
+                group-focus:border-control-focus
+                group-focus:ring-2 group-focus:ring-primary/50
+              `
 
       ]"
     >
       <span
-        v-if="!disabled && isChecked"
+        v-if="isChecked"
         class="inline-block bg-white w-1 h-1 rounded-full"
       ></span>
     </span>

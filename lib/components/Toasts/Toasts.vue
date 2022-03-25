@@ -1,6 +1,13 @@
 <template>
-  <div class="toasts" :class="classes">
-    <transition-group name="list">
+  <div class="fixed z-30 top-4 right-4 w-80">
+    <transition-group
+      enter-from-class="opacity-0 translate-x-8"
+      enter-active-class="ease-out duration-300"
+      enter-to-class="opacity-100 translate-x-0"
+      leave-from-class="opacity-100 translate-x-0"
+      leave-active-class="ease-in duration-200"
+      leave-to-class="opacity-0 translate-y-8"
+    >
       <v-toast
         :key="item.timestamp"
         :type="item.type"
@@ -31,28 +38,7 @@ export default {
     queue() {
       return this.$store.getters['toasts/queue'];
     },
-    classes() {
-      return [
-        `toasts--${this.position}`,
-      ];
-    },
   },
   components: { VToast },
 };
 </script>
-
-<style lang="postcss">
-  .toasts {
-    @apply fixed z-30;
-    top: 16px;
-    right: 16px;
-    width: 320px;
-  }
-  .list-enter-active, .list-leave-active {
-    transition: all .3s;
-  }
-  .list-enter-from, .list-leave-to {
-    opacity: 0;
-    transform: translateX(30px);
-  }
-</style>
